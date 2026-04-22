@@ -119,15 +119,11 @@ export type Project = ShippedProject | ComingSoonProject;
 
 /**
  * Shape des données POST envoyées à /api/contact.
- * À l'étape 6 on dérivera ce type depuis le schéma Zod (source unique de vérité) :
- *   export type ContactFormValues = z.infer<typeof contactFormSchema>;
- * Pour l'instant on déclare à la main pour débloquer les constantes et le squelette.
+ * Dérivé automatiquement du schéma Zod (source unique de vérité) :
+ *   → src/lib/schemas/contact.ts
+ * Si le schéma change (ajout d'un champ, règle modifiée), ce type suit sans duplication.
  */
-export type ContactFormValues = {
-  name: string;
-  email: string;
-  message: string;
-};
+export type { ContactFormValues } from "@/lib/schemas/contact";
 
 // ---------------------------------------------------------------------------
 // Navigation
