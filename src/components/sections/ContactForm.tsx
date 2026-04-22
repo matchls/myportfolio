@@ -5,7 +5,7 @@
  *
  * Pile :
  *  - React Hook Form pour l'état et la soumission
- *  - zodResolver pour la validation synchrone côté client (même schéma que l'API)
+ *  - zodResolver pour la validation synchrone côté client (même fabrique que l'API)
  *  - `fetch` vers /api/contact pour l'envoi
  *
  * États UX :
@@ -14,28 +14,43 @@
  *  - success : message de succès, form reset
  *  - error   : message d'erreur, form reste rempli pour que l'utilisateur corrige/renvoie
  *
- * Pourquoi un Client Component ?
- *  - React Hook Form utilise `useState`, `useRef`, events → impossible en SC
- *  - La soumission est interactive (feedback en temps réel)
- *  - Le reste de la page reste Server : on isole l'interactivité au strict nécessaire
+ * i18n :
+ *  - Les libellés et messages d'erreur viennent de `dict.contact.form.*`
+ *  - La locale courante est envoyée dans le body POST pour que l'API puisse
+ *    localiser le sujet de l'email + ses propres erreurs de validation
+ *  - Le schéma Zod est RE-créé à chaque render avec les messages du dict courant —
+ *    OK car useMemo le stabilise et les messages changent rarement (toggle langue)
  */
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader2, Send } from "lucide-react";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { useForm } from "react-hook-form";
 
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import { Textarea } from "@/components/ui/Textarea";
+import type { Dictionary } from "@/i18n/dictionaries";
+import type { Locale } from "@/i18n/config";
 import { CONTACT_API_ROUTE } from "@/lib/constants";
-import { contactFormSchema, type ContactFormValues } from "@/lib/schemas/contact";
+import { createContactFormSchema, type ContactFormValues } from "@/lib/schemas/contact";
 
 type Status = "idle" | "loading" | "success" | "error";
 
-export function ContactForm() {
+type Props = {
+  locale: Locale;
+  dict: Dictionary;
+};
+
+export function ContactForm({ locale, dict }: Props) {
+  const t = dict.contact.form;
+
   const [status, setStatus] = useState<Status>("idle");
   const [serverError, setServerError] = useState<string | null>(null);
+
+  // Stabilise le schéma tant que les messages ne changent pas (changement de
+  // locale ou de dict). Évite de reconstruire Zod à chaque render.
+  const schema = useMemo(() => createContactFormSchema(t.errors), [t.errors]);
 
   const {
     register,
@@ -43,7 +58,7 @@ export function ContactForm() {
     reset,
     formState: { errors },
   } = useForm<ContactFormValues>({
-    resolver: zodResolver(contactFormSchema),
+    resolver: zodResolver(schema),
     defaultValues: { name: "", email: "", message: "", honeypot: "" },
   });
 
@@ -55,13 +70,14 @@ export function ContactForm() {
       const res = await fetch(CONTACT_API_ROUTE, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(values),
+        // `locale` voyage avec le payload → l'API peut localiser son message d'erreur
+        // et le sujet de l'email reçu par Mathieu.
+        body: JSON.stringify({ ...values, locale }),
       });
 
       if (!res.ok) {
-        // Essaie de parser le JSON d'erreur, sinon message générique
         const data = (await res.json().catch(() => null)) as { error?: string } | null;
-        setServerError(data?.error ?? "Envoi impossible. Réessaie plus tard.");
+        setServerError(data?.error ?? t.errorGeneric);
         setStatus("error");
         return;
       }
@@ -70,7 +86,7 @@ export function ContactForm() {
       setStatus("success");
     } catch {
       // Typiquement : réseau coupé, CORS, DNS
-      setServerError("Problème réseau. Vérifie ta connexion et réessaie.");
+      setServerError(t.errorNetwork);
       setStatus("error");
     }
   });
@@ -79,16 +95,14 @@ export function ContactForm() {
   if (status === "success") {
     return (
       <div className="border-accent/40 bg-accent/5 text-text rounded-md border p-6">
-        <p className="font-semibold">Message envoyé ✓</p>
-        <p className="text-text-muted mt-2 text-sm">
-          Merci ! Je reviens vers toi dans les prochains jours.
-        </p>
+        <p className="font-semibold">{t.successTitle} ✓</p>
+        <p className="text-text-muted mt-2 text-sm">{t.successBody}</p>
         <button
           type="button"
           onClick={() => setStatus("idle")}
           className="text-accent-2 hover:text-accent-2/80 mt-4 text-sm underline underline-offset-2"
         >
-          Envoyer un autre message
+          {t.successAgain}
         </button>
       </div>
     );
@@ -98,7 +112,7 @@ export function ContactForm() {
     <form onSubmit={onSubmit} noValidate className="flex flex-col gap-4">
       <Input
         id="contact-name"
-        label="Nom"
+        label={t.name}
         required
         autoComplete="name"
         {...register("name")}
@@ -107,7 +121,7 @@ export function ContactForm() {
 
       <Input
         id="contact-email"
-        label="Email"
+        label={t.email}
         type="email"
         required
         autoComplete="email"
@@ -117,7 +131,7 @@ export function ContactForm() {
 
       <Textarea
         id="contact-message"
-        label="Message"
+        label={t.message}
         required
         {...register("message")}
         error={errors.message?.message}
@@ -128,7 +142,7 @@ export function ContactForm() {
           n'y tombe par accident via Tab ou autofill. */}
       <div aria-hidden="true" className="pointer-events-none absolute -left-[9999px]">
         <label>
-          Ne remplissez pas ce champ
+          {t.honeypotLabel}
           <input type="text" tabIndex={-1} autoComplete="off" {...register("honeypot")} />
         </label>
       </div>
@@ -149,12 +163,12 @@ export function ContactForm() {
         {status === "loading" ? (
           <>
             <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />
-            Envoi…
+            {t.sending}
           </>
         ) : (
           <>
             <Send className="h-4 w-4" aria-hidden="true" />
-            Envoyer
+            {t.send}
           </>
         )}
       </Button>

@@ -8,6 +8,9 @@
  *   un mismatch d'hydratation (le serveur ne sait pas si l'utilisateur
  *   avait choisi "dark" dans une session précédente).
  * - Accessible : aria-label dynamique décrivant l'action à venir.
+ *
+ * i18n : les labels "Passer en mode clair/sombre" viennent du dict et sont
+ * injectés depuis le Header (Server Component → Client Component via props).
  */
 
 import { Moon, Sun } from "lucide-react";
@@ -18,9 +21,13 @@ import { cn } from "@/lib/utils";
 
 type Props = {
   className?: string;
+  labels: {
+    toLight: string;
+    toDark: string;
+  };
 };
 
-export function ThemeToggle({ className }: Props) {
+export function ThemeToggle({ className, labels }: Props) {
   const { resolvedTheme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
@@ -36,7 +43,7 @@ export function ThemeToggle({ className }: Props) {
   }
 
   const isDark = resolvedTheme === "dark";
-  const nextLabel = isDark ? "Passer en mode clair" : "Passer en mode sombre";
+  const nextLabel = isDark ? labels.toLight : labels.toDark;
 
   return (
     <button

@@ -7,12 +7,15 @@
  * d'atterrir directement dans <main>.
  *
  * Pattern `sr-only + focus:not-sr-only` : le lien n'apparaît qu'au focus clavier.
- * Une souris ne le verra jamais. C'est la convention WAI-ARIA.
  *
- * La cible #main correspond à l'attribut id="main" sur <main> dans page.tsx.
+ * i18n : le label vient du dict (dict.a11y.skipToContent), injecté par le layout.
  */
 
-export function SkipLink() {
+type Props = {
+  label: string;
+};
+
+export function SkipLink({ label }: Props) {
   return (
     <a
       href="#main"
@@ -25,7 +28,7 @@ export function SkipLink() {
         "focus:outline-none",
       ].join(" ")}
     >
-      Aller au contenu principal
+      {label}
     </a>
   );
 }

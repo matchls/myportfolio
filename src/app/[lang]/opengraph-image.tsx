@@ -1,31 +1,42 @@
 /**
- * OG image dynamique — utilisée par Twitter, LinkedIn, iMessage, Slack, Discord
- * quand quelqu'un colle l'URL du site.
+ * OG image dynamique par locale — utilisée par Twitter, LinkedIn, iMessage,
+ * Slack, Discord quand quelqu'un colle l'URL du site.
  *
- * Next détecte `app/opengraph-image.tsx` par convention et :
- *  1. Appelle cette fonction au build pour générer un PNG 1200×630
- *  2. L'ajoute automatiquement à `metadata.openGraph.images`
- *  3. Gère le caching + les URLs
+ * Colocation sous `[lang]/` : Next génère une image par locale avec les bons
+ * textes (FR ou EN), et la référence automatiquement dans
+ * `metadata.openGraph.images` de la page correspondante.
  *
  * Sous le capot : next/og utilise Satori (rendu SVG depuis JSX) + resvg (SVG→PNG).
- * Les limitations sont strictes : seulement flex/block, pas de grid, pas de margin
- * collapsing, pas de texte riche. Mais largement assez pour une carte marketing.
- *
- * Si un jour on veut plusieurs variantes (une par langue, par projet...) :
- *  - Renommer en /opengraph-image/route.tsx avec export runtime
- *  - Ou créer des fichiers séparés par section
+ * Limitations strictes : flex/block uniquement, pas de grid, pas de margin
+ * collapsing, pas de texte riche. Assez pour une carte marketing.
  */
 
 import { ImageResponse } from "next/og";
+import { notFound } from "next/navigation";
 
 import { profile } from "@/data/profile";
+import { getDictionary } from "@/i18n/dictionaries";
+import { isLocale } from "@/i18n/config";
 
-// Requis par next/og : indique la taille du canvas.
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 export const alt = `${profile.name} — Portfolio`;
 
-export default async function Image() {
+type Props = {
+  params: Promise<{ lang: string }>;
+};
+
+export default async function Image({ params }: Props) {
+  const { lang } = await params;
+  if (!isLocale(lang)) notFound();
+  const dict = await getDictionary(lang);
+
+  // Tagline condensée par locale — extrait court pour rentrer proprement sur la carte.
+  const shortTagline =
+    lang === "fr"
+      ? "Hier le bois, aujourd'hui le code. · Paris · hybride"
+      : "Yesterday wood, today code. · Paris · hybrid";
+
   return new ImageResponse(
     <div
       style={{
@@ -39,7 +50,7 @@ export default async function Image() {
         fontFamily: "sans-serif",
       }}
     >
-      {/* En-tête : logo MC + indicatif */}
+      {/* En-tête : logo MC */}
       <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
         <span
           style={{
@@ -63,7 +74,7 @@ export default async function Image() {
         </span>
       </div>
 
-      {/* Bloc central : nom + rôle */}
+      {/* Bloc central : greeting + nom + rôle */}
       <div style={{ display: "flex", flexDirection: "column" }}>
         <span
           style={{
@@ -73,7 +84,7 @@ export default async function Image() {
             marginBottom: "16px",
           }}
         >
-          Bonjour, je suis
+          {dict.hero.greeting}
         </span>
         <span
           style={{
@@ -95,22 +106,14 @@ export default async function Image() {
             letterSpacing: "-0.01em",
           }}
         >
-          {profile.role}
+          {dict.profile.role}
         </span>
       </div>
 
       {/* Bas de carte : tagline condensée + liseré orange */}
       <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
-        <div
-          style={{
-            height: "4px",
-            width: "80px",
-            backgroundColor: "#e87a3f",
-          }}
-        />
-        <span style={{ fontSize: "24px", color: "#5a6b5c" }}>
-          Hier le bois, aujourd&apos;hui le code. · Paris · hybride
-        </span>
+        <div style={{ height: "4px", width: "80px", backgroundColor: "#e87a3f" }} />
+        <span style={{ fontSize: "24px", color: "#5a6b5c" }}>{shortTagline}</span>
       </div>
     </div>,
     size,

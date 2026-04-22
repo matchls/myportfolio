@@ -5,25 +5,32 @@
  * enrichir les résultats de recherche avec la photo, le job title, les liens
  * sociaux (panneau de connaissances).
  *
- * Pourquoi Server Component + dangerouslySetInnerHTML ?
- *  - Le JSON doit sortir tel quel dans le HTML initial (crawlers, pas d'hydratation)
- *  - dangerouslySetInnerHTML est ici sans risque XSS car on contrôle 100% l'objet
- *    qui y est sérialisé (pas d'input utilisateur)
+ * i18n :
+ *  - `jobTitle` est traduit (FR vs EN) — influence la langue des résultats riches
+ *  - `url` pointe vers la locale courante (pas la racine) pour que le crawler
+ *    associe ce graph à la bonne page canonique
  *
  * Schéma utilisé : Person (https://schema.org/Person).
  */
 
 import { profile } from "@/data/profile";
+import type { Dictionary } from "@/i18n/dictionaries";
+import type { Locale } from "@/i18n/config";
 import { SITE_URL } from "@/lib/constants";
 
-export function StructuredData() {
+type Props = {
+  locale: Locale;
+  dict: Dictionary;
+};
+
+export function StructuredData({ locale, dict }: Props) {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Person",
     name: profile.name,
-    url: SITE_URL,
+    url: `${SITE_URL}/${locale}`,
     image: `${SITE_URL}/photo.jpg`,
-    jobTitle: profile.role,
+    jobTitle: dict.profile.role,
     email: `mailto:${profile.email}`,
     address: {
       "@type": "PostalAddress",
@@ -51,8 +58,7 @@ export function StructuredData() {
     <script
       type="application/ld+json"
       // dangerouslySetInnerHTML ici sans risque XSS : le payload est 100% contrôlé
-      // (pas d'input utilisateur). La règle react/no-danger n'est pas active dans
-      // notre config ESLint — on documente l'intention en commentaire.
+      // (pas d'input utilisateur).
       dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
     />
   );

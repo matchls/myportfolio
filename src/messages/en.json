@@ -1,0 +1,123 @@
+{
+  "site": {
+    "name": "Mathieu Chalès — Portfolio",
+    "description": "Portfolio of Mathieu Chalès, junior fullstack developer based in Paris. Career-switcher from woodworking, graduating from La Capsule. Looking for a full-time role, apprenticeship, or fixed-term contract.",
+    "keywords": [
+      "Mathieu Chalès",
+      "fullstack developer",
+      "junior",
+      "Paris",
+      "React",
+      "Next.js",
+      "TypeScript",
+      "Node.js",
+      "React Native",
+      "La Capsule",
+      "portfolio"
+    ]
+  },
+  "profile": {
+    "role": "Junior Fullstack Developer",
+    "location": "Paris · hybrid",
+    "bioIntro": "Yesterday I was shaping wood. Today I write code.",
+    "bioTagline": "Always to build things that serve a purpose.",
+    "bioParagraphs": [
+      "For several years, I worked with wood. Every piece had a use, a constraint, a reason to exist. I've now brought that same approach to code: building things that serve a purpose, that hold up, that can be repaired.",
+      "Graduating from La Capsule's fullstack bootcamp in March 2026, I code mainly in TypeScript — React / Next.js for the web, React Native for mobile, Node.js on the server. I'm looking for a full-time role, apprenticeship, or fixed-term contract in the Paris area (hybrid), in a team that takes the time to do things right."
+    ]
+  },
+  "nav": {
+    "about": "About",
+    "skills": "Skills",
+    "projects": "Projects",
+    "contact": "Contact",
+    "backToTop": "back to top"
+  },
+  "hero": {
+    "greeting": "Hi, I'm",
+    "ctaContact": "Get in touch",
+    "ctaProjects": "See my projects"
+  },
+  "about": {
+    "heading": "About",
+    "photoAlt": "Portrait of"
+  },
+  "skills": {
+    "heading": "Skills",
+    "groups": {
+      "frontend": "Frontend",
+      "backend": "Backend",
+      "mobile": "Mobile",
+      "tools": "Tools"
+    }
+  },
+  "projects": {
+    "heading": "Projects",
+    "statusShipped": "Shipped",
+    "statusComingSoon": "Coming soon",
+    "links": {
+      "demo": "Demo",
+      "frontend": "Frontend",
+      "backend": "Backend",
+      "repo": "Code"
+    },
+    "ariaDemo": "Watch the video demo of",
+    "ariaRepoFrontend": "Frontend source code of",
+    "ariaRepoBackend": "Backend source code of",
+    "ariaRepo": "Source code of",
+    "items": {
+      "alterago": {
+        "title": "AlterAgo",
+        "description": "A mobile app that gamifies daily life to help seniors stay motivated, offering activities as goals that earn points."
+      }
+    }
+  },
+  "contact": {
+    "heading": "Contact",
+    "pitch": "I'm looking for a full-time role, apprenticeship, or fixed-term contract in the Paris area (hybrid). If you have a junior position, a mission, or just want to chat about a project — drop me a line.",
+    "pitchHighlight": "full-time role, apprenticeship, or fixed-term contract",
+    "alternativesLabel": "Or more direct",
+    "altMoyens": "Other ways to reach out",
+    "form": {
+      "name": "Name",
+      "email": "Email",
+      "message": "Message",
+      "send": "Send",
+      "sending": "Sending…",
+      "successTitle": "Message sent",
+      "successBody": "Thanks! I'll get back to you within a few days.",
+      "successAgain": "Send another message",
+      "honeypotLabel": "Do not fill this field",
+      "errorGeneric": "Could not send. Please try again later.",
+      "errorNetwork": "Network issue. Check your connection and retry.",
+      "errors": {
+        "nameMin": "Name must be at least 2 characters",
+        "nameMax": "Name is too long (max 80 characters)",
+        "emailInvalid": "Invalid email address",
+        "emailMax": "Email address is too long",
+        "messageMin": "Message must be at least 10 characters",
+        "messageMax": "Message is too long (max 2000 characters)"
+      }
+    }
+  },
+  "footer": {
+    "copyright": "Hand-coded, deployed on Vercel.",
+    "viewCode": "view the code",
+    "ariaGithub": "GitHub of",
+    "ariaLinkedin": "LinkedIn of"
+  },
+  "a11y": {
+    "skipToContent": "Skip to main content",
+    "mainNav": "Main navigation",
+    "mainNavMobile": "Main navigation (mobile)",
+    "toggleTheme": {
+      "toLight": "Switch to light mode",
+      "toDark": "Switch to dark mode"
+    },
+    "toggleLanguage": {
+      "toFr": "Passer en français",
+      "toEn": "Switch to English",
+      "label": "Language"
+    }
+  }
+}

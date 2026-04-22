@@ -2,31 +2,38 @@
  * Route API POST /api/contact — envoie un email via Resend.
  *
  * Pipeline :
- *  1. Rate limit par IP (3 req / minute)
- *  2. Parse + validation Zod (même schéma que côté client)
- *  3. Honeypot : si rempli, on répond "ok" silencieusement (on ne fait rien)
- *  4. Envoi Resend (from=onboarding@resend.dev, reply-to=email du visiteur)
- *  5. Réponses HTTP explicites : 200 / 400 / 429 / 500
+ *  1. Détermine la locale du visiteur (body.locale, fallback defaultLocale)
+ *  2. Rate limit par IP (3 req / minute)
+ *  3. Parse + validation Zod avec les messages de la locale (même fabrique
+ *     que côté client)
+ *  4. Honeypot : si rempli, on répond "ok" silencieusement
+ *  5. Envoi Resend (from=onboarding@resend.dev, reply-to=email du visiteur)
+ *  6. Réponses HTTP explicites : 200 / 400 / 429 / 500
  *
- * Points d'archi importants :
- *  - **Runtime Node.js** (par défaut en App Router) — nécessaire pour resend SDK.
- *    Si on voulait Edge : il faudrait appeler l'API Resend en fetch brut.
- *  - **Never trust the client** : même si le form valide avec Zod côté client,
- *    on re-valide ici. Un curl peut court-circuiter le form.
+ * Localisation :
+ *  - Toutes les réponses d'erreur sont dans la langue du visiteur (messages du dict)
+ *  - Le SUJET de l'email reçu par Mathieu est aussi dans la langue du visiteur
+ *    → décision éditoriale explicite : Mathieu sait tout de suite si le·a
+ *    candidat·e écrit en français ou en anglais, avant même d'ouvrir le mail
+ *
+ * Points d'archi :
+ *  - **Runtime Node.js** (par défaut en App Router) — nécessaire pour resend SDK
+ *  - **Never trust the client** : on re-valide la shape du body côté serveur
  *  - **Pas de données loggées** : on ne console.log ni le message ni l'email
- *    pour éviter que des logs Vercel exposent accidentellement du contenu privé.
+ *    pour éviter que des logs Vercel exposent accidentellement du contenu privé
  */
 
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
 
+import { defaultLocale, isLocale, type Locale } from "@/i18n/config";
+import { getDictionary } from "@/i18n/dictionaries";
 import { rateLimit } from "@/lib/rate-limit";
-import { contactFormSchema } from "@/lib/schemas/contact";
+import { createContactFormSchema } from "@/lib/schemas/contact";
 
 // Instancié au premier appel puis réutilisé (serverless-friendly).
 // Si la clé manque, `new Resend(undefined)` ne throw pas ici — l'erreur
-// surgira au .emails.send() et sera catchée. On préfère que l'API continue
-// de fonctionner (valider, rate-limiter) même si l'env est mal configuré.
+// surgira au .emails.send() et sera catchée.
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 const RATE_LIMIT = {
@@ -34,17 +41,75 @@ const RATE_LIMIT = {
   windowMs: 60_000, // 1 minute
 };
 
+/**
+ * Messages serveur-side par locale (ceux qui ne viennent PAS du schéma Zod).
+ * Volontairement dupliqués avec les dicts client plutôt que parsés du JSON —
+ * permet à cette route de rester 100% synchronisée avec les messages sans
+ * charger tout le dict pour 4 strings.
+ */
+const API_MESSAGES: Record<Locale, {
+  rateLimit: string;
+  invalidPayload: string;
+  invalidForm: string;
+  misconfigured: string;
+  sendFailed: string;
+  unexpected: string;
+  emailSubject: (name: string) => string;
+  emailIntro: (name: string, email: string) => string;
+}> = {
+  fr: {
+    rateLimit: "Trop de messages. Réessaie dans une minute.",
+    invalidPayload: "Payload JSON invalide.",
+    invalidForm: "Formulaire invalide. Vérifie les champs et réessaie.",
+    misconfigured: "Serveur mal configuré. Réessaie plus tard.",
+    sendFailed: "Envoi impossible. Réessaie plus tard.",
+    unexpected: "Erreur inattendue. Réessaie plus tard.",
+    emailSubject: (name) => `[Portfolio] Nouveau message de ${name}`,
+    emailIntro: (name, email) => `De : ${name} <${email}>`,
+  },
+  en: {
+    rateLimit: "Too many messages. Try again in a minute.",
+    invalidPayload: "Invalid JSON payload.",
+    invalidForm: "Invalid form. Check the fields and try again.",
+    misconfigured: "Server misconfigured. Please try again later.",
+    sendFailed: "Could not send. Please try again later.",
+    unexpected: "Unexpected error. Please try again later.",
+    emailSubject: (name) => `[Portfolio] New message from ${name}`,
+    emailIntro: (name, email) => `From: ${name} <${email}>`,
+  },
+};
+
 export async function POST(request: Request) {
-  // --- 1. Rate limit -------------------------------------------------------
-  // En prod Vercel, l'IP arrive via le header `x-forwarded-for`.
-  // En dev local, ce header est absent → on fallback sur "unknown"
-  // (donc tous les dev locaux partagent le même bucket, c'est voulu).
+  // --- 1. Parse body en premier pour connaître la locale -------------------
+  // On veut localiser TOUTES les réponses, y compris le rate limit. Donc on
+  // parse le body avant de rate-limiter.
+  let rawBody: unknown;
+  try {
+    rawBody = await request.json();
+  } catch {
+    // Pas de body valide → on ne connaît pas la locale → defaultLocale.
+    return NextResponse.json(
+      { error: API_MESSAGES[defaultLocale].invalidPayload },
+      { status: 400 },
+    );
+  }
+
+  // Extrait la locale du body (sans confiance : type-guard + fallback).
+  const bodyLocale =
+    typeof rawBody === "object" && rawBody !== null && "locale" in rawBody
+      ? (rawBody as { locale?: unknown }).locale
+      : undefined;
+  const locale: Locale =
+    typeof bodyLocale === "string" && isLocale(bodyLocale) ? bodyLocale : defaultLocale;
+  const M = API_MESSAGES[locale];
+
+  // --- 2. Rate limit -------------------------------------------------------
   const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "unknown";
   const limit = rateLimit(ip, RATE_LIMIT);
 
   if (!limit.ok) {
     return NextResponse.json(
-      { error: "Trop de messages. Réessaie dans une minute." },
+      { error: M.rateLimit },
       {
         status: 429,
         headers: {
@@ -54,62 +119,51 @@ export async function POST(request: Request) {
     );
   }
 
-  // --- 2. Parse + validation -----------------------------------------------
-  let rawBody: unknown;
-  try {
-    rawBody = await request.json();
-  } catch {
-    return NextResponse.json({ error: "Payload JSON invalide." }, { status: 400 });
-  }
+  // --- 3. Validation Zod ---------------------------------------------------
+  // Les messages d'erreur Zod viennent du dict — on les passe à la fabrique.
+  // (On ne les renvoie pas au client ici — message générique suffit — mais
+  // les logs serveur sont déjà localisés si on décide d'en exposer un jour.)
+  const dict = await getDictionary(locale);
+  const schema = createContactFormSchema(dict.contact.form.errors);
+  const parsed = schema.safeParse(rawBody);
 
-  const parsed = contactFormSchema.safeParse(rawBody);
   if (!parsed.success) {
-    // On ne renvoie pas le détail des erreurs Zod au client (pas un form public
-    // typique — on évite de divulguer la shape interne). Un message générique suffit.
-    return NextResponse.json(
-      { error: "Formulaire invalide. Vérifie les champs et réessaie." },
-      { status: 400 },
-    );
+    return NextResponse.json({ error: M.invalidForm }, { status: 400 });
   }
 
   const { name, email, message, honeypot } = parsed.data;
 
-  // --- 3. Honeypot ---------------------------------------------------------
+  // --- 4. Honeypot ---------------------------------------------------------
   // Un humain ne remplit JAMAIS ce champ (caché en CSS).
   // On renvoie un 200 bidon pour que le bot pense avoir réussi.
   if (honeypot) {
     return NextResponse.json({ ok: true });
   }
 
-  // --- 4. Envoi Resend -----------------------------------------------------
+  // --- 5. Envoi Resend -----------------------------------------------------
   const to = process.env.CONTACT_EMAIL_TO;
   if (!to) {
-    // Env mal configuré côté serveur — erreur 500 générique côté client,
-    // détails uniquement dans les logs Vercel.
     console.error("[/api/contact] CONTACT_EMAIL_TO manquant dans .env");
-    return NextResponse.json(
-      { error: "Serveur mal configuré. Réessaie plus tard." },
-      { status: 500 },
-    );
+    return NextResponse.json({ error: M.misconfigured }, { status: 500 });
   }
 
   try {
     const result = await resend.emails.send({
-      from: "Portfolio <onboarding@resend.dev>", // adresse par défaut Resend (pas besoin de domaine vérifié)
+      from: "Portfolio <onboarding@resend.dev>",
       to: [to],
-      replyTo: email, // important : "Répondre" dans ta boîte va au visiteur
-      subject: `[Portfolio] Nouveau message de ${name}`,
-      text: `De : ${name} <${email}>\n\n${message}`,
+      replyTo: email,
+      subject: M.emailSubject(name),
+      text: `${M.emailIntro(name, email)}\n\n${message}`,
     });
 
     if (result.error) {
       console.error("[/api/contact] Resend error:", result.error);
-      return NextResponse.json({ error: "Envoi impossible. Réessaie plus tard." }, { status: 500 });
+      return NextResponse.json({ error: M.sendFailed }, { status: 500 });
     }
 
     return NextResponse.json({ ok: true });
   } catch (err) {
     console.error("[/api/contact] Unexpected error:", err);
-    return NextResponse.json({ error: "Erreur inattendue. Réessaie plus tard." }, { status: 500 });
+    return NextResponse.json({ error: M.unexpected }, { status: 500 });
   }
 }

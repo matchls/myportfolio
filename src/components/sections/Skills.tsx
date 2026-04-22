@@ -1,20 +1,20 @@
 /**
  * Skills — compétences en 4 colonnes groupées par catégorie.
  *
- * Layout :
- *  - Mobile : 1 colonne (accordéon visuel simple)
- *  - Tablet : 2 colonnes
- *  - Desktop : 4 colonnes alignées
- *
- * Chaque groupe est une <Card> simple, sans interactivité.
- * Les skills sont des badges inline — plus compacts que des listes à puces,
- * et ça se lit d'un coup d'œil.
+ * i18n : les labels de groupe viennent de `dict.skills.groups[category]`.
+ * Les noms de skills techniques (React, Node.js...) restent hardcodés dans
+ * `src/data/skills.ts` — ce sont des noms propres, non traduisibles.
  */
 
 import { Card } from "@/components/ui/Card";
 import { skillGroups } from "@/data/skills";
+import type { Dictionary } from "@/i18n/dictionaries";
 
-export function Skills() {
+type Props = {
+  dict: Dictionary;
+};
+
+export function Skills({ dict }: Props) {
   return (
     <section
       id="skills"
@@ -25,14 +25,15 @@ export function Skills() {
         id="skills-heading"
         className="text-text flex items-baseline gap-3 text-2xl font-semibold"
       >
-        <span className="text-accent font-mono text-base">02.</span>Compétences
+        <span className="text-accent font-mono text-base">02.</span>
+        {dict.skills.heading}
       </h2>
 
       <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {skillGroups.map((group) => (
           <Card key={group.category} as="article">
             <h3 className="text-accent-2 font-mono text-xs tracking-wider uppercase">
-              {group.label}
+              {dict.skills.groups[group.category]}
             </h3>
             <ul className="mt-4 flex flex-wrap gap-2">
               {group.skills.map((skill) => (

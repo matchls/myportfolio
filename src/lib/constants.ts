@@ -25,9 +25,19 @@ export const SITE_DESCRIPTION =
  * URL de production. Sera mise à jour à l'étape 8 (déploiement Vercel).
  * Utilisée par generateMetadata pour les URLs canoniques, Open Graph, sitemap.
  */
-export const SITE_URL = "https://mathieuchales.vercel.app";
+export const SITE_URL = "https://mathieuchales-portfolio.vercel.app";
 
-export const DEFAULT_LOCALE = "fr-FR";
+/**
+ * Locale BCP 47 par défaut pour les balises `lang` HTML et Open Graph.
+ * La locale courte (`fr` / `en`) vient de `src/i18n/config.ts` et pilote le routing.
+ * Cette version longue (`fr-FR` / `en-US`) est utilisée par :
+ *  - l'attribut `<html lang>` (Next convertit auto, mais on est explicite)
+ *  - `openGraph.locale` (qui attend le format BCP 47 long)
+ */
+export const BCP47_BY_LOCALE = {
+  fr: "fr-FR",
+  en: "en-US",
+} as const;
 
 // ---------------------------------------------------------------------------
 // Navigation (single-page, ancres)
@@ -37,12 +47,16 @@ export const DEFAULT_LOCALE = "fr-FR";
  * Sections de la navigation principale.
  * Les `anchor` correspondent aux `id` HTML des sections dans `page.tsx`.
  * Les numéros sont affichés en mono, inspiration Brittany Chiang v4.
+ *
+ * Pas de `label` ici : les libellés viennent des dictionnaires i18n
+ * (`dict.nav.{about,skills,projects,contact}`) pour rester traduisibles.
+ * Le composant Header fait le lookup via `dict.nav[item.anchor]`.
  */
 export const NAV_ITEMS: readonly NavItem[] = [
-  { number: "01.", label: "À propos", anchor: "about" },
-  { number: "02.", label: "Compétences", anchor: "skills" },
-  { number: "03.", label: "Projets", anchor: "projects" },
-  { number: "04.", label: "Contact", anchor: "contact" },
+  { number: "01.", anchor: "about" },
+  { number: "02.", anchor: "skills" },
+  { number: "03.", anchor: "projects" },
+  { number: "04.", anchor: "contact" },
 ] as const;
 
 // ---------------------------------------------------------------------------

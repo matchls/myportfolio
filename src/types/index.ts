@@ -129,11 +129,15 @@ export type { ContactFormValues } from "@/lib/schemas/contact";
 // Navigation
 // ---------------------------------------------------------------------------
 
+/**
+ * Les ancres sont un sous-ensemble fixe (sections de la page d'accueil).
+ * Littéral typé pour que le Header puisse lookup `dict.nav[anchor]` sans `any`.
+ */
+export type NavAnchor = "about" | "skills" | "projects" | "contact";
+
 export type NavItem = {
   /** Numéro affiché en mono à la Brittany Chiang ("01.", "02."...) */
   number: string;
-  /** Label visible dans le menu */
-  label: string;
-  /** Ancre CSS (id de la section cible), sans le `#` */
-  anchor: string;
+  /** Ancre CSS (id de la section cible), sans le `#`. Sert aussi de clé dans dict.nav. */
+  anchor: NavAnchor;
 };

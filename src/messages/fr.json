@@ -1,0 +1,123 @@
+{
+  "site": {
+    "name": "Mathieu Chalès — Portfolio",
+    "description": "Portfolio de Mathieu Chalès, développeur fullstack junior basé à Paris. Reconversion depuis la menuiserie, diplômé La Capsule. Recherche CDI / alternance / CDD.",
+    "keywords": [
+      "Mathieu Chalès",
+      "développeur fullstack",
+      "junior",
+      "Paris",
+      "React",
+      "Next.js",
+      "TypeScript",
+      "Node.js",
+      "React Native",
+      "La Capsule",
+      "portfolio"
+    ]
+  },
+  "profile": {
+    "role": "Développeur Fullstack Junior",
+    "location": "Paris · hybride",
+    "bioIntro": "Hier je travaillais le bois. Aujourd'hui je code.",
+    "bioTagline": "Toujours pour construire des choses qui servent.",
+    "bioParagraphs": [
+      "Pendant plusieurs années, j'ai travaillé le bois. Chaque pièce avait un usage, une contrainte, une raison d'être. Aujourd'hui j'ai transposé cette approche dans le code : construire des choses qui servent, qui tiennent, qu'on peut réparer.",
+      "Diplômé du bootcamp fullstack de La Capsule en mars 2026, je code principalement en TypeScript — côté web avec React / Next.js, côté mobile avec React Native, côté serveur avec Node.js. Je cherche un CDI, une alternance ou un CDD en région parisienne (hybride), dans une équipe qui prend le temps de bien faire."
+    ]
+  },
+  "nav": {
+    "about": "À propos",
+    "skills": "Compétences",
+    "projects": "Projets",
+    "contact": "Contact",
+    "backToTop": "retour en haut"
+  },
+  "hero": {
+    "greeting": "Bonjour, je suis",
+    "ctaContact": "Me contacter",
+    "ctaProjects": "Voir mes projets"
+  },
+  "about": {
+    "heading": "À propos",
+    "photoAlt": "Portrait de"
+  },
+  "skills": {
+    "heading": "Compétences",
+    "groups": {
+      "frontend": "Frontend",
+      "backend": "Backend",
+      "mobile": "Mobile",
+      "tools": "Outils"
+    }
+  },
+  "projects": {
+    "heading": "Projets",
+    "statusShipped": "Projet livré",
+    "statusComingSoon": "Bientôt",
+    "links": {
+      "demo": "Démo",
+      "frontend": "Frontend",
+      "backend": "Backend",
+      "repo": "Code"
+    },
+    "ariaDemo": "Voir la démo vidéo de",
+    "ariaRepoFrontend": "Code frontend de",
+    "ariaRepoBackend": "Code backend de",
+    "ariaRepo": "Code source de",
+    "items": {
+      "alterago": {
+        "title": "AlterAgo",
+        "description": "Application mobile de gamification du quotidien pour aider les séniors à rester motivés, en leur proposant des activités sous forme d'objectifs qui rapportent des points."
+      }
+    }
+  },
+  "contact": {
+    "heading": "Contact",
+    "pitch": "Je cherche un CDI, une alternance ou un CDD en région parisienne (hybride). Si tu as un poste junior, une mission, ou juste envie d'échanger sur un projet — écris-moi.",
+    "pitchHighlight": "CDI, une alternance ou un CDD",
+    "alternativesLabel": "Ou plus direct",
+    "altMoyens": "Autres moyens de contact",
+    "form": {
+      "name": "Nom",
+      "email": "Email",
+      "message": "Message",
+      "send": "Envoyer",
+      "sending": "Envoi…",
+      "successTitle": "Message envoyé",
+      "successBody": "Merci ! Je reviens vers toi dans les prochains jours.",
+      "successAgain": "Envoyer un autre message",
+      "honeypotLabel": "Ne remplissez pas ce champ",
+      "errorGeneric": "Envoi impossible. Réessaie plus tard.",
+      "errorNetwork": "Problème réseau. Vérifie ta connexion et réessaie.",
+      "errors": {
+        "nameMin": "Le nom doit faire au moins 2 caractères",
+        "nameMax": "Le nom est trop long (max 80 caractères)",
+        "emailInvalid": "Adresse email invalide",
+        "emailMax": "Adresse email trop longue",
+        "messageMin": "Le message doit faire au moins 10 caractères",
+        "messageMax": "Le message est trop long (max 2000 caractères)"
+      }
+    }
+  },
+  "footer": {
+    "copyright": "Codé à la main, déployé sur Vercel.",
+    "viewCode": "voir le code",
+    "ariaGithub": "GitHub de",
+    "ariaLinkedin": "LinkedIn de"
+  },
+  "a11y": {
+    "skipToContent": "Aller au contenu principal",
+    "mainNav": "Navigation principale",
+    "mainNavMobile": "Navigation principale (mobile)",
+    "toggleTheme": {
+      "toLight": "Passer en mode clair",
+      "toDark": "Passer en mode sombre"
+    },
+    "toggleLanguage": {
+      "toFr": "Passer en français",
+      "toEn": "Switch to English",
+      "label": "Langue"
+    }
+  }
+}

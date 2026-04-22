@@ -4,11 +4,12 @@
  * Server Component qui héberge le `<ContactForm>` (Client Component).
  * Structure : pitch + vrai formulaire + liens de secours (mailto, LinkedIn, GitHub).
  *
- * Pourquoi garder mailto même avec un formulaire ?
- *  - Accessibilité : certains utilisateurs (ex. lecteurs d'écran peu confortables
- *    avec les forms HTML) préfèrent copier-coller l'email
- *  - Robustesse : si l'API /api/contact tombe en rade (clé Resend expirée, quota
- *    atteint), le mailto marche toujours
+ * Le pitch contient un bout mis en emphase ("CDI, alternance, CDD") qu'on ne peut
+ * pas simplement injecter via {dict.contact.pitch} car la traduction doit pouvoir
+ * décider OÙ se trouve l'emphase. Solution : on splitte le pitch sur la
+ * `pitchHighlight` (le même morceau qu'on veut souligner) et on injecte le span
+ * au bon endroit. Si la traduction ne contient pas `pitchHighlight` tel quel,
+ * fallback propre : la phrase s'affiche sans emphase.
  */
 
 import { Mail } from "lucide-react";
@@ -16,8 +17,19 @@ import { Mail } from "lucide-react";
 import { ContactForm } from "@/components/sections/ContactForm";
 import { GithubIcon, LinkedinIcon } from "@/components/ui/Icons";
 import { profile } from "@/data/profile";
+import type { Dictionary } from "@/i18n/dictionaries";
+import type { Locale } from "@/i18n/config";
 
-export function Contact() {
+type Props = {
+  locale: Locale;
+  dict: Dictionary;
+};
+
+export function Contact({ locale, dict }: Props) {
+  const { pitch, pitchHighlight } = dict.contact;
+  const highlightIndex = pitch.indexOf(pitchHighlight);
+  const hasHighlight = highlightIndex !== -1;
+
   return (
     <section
       id="contact"
@@ -28,26 +40,35 @@ export function Contact() {
         id="contact-heading"
         className="text-text flex items-baseline gap-3 text-2xl font-semibold"
       >
-        <span className="text-accent font-mono text-base">04.</span>Contact
+        <span className="text-accent font-mono text-base">04.</span>
+        {dict.contact.heading}
       </h2>
 
       <div className="mt-8 grid gap-10 md:grid-cols-[3fr_2fr] md:gap-12">
         {/* Colonne gauche : formulaire */}
         <div>
           <p className="text-text-muted leading-relaxed">
-            Je cherche un <span className="text-text">CDI, une alternance ou un CDD</span> en région
-            parisienne (hybride). Si tu as un poste junior, une mission, ou juste envie
-            d&apos;échanger sur un projet — écris-moi.
+            {hasHighlight ? (
+              <>
+                {pitch.slice(0, highlightIndex)}
+                <span className="text-text">{pitchHighlight}</span>
+                {pitch.slice(highlightIndex + pitchHighlight.length)}
+              </>
+            ) : (
+              pitch
+            )}
           </p>
 
           <div className="mt-6">
-            <ContactForm />
+            <ContactForm locale={locale} dict={dict} />
           </div>
         </div>
 
         {/* Colonne droite : moyens alternatifs */}
-        <aside aria-label="Autres moyens de contact" className="flex flex-col gap-4">
-          <p className="text-accent-2 font-mono text-xs tracking-wider uppercase">Ou plus direct</p>
+        <aside aria-label={dict.contact.altMoyens} className="flex flex-col gap-4">
+          <p className="text-accent-2 font-mono text-xs tracking-wider uppercase">
+            {dict.contact.alternativesLabel}
+          </p>
 
           <a
             href={`mailto:${profile.email}`}
