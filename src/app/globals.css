@@ -1,26 +1,94 @@
 @import "tailwindcss";
 
+/**
+ * Dark mode class-based (piloté par next-themes).
+ * Sans ce custom-variant, `dark:` utiliserait @media (prefers-color-scheme: dark)
+ * et on ne pourrait pas faire un toggle manuel.
+ */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ---------------------------------------------------------------------------
+   Tokens de couleur — source unique de vérité
+   Light mode sous :root, override sous .dark.
+   Inspiration : "dev portfolio organique", vert feuille + orange chaleureux.
+   --------------------------------------------------------------------------- */
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --color-bg: #fafaf5; /* off-white crème, doux pour les yeux */
+  --color-text: #1c2b1e; /* slate vert foncé */
+  --color-text-muted: #5a6b5c; /* vert grisé */
+  --color-accent: #6fa56b; /* vert feuille — accent principal */
+  --color-accent-2: #e87a3f; /* orange chaleureux — CTA, hover */
+  --color-border: #e5e7e0;
 }
 
+.dark {
+  --color-bg: #1a211b; /* gris-vert sombre, pas noir pur */
+  --color-text: #f5f5ee; /* cream */
+  --color-text-muted: #a8b5a8;
+  --color-accent: #8fc58c; /* vert plus vif sur fond sombre */
+  --color-accent-2: #f09668; /* orange plus clair */
+  --color-border: #2a352c;
+}
+
+/* ---------------------------------------------------------------------------
+   Exposition Tailwind — @theme inline lit les variables CSS ci-dessus.
+   Chaque token devient une utilité Tailwind : bg-bg, text-text, bg-accent, etc.
+   --------------------------------------------------------------------------- */
+
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  --color-bg: var(--color-bg);
+  --color-text: var(--color-text);
+  --color-text-muted: var(--color-text-muted);
+  --color-accent: var(--color-accent);
+  --color-accent-2: var(--color-accent-2);
+  --color-border: var(--color-border);
+
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ---------------------------------------------------------------------------
+   Reset / base
+   --------------------------------------------------------------------------- */
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  transition:
+    background-color 200ms ease,
+    color 200ms ease;
+}
+
+/* Focus visible — orange chaleureux, respecte la palette */
+:focus-visible {
+  outline: 2px solid var(--color-accent-2);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Sélection de texte en vert accent, doux */
+::selection {
+  background: color-mix(in srgb, var(--color-accent) 35%, transparent);
+  color: var(--color-text);
+}
+
+/* Accessibilité : désactive les animations si l'utilisateur le demande */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

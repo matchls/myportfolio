@@ -1,65 +1,49 @@
-import Image from "next/image";
+/**
+ * Page d'accueil — single-page avec sections ancrées.
+ *
+ * Étape 3 : squelette avec placeholders. Les vraies sections (Hero, About,
+ * Skills, Projects, Contact) arrivent à l'étape 5. Les `id` HTML ici doivent
+ * matcher les `anchor` de NAV_ITEMS (src/lib/constants.ts) pour la nav.
+ */
 
 export default function Home() {
   return (
-    <div className="flex flex-1 flex-col items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex w-full max-w-3xl flex-1 flex-col items-center justify-between bg-white px-16 py-32 sm:items-start dark:bg-black">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl leading-10 font-semibold tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="bg-foreground text-background flex h-12 w-full items-center justify-center gap-2 rounded-full px-5 transition-colors hover:bg-[#383838] md:w-[158px] dark:hover:bg-[#ccc]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] md:w-[158px] dark:border-white/[.145] dark:hover:bg-[#1a1a1a]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+    <main className="mx-auto w-full max-w-5xl flex-1 px-4 sm:px-6 lg:px-8">
+      {/* Hero — premier bloc, pas d'id nav (scroll vers le haut via #top sur <html>) */}
+      <section
+        aria-labelledby="hero-heading"
+        className="flex min-h-[60vh] flex-col justify-center py-16"
+      >
+        <h1 id="hero-heading" className="text-4xl font-semibold tracking-tight sm:text-5xl">
+          Mathieu Chalès
+        </h1>
+        <p className="text-accent mt-3 font-mono text-sm">Développeur Fullstack Junior</p>
+        <p className="text-text-muted mt-6 max-w-xl">
+          <span className="text-text">Hier je travaillais le bois. Aujourd&apos;hui je code.</span>{" "}
+          Toujours pour construire des choses qui servent.
+        </p>
+      </section>
+
+      <SectionPlaceholder id="about" number="01." title="À propos" />
+      <SectionPlaceholder id="skills" number="02." title="Compétences" />
+      <SectionPlaceholder id="projects" number="03." title="Projets" />
+      <SectionPlaceholder id="contact" number="04." title="Contact" />
+    </main>
+  );
+}
+
+function SectionPlaceholder({ id, number, title }: { id: string; number: string; title: string }) {
+  return (
+    <section
+      id={id}
+      aria-labelledby={`${id}-heading`}
+      className="border-border/70 scroll-mt-20 border-t py-16"
+    >
+      <h2 id={`${id}-heading`} className="flex items-baseline gap-3 text-2xl font-semibold">
+        <span className="text-accent font-mono text-base">{number}</span>
+        {title}
+      </h2>
+      <p className="text-text-muted mt-4">Section à venir à l&apos;étape 5.</p>
+    </section>
   );
 }
