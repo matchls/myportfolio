@@ -20,6 +20,7 @@ import { notFound } from "next/navigation";
 
 import { About } from "@/components/sections/About";
 import { Contact } from "@/components/sections/Contact";
+import { Formation } from "@/components/sections/Formation";
 import { Hero } from "@/components/sections/Hero";
 import { Projects } from "@/components/sections/Projects";
 import { Skills } from "@/components/sections/Skills";
@@ -37,6 +38,7 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
       <Hero dict={dict} />
       <About dict={dict} />
       <Skills dict={dict} />
+      <Formation dict={dict} />
       <Projects dict={dict} />
       <Contact locale={lang} dict={dict} />
     </main>

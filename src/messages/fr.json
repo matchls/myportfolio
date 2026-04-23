@@ -29,6 +29,7 @@
   "nav": {
     "about": "À propos",
     "skills": "Compétences",
+    "formation": "Formation",
     "projects": "Projets",
     "contact": "Contact",
     "backToTop": "retour en haut"
@@ -50,6 +51,14 @@
       "mobile": "Mobile",
       "tools": "Outils"
     }
+  },
+  "formation": {
+    "heading": "Formation",
+    "bootcampName": "La Capsule — Bootcamp Fullstack Web & Mobile",
+    "duration": "10 semaines intensives · 2026",
+    "description": "Formation intensive au développement web et mobile fullstack. Projets réels, travail en équipe, rythme professionnel.",
+    "stack": "React · Next.js · React Native · Node.js · Express · MongoDB · TypeScript · Git",
+    "learnMore": "Voir la formation"
   },
   "projects": {
     "heading": "Projets",

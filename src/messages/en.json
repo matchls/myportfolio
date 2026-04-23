@@ -29,6 +29,7 @@
   "nav": {
     "about": "About",
     "skills": "Skills",
+    "formation": "Education",
     "projects": "Projects",
     "contact": "Contact",
     "backToTop": "back to top"
@@ -50,6 +51,14 @@
       "mobile": "Mobile",
       "tools": "Tools"
     }
+  },
+  "formation": {
+    "heading": "Education",
+    "bootcampName": "La Capsule — Fullstack Web & Mobile Bootcamp",
+    "duration": "10 intensive weeks · 2026",
+    "description": "Intensive fullstack web and mobile development training. Real projects, teamwork, professional pace.",
+    "stack": "React · Next.js · React Native · Node.js · Express · MongoDB · TypeScript · Git",
+    "learnMore": "Learn more"
   },
   "projects": {
     "heading": "Projects",

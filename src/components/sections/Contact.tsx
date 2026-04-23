@@ -40,7 +40,7 @@ export function Contact({ locale, dict }: Props) {
         id="contact-heading"
         className="text-text flex items-baseline gap-3 text-2xl font-semibold"
       >
-        <span className="text-accent font-mono text-base">04.</span>
+        <span className="text-accent font-mono text-base">05.</span>
         {dict.contact.heading}
       </h2>
 
