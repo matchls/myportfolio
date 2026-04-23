@@ -68,7 +68,9 @@
     "items": {
       "alterago": {
         "title": "AlterAgo",
-        "description": "A mobile app that gamifies daily life to help seniors stay motivated, offering activities as goals that earn points."
+        "role": "Tech lead · team of 3",
+        "description": "A mobile app that gamifies daily routines to help seniors stay motivated, through challenges and a progression system. End-of-bootcamp project built in 2 weeks.",
+        "roleDetail": "I served as tech lead: authentication setup (JWT), multi-step user profile creation, React Native API integration with Redux, and technical coordination across the team."
       }
     }
   },

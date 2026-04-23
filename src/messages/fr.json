@@ -68,7 +68,9 @@
     "items": {
       "alterago": {
         "title": "AlterAgo",
-        "description": "Application mobile de gamification du quotidien pour aider les séniors à rester motivés, en leur proposant des activités sous forme d'objectifs qui rapportent des points."
+        "role": "Lead technique · équipe de 3",
+        "description": "Application mobile de gamification du quotidien pour aider les séniors à rester motivés, via des défis et un système de progression. Projet de fin de formation réalisé en 2 semaines.",
+        "roleDetail": "J'ai occupé le rôle de lead technique : mise en place de l'authentification (JWT), création du profil utilisateur multi-étapes, intégration de l'API backend depuis React Native avec Redux, et coordination technique de l'équipe."
       }
     }
   },

@@ -27,6 +27,13 @@ export const projects: readonly Project[] = [
       "Clerk",
       "Cloudinary",
     ],
+    screenshots: [
+      "/images/alterago/screen-1.svg",
+      "/images/alterago/screen-2.svg",
+      "/images/alterago/screen-3.svg",
+      "/images/alterago/screen-4.svg",
+      "/images/alterago/screen-5.svg",
+    ],
     repoFrontendUrl: "https://github.com/MrPoussif/alterago-frontend",
     repoBackendUrl: "https://github.com/MrPoussif/alterago-backend",
     demoUrl: "https://youtube.com/shorts/PpKHmGU_0ew",

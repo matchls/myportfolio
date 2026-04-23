@@ -84,6 +84,7 @@ type ProjectBase = {
    * à la Brittany Chiang). Sinon traitement normal.
    */
   featured?: boolean;
+  screenshots?: readonly string[];
 };
 
 /**

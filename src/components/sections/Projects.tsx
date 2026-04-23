@@ -15,6 +15,7 @@ import { ExternalLink, Play } from "lucide-react";
 
 import { Card } from "@/components/ui/Card";
 import { GithubIcon } from "@/components/ui/Icons";
+import { ScreenshotCarousel } from "@/components/sections/ScreenshotCarousel";
 import { projects } from "@/data/projects";
 import type { Dictionary } from "@/i18n/dictionaries";
 import type { Project, ShippedProject } from "@/types";
@@ -36,7 +37,7 @@ export function Projects({ dict }: Props) {
         id="projects-heading"
         className="text-text flex items-baseline gap-3 text-2xl font-semibold"
       >
-        <span className="text-accent font-mono text-base">03.</span>
+        <span className="text-accent font-mono text-base">04.</span>
         {dict.projects.heading}
       </h2>
 
@@ -71,7 +72,14 @@ function ProjectCard({ project, dict }: CardProps) {
           {project.status === "shipped" ? dict.projects.statusShipped : dict.projects.statusComingSoon}
         </p>
         <h3 className="text-text mt-2 text-xl font-semibold">{itemCopy.title}</h3>
+        {"role" in itemCopy && itemCopy.role && (
+          <p className="text-accent mt-1 font-mono text-xs">{itemCopy.role}</p>
+        )}
       </header>
+
+      {project.screenshots && project.screenshots.length > 0 && (
+        <ScreenshotCarousel screenshots={project.screenshots} title={itemCopy.title} />
+      )}
 
       <p className="text-text-muted mt-3 flex-1 text-sm leading-relaxed">{itemCopy.description}</p>
 
