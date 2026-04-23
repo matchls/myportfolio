@@ -101,7 +101,7 @@
     }
   },
   "footer": {
-    "copyright": "Hand-coded, deployed on Vercel.",
+    "copyright": "Deployed on Vercel.",
     "viewCode": "view the code",
     "ariaGithub": "GitHub of",
     "ariaLinkedin": "LinkedIn of"
