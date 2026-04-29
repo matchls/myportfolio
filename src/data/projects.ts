@@ -33,6 +33,8 @@ export const projects: readonly Project[] = [
       "/images/alterago/screen-3.png",
       "/images/alterago/screen-4.png",
       "/images/alterago/screen-5.png",
+      "/images/alterago/screen-6.png",
+      "/images/alterago/screen-7.png",
     ],
     repoFrontendUrl: "https://github.com/MrPoussif/alterago-frontend",
     repoBackendUrl: "https://github.com/MrPoussif/alterago-backend",
