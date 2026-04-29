@@ -61,8 +61,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       template: `%s · ${dict.site.name}`,
     },
     description: dict.site.description,
-    authors: [{ name: "Mathieu Chalès" }],
-    creator: "Mathieu Chalès",
+    authors: [{ name: "Mathieu Châles" }],
+    creator: "Mathieu Châles",
     keywords: dict.site.keywords,
     alternates: {
       canonical: `/${lang}`,

@@ -15,10 +15,10 @@ import type { NavItem } from "@/types";
 // Métadonnées du site
 // ---------------------------------------------------------------------------
 
-export const SITE_NAME = "Mathieu Chalès — Portfolio";
+export const SITE_NAME = "Mathieu Châles — Portfolio";
 
 export const SITE_DESCRIPTION =
-  "Portfolio de Mathieu Chalès, développeur fullstack junior basé à Paris. " +
+  "Portfolio de Mathieu Châles, développeur fullstack junior basé à Paris. " +
   "Reconversion depuis la menuiserie, diplômé La Capsule. Recherche CDI / alternance / CDD.";
 
 /**

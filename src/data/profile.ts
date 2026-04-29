@@ -11,7 +11,7 @@
 import type { Profile } from "@/types";
 
 export const profile: Profile = {
-  name: "Mathieu Chalès",
+  name: "Mathieu Châles",
   role: "Développeur Fullstack Junior",
   location: "Paris · hybride",
   tagline:
