@@ -25,19 +25,20 @@ export function Hero({ dict }: Props) {
   return (
     <section
       aria-labelledby="hero-heading"
-      className="flex min-h-[70vh] flex-col justify-center py-16"
+      className="hero-enter flex min-h-[70vh] flex-col justify-center py-16"
     >
       <p className="text-accent font-mono text-sm">{dict.hero.greeting}</p>
 
       <h1
         id="hero-heading"
-        className="text-text mt-3 text-4xl font-semibold tracking-tight sm:text-5xl lg:text-6xl"
+        className="mt-3 text-4xl font-semibold tracking-tight sm:text-5xl lg:text-6xl bg-gradient-to-r from-text via-accent to-accent-2 bg-clip-text text-transparent"
       >
         {profile.name}.
       </h1>
 
       <p className="text-text-muted mt-3 text-xl font-semibold tracking-tight sm:text-2xl lg:text-3xl">
         {dict.profile.role}
+        <span className="hero-caret font-mono" aria-hidden="true">|</span>
       </p>
 
       <p className="text-text-muted mt-6 max-w-xl leading-relaxed">

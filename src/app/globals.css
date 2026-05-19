@@ -79,6 +79,36 @@ body {
   color: var(--color-text);
 }
 
+/* Animation de chargement pour le Hero (toujours au-dessus de la fold) */
+@keyframes hero-enter {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-enter {
+  animation: hero-enter 600ms ease-out both;
+}
+
+/* Caret clignotant dans le Hero */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.hero-caret {
+  display: inline-block;
+  animation: blink 1.1s step-end infinite;
+  color: var(--color-accent-2);
+  font-weight: 300;
+  margin-left: 2px;
+}
+
 /* Accessibilité : désactive les animations si l'utilisateur le demande */
 @media (prefers-reduced-motion: reduce) {
   html {
