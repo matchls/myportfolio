@@ -72,8 +72,10 @@ function ProjectCard({ project, dict }: CardProps) {
           {project.status === "shipped" ? dict.projects.statusShipped : dict.projects.statusComingSoon}
         </p>
         <h3 className="text-text mt-2 text-xl font-semibold">{itemCopy.title}</h3>
-        {"role" in itemCopy && itemCopy.role && (
+        {"role" in itemCopy && itemCopy.role ? (
           <p className="text-accent mt-1 font-mono text-xs">{itemCopy.role}</p>
+        ) : (
+          <p className="mt-1 font-mono text-xs invisible" aria-hidden="true">&nbsp;</p>
         )}
       </header>
 
