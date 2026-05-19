@@ -79,6 +79,23 @@ body {
   color: var(--color-text);
 }
 
+/* Scroll-reveal — état initial masqué, visible après IntersectionObserver */
+.animate-in-wrapper[data-visible="false"] {
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    opacity 500ms ease-out,
+    transform 500ms ease-out;
+}
+
+.animate-in-wrapper[data-visible="true"] {
+  opacity: 1;
+  transform: translateY(0);
+  transition:
+    opacity 500ms ease-out,
+    transform 500ms ease-out;
+}
+
 /* Animation de chargement pour le Hero (toujours au-dessus de la fold) */
 @keyframes hero-enter {
   from {

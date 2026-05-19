@@ -24,6 +24,7 @@ import { Formation } from "@/components/sections/Formation";
 import { Hero } from "@/components/sections/Hero";
 import { Projects } from "@/components/sections/Projects";
 import { Skills } from "@/components/sections/Skills";
+import { AnimateIn } from "@/components/ui/AnimateIn";
 import { getDictionary } from "@/i18n/dictionaries";
 import { isLocale } from "@/i18n/config";
 
@@ -36,11 +37,21 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
   return (
     <main id="main" className="mx-auto w-full max-w-5xl flex-1 px-4 sm:px-6 lg:px-8">
       <Hero dict={dict} />
-      <About dict={dict} />
-      <Skills dict={dict} />
-      <Formation dict={dict} />
-      <Projects dict={dict} />
-      <Contact locale={lang} dict={dict} />
+      <AnimateIn>
+        <About dict={dict} />
+      </AnimateIn>
+      <AnimateIn>
+        <Skills dict={dict} />
+      </AnimateIn>
+      <AnimateIn>
+        <Formation dict={dict} />
+      </AnimateIn>
+      <AnimateIn>
+        <Projects dict={dict} />
+      </AnimateIn>
+      <AnimateIn>
+        <Contact locale={lang} dict={dict} />
+      </AnimateIn>
     </main>
   );
 }
