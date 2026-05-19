@@ -40,4 +40,30 @@ export const projects: readonly Project[] = [
     repoBackendUrl: "https://github.com/MrPoussif/alterago-backend",
     demoUrl: "https://youtube.com/shorts/PpKHmGU_0ew",
   },
+  {
+    slug: "picswipe",
+    status: "shipped",
+    featured: false,
+    title: "PicSwipe",
+    description:
+      "Application mobile Android de tri rapide de galerie photos par swipe — glisser à droite pour garder, à gauche pour supprimer. Organisation par mois, écran de revue avant suppression définitive, statistiques de nettoyage persistées.",
+    stack: [
+      "React Native",
+      "Expo",
+      "TypeScript",
+      "Reanimated 4",
+      "Gesture Handler",
+      "Zustand",
+      "AsyncStorage",
+      "expo-media-library",
+      "expo-haptics",
+      "expo-linear-gradient",
+    ],
+    screenshots: [
+      "/images/picswipe/screen-1.jpg",
+      "/images/picswipe/screen-2.jpg",
+      "/images/picswipe/screen-3.jpg",
+      "/images/picswipe/screen-4.jpg",
+    ],
+  },
 ] as const;

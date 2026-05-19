@@ -20,7 +20,7 @@ export const profile: Profile = {
   // Paragraphes séparés par une ligne vide (rendu via split dans About.tsx).
   bio: `Pendant plusieurs années, j'ai travaillé le bois. Chaque pièce avait un usage, une contrainte, une raison d'être. Aujourd'hui j'ai transposé cette approche dans le code : construire des choses qui servent, qui tiennent, qu'on peut réparer.
 
-Diplômé du bootcamp fullstack de La Capsule en mars 2026, je code principalement en TypeScript — côté web avec React / Next.js, côté mobile avec React Native, côté serveur avec Node.js. Je cherche un CDI, une alternance ou un CDD en région parisienne (hybride), dans une équipe qui prend le temps de bien faire.`,
+Diplômé du bootcamp fullstack de La Capsule en mars 2026, je code principalement en TypeScript — côté web avec React / Next.js, côté mobile avec React Native, côté serveur avec Node.js. Je cherche un CDI ou un stage en région parisienne (hybride), dans une équipe qui prend le temps de bien faire.`,
 
   email: "mathieu.chales@gmail.com",
   cvPath: "/cv.pdf", // à déposer dans public/ à l'étape 8

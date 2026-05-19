@@ -27,11 +27,7 @@ export function ScreenshotCarousel({ screenshots, title }: Props) {
         aria-label={`Screenshots de ${title}`}
       >
         {screenshots.map((src, index) => (
-          <div
-            key={src}
-            className="shrink-0 snap-start"
-            style={{ width: "min(180px, 48%)" }}
-          >
+          <div key={src} className="ml-2 shrink-0 snap-start" style={{ width: "min(180px, 48%)" }}>
             <Image
               src={src}
               alt={`${title} — screenshot ${index + 1}`}

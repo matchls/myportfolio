@@ -1,7 +1,7 @@
 {
   "site": {
     "name": "Mathieu Châles — Portfolio",
-    "description": "Portfolio de Mathieu Châles, développeur fullstack junior basé à Paris. Reconversion depuis la menuiserie, diplômé La Capsule. Recherche CDI / alternance / CDD.",
+    "description": "Portfolio de Mathieu Châles, développeur fullstack junior basé à Paris. Reconversion depuis la menuiserie, diplômé La Capsule. Recherche CDI / stage.",
     "keywords": [
       "Mathieu Châles",
       "développeur fullstack",
@@ -23,7 +23,7 @@
     "bioTagline": "Toujours pour construire des choses qui servent.",
     "bioParagraphs": [
       "Pendant plusieurs années, j'ai travaillé le bois. Chaque pièce avait un usage, une contrainte, une raison d'être. Aujourd'hui j'ai transposé cette approche dans le code : construire des choses qui servent, qui tiennent, qu'on peut réparer.",
-      "Diplômé du bootcamp fullstack de La Capsule en mars 2026, je code principalement en TypeScript — côté web avec React / Next.js, côté mobile avec React Native, côté serveur avec Node.js. Je cherche un CDI, une alternance ou un CDD en région parisienne (hybride), dans une équipe qui prend le temps de bien faire."
+      "Diplômé du bootcamp fullstack de La Capsule en mars 2026, je code principalement en TypeScript — côté web avec React / Next.js, côté mobile avec React Native, côté serveur avec Node.js. Je cherche un CDI ou un stage en région parisienne (hybride), dans une équipe qui prend le temps de bien faire."
     ]
   },
   "nav": {
@@ -57,6 +57,7 @@
     "bootcampName": "La Capsule — Bootcamp Fullstack Web & Mobile",
     "duration": "10 semaines intensives · 2026",
     "description": "Formation intensive au développement web et mobile fullstack. Projets réels, travail en équipe, rythme professionnel.",
+    "rncp": "Titre RNCP niveau 6 — Développeur Fullstack",
     "stack": "React · Next.js · React Native · Node.js · Express · MongoDB · TypeScript · Git",
     "learnMore": "Voir la formation"
   },
@@ -78,15 +79,19 @@
       "alterago": {
         "title": "AlterAgo",
         "role": "Lead technique · équipe de 3",
-        "description": "Application mobile de gamification du quotidien pour aider les séniors à rester motivés, via des défis et un système de progression. Projet de fin de formation réalisé en 2 semaines.",
+        "description": "Application mobile de gamification du quotidien pour aider les séniors à rester motivés, via des défis et un système de progression. Projet MVP de validation du titre RNCP 6 Développeur Fullstack, réalisé en 2 semaines en équipe.",
         "roleDetail": "J'ai occupé le rôle de lead technique : mise en place de l'authentification (JWT), création du profil utilisateur multi-étapes, intégration de l'API backend depuis React Native avec Redux, et coordination technique de l'équipe."
+      },
+      "picswipe": {
+        "title": "PicSwipe",
+        "description": "Application mobile Android permettant de trier rapidement sa galerie photos grâce à un système de swipe intuitif — glisser à droite pour garder, à gauche pour supprimer. Les photos sont organisées par mois et chargées progressivement depuis la bibliothèque de l'appareil. Un écran de revue permet de confirmer les suppressions avant de libérer définitivement de l'espace. Les statistiques de nettoyage sont persistées entre les sessions."
       }
     }
   },
   "contact": {
     "heading": "Contact",
-    "pitch": "Je cherche un CDI, une alternance ou un CDD en région parisienne (hybride). Si tu as un poste junior, une mission, ou juste envie d'échanger sur un projet — écris-moi.",
-    "pitchHighlight": "CDI, une alternance ou un CDD",
+    "pitch": "Je cherche un CDI ou un stage en région parisienne (hybride). Si tu as un poste junior, une mission, ou juste envie d'échanger sur un projet — écris-moi.",
+    "pitchHighlight": "CDI ou un stage",
     "alternativesLabel": "Ou plus direct",
     "altMoyens": "Autres moyens de contact",
     "form": {

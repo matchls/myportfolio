@@ -26,6 +26,7 @@ export function Formation({ dict }: Props) {
         <Card as="article">
           <h3 className="text-text text-lg font-semibold">{dict.formation.bootcampName}</h3>
           <p className="text-accent mt-1 font-mono text-xs">{dict.formation.duration}</p>
+          <p className="text-text-muted mt-1 font-mono text-xs">{dict.formation.rncp}</p>
           <p className="text-text-muted mt-3 text-sm leading-relaxed">{dict.formation.description}</p>
           <p className="text-text-muted mt-3 font-mono text-xs">{dict.formation.stack}</p>
           <a

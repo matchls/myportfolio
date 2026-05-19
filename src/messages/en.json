@@ -1,7 +1,7 @@
 {
   "site": {
     "name": "Mathieu Châles — Portfolio",
-    "description": "Portfolio of Mathieu Châles, junior fullstack developer based in Paris. Career-switcher from woodworking, graduating from La Capsule. Looking for a full-time role, apprenticeship, or fixed-term contract.",
+    "description": "Portfolio of Mathieu Châles, junior fullstack developer based in Paris. Career-switcher from woodworking, graduating from La Capsule. Looking for a full-time role or internship.",
     "keywords": [
       "Mathieu Châles",
       "fullstack developer",
@@ -23,7 +23,7 @@
     "bioTagline": "Always to build things that serve a purpose.",
     "bioParagraphs": [
       "For several years, I worked with wood. Every piece had a use, a constraint, a reason to exist. I've now brought that same approach to code: building things that serve a purpose, that hold up, that can be repaired.",
-      "Graduating from La Capsule's fullstack bootcamp in March 2026, I code mainly in TypeScript — React / Next.js for the web, React Native for mobile, Node.js on the server. I'm looking for a full-time role, apprenticeship, or fixed-term contract in the Paris area (hybrid), in a team that takes the time to do things right."
+      "Graduating from La Capsule's fullstack bootcamp in March 2026, I code mainly in TypeScript — React / Next.js for the web, React Native for mobile, Node.js on the server. I'm looking for a full-time role or an internship in the Paris area (hybrid), in a team that takes the time to do things right."
     ]
   },
   "nav": {
@@ -57,6 +57,7 @@
     "bootcampName": "La Capsule — Fullstack Web & Mobile Bootcamp",
     "duration": "10 intensive weeks · 2026",
     "description": "Intensive fullstack web and mobile development training. Real projects, teamwork, professional pace.",
+    "rncp": "RNCP Level 6 — Fullstack Developer",
     "stack": "React · Next.js · React Native · Node.js · Express · MongoDB · TypeScript · Git",
     "learnMore": "Learn more"
   },
@@ -78,15 +79,19 @@
       "alterago": {
         "title": "AlterAgo",
         "role": "Tech lead · team of 3",
-        "description": "A mobile app that gamifies daily routines to help seniors stay motivated, through challenges and a progression system. End-of-bootcamp project built in 2 weeks.",
+        "description": "A mobile app that gamifies daily routines to help seniors stay motivated, through challenges and a progression system. MVP project submitted to validate the RNCP Level 6 Fullstack Developer certification, built in 2 weeks as a team.",
         "roleDetail": "I served as tech lead: authentication setup (JWT), multi-step user profile creation, React Native API integration with Redux, and technical coordination across the team."
+      },
+      "picswipe": {
+        "title": "PicSwipe",
+        "description": "Android mobile app for quickly sorting your photo gallery using an intuitive swipe system — swipe right to keep, left to delete. Photos are organised by month and loaded progressively from the device library. A review screen lets you confirm deletions before permanently freeing up storage. Cleaning statistics are persisted between sessions."
       }
     }
   },
   "contact": {
     "heading": "Contact",
-    "pitch": "I'm looking for a full-time role, apprenticeship, or fixed-term contract in the Paris area (hybrid). If you have a junior position, a mission, or just want to chat about a project — drop me a line.",
-    "pitchHighlight": "full-time role, apprenticeship, or fixed-term contract",
+    "pitch": "I'm looking for a full-time role or an internship in the Paris area (hybrid). If you have a junior position, a mission, or just want to chat about a project — drop me a line.",
+    "pitchHighlight": "full-time role or an internship",
     "alternativesLabel": "Or more direct",
     "altMoyens": "Other ways to reach out",
     "form": {
