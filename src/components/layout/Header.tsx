@@ -18,10 +18,10 @@
 import Link from "next/link";
 
 import { LanguageToggle } from "@/components/layout/LanguageToggle";
+import { NavLinks } from "@/components/layout/NavLinks";
 import { ThemeToggle } from "@/components/layout/ThemeToggle";
 import type { Dictionary } from "@/i18n/dictionaries";
 import type { Locale } from "@/i18n/config";
-import { NAV_ITEMS } from "@/lib/constants";
 
 type Props = {
   locale: Locale;
@@ -46,19 +46,7 @@ export function Header({ locale, dict }: Props) {
 
         {/* Nav desktop */}
         <nav aria-label={dict.a11y.mainNav} className="hidden sm:block">
-          <ul className="flex items-center gap-5 text-sm">
-            {NAV_ITEMS.map((item) => (
-              <li key={item.anchor}>
-                <a
-                  href={`#${item.anchor}`}
-                  className="group text-text-muted hover:text-accent inline-flex items-center gap-1.5 transition-colors"
-                >
-                  <span className="text-accent font-mono text-xs">{item.number}</span>
-                  <span>{dict.nav[item.anchor]}</span>
-                </a>
-              </li>
-            ))}
-          </ul>
+          <NavLinks dict={dict} />
         </nav>
 
         {/* Toggles — langue puis thème, ordre de lecture logique (macro → détail) */}
@@ -84,19 +72,7 @@ export function Header({ locale, dict }: Props) {
         aria-label={dict.a11y.mainNavMobile}
         className="border-border/70 border-t sm:hidden"
       >
-        <ul className="mx-auto flex max-w-5xl items-center justify-around px-4 py-2 text-xs">
-          {NAV_ITEMS.map((item) => (
-            <li key={item.anchor}>
-              <a
-                href={`#${item.anchor}`}
-                className="text-text-muted hover:text-accent inline-flex flex-col items-center gap-0.5"
-              >
-                <span className="text-accent font-mono text-[0.65rem]">{item.number}</span>
-                <span>{dict.nav[item.anchor]}</span>
-              </a>
-            </li>
-          ))}
-        </ul>
+        <NavLinks dict={dict} mobile />
       </nav>
     </header>
   );
