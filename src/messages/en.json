@@ -85,6 +85,10 @@
       "picswipe": {
         "title": "PicSwipe",
         "description": "Android mobile app for quickly sorting your photo gallery using an intuitive swipe system — swipe right to keep, left to delete. Photos are organised by month and loaded progressively from the device library. A review screen lets you confirm deletions before permanently freeing up storage. Cleaning statistics are persisted between sessions."
+      },
+      "drg-dashboard": {
+        "title": "DRG Dashboard",
+        "description": "A fullstack learning project built around reverse engineering: parsing the binary save files (GVAS / Unreal Engine 4 format) of the game Deep Rock Galactic to extract player statistics and display them in a web dashboard. The core is a Python parser built from scratch, decoding an undocumented binary format structure by structure — like building a translator for a language with no dictionary."
       }
     }
   },
