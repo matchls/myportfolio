@@ -98,16 +98,16 @@
       "alterago": {
         "title": "AlterAgo",
         "role": "Tech lead · team of 3",
-        "description": "A mobile gamification app designed to help seniors stay motivated through daily challenges and a progression system. MVP project built in 2 weeks as a team of 3, validating the RNCP Level 6 fullstack degree.",
-        "roleDetail": "As tech lead, I owned the full authentication and onboarding flow: integrating Clerk for account management (sign up, login, password reset), building the user profile creation with native camera access, and storing avatars on Cloudinary through the backend API. Every step of the user journey — from registration to first use — was designed and implemented end to end."
+        "description": "Daily gamification for seniors · challenges · progression system · 2-week MVP",
+        "roleDetail": "Auth & onboarding end to end · Clerk · user profile · native camera · Cloudinary"
       },
       "picswipe": {
         "title": "PicSwipe",
-        "description": "An Android mobile app to quickly sort your photo gallery using swipe gestures — right to keep, left to delete.\nSolo project, built from scratch: native gallery access with permission handling, smooth animations with Reanimated 4 and Gesture Handler, global state management with Zustand, session persistence with AsyncStorage, and haptic feedback for a polished tactile experience. Photos are loaded progressively by month, and a review screen lets you confirm deletions before permanently freeing up storage."
+        "description": "Sort Android gallery by swipe · keep or delete with a gesture · smooth animations · haptic feedback · solo project"
       },
       "drg-dashboard": {
         "title": "DRG Dashboard",
-        "description": "A fullstack learning project built around reverse engineering: parsing the binary save files (GVAS / Unreal Engine 4 format) of the game Deep Rock Galactic to extract player statistics and display them in a web dashboard. The core is a Python parser built from scratch, decoding an undocumented binary format structure by structure — like building a translator for a language with no dictionary."
+        "description": "Reverse engineering · GVAS / UE4 binary saves · Python parser from scratch · player stats · web dashboard"
       }
     }
   },

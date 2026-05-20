@@ -26,7 +26,7 @@ export function Formation({ dict }: Props) {
         <Card as="article">
           <h3 className="text-text text-lg font-semibold">{dict.formation.bootcampName}</h3>
           <p className="text-accent mt-1 font-mono text-xs">{dict.formation.duration}</p>
-          <p className="text-text-muted mt-1 font-mono text-xs">{dict.formation.etablissement}</p>
+          <p className="text-accent-2 mt-1 font-mono text-xs uppercase">{dict.formation.etablissement}</p>
           <p className="text-text-muted mt-3 flex-1 text-sm leading-relaxed">{dict.formation.description}</p>
           <p className="text-text-muted mt-3 font-mono text-xs">{dict.formation.stack}</p>
           <a
@@ -43,7 +43,7 @@ export function Formation({ dict }: Props) {
         <Card as="article">
           <h3 className="text-text text-lg font-semibold">{dict.formation.engineeringName}</h3>
           <p className="text-accent mt-1 font-mono text-xs">{dict.formation.engineeringDuration}</p>
-          <p className="text-text-muted mt-1 font-mono text-xs">{dict.formation.engineeringEtablissement}</p>
+          <p className="text-accent-2 mt-1 font-mono text-xs uppercase">{dict.formation.engineeringEtablissement}</p>
           <p className="text-text-muted mt-3 flex-1 text-sm leading-relaxed">{dict.formation.engineeringDescription}</p>
           <a
             href="https://www.mecavenir.com/formation/ingenieur-mecanique-et-production/"
