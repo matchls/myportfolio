@@ -25,7 +25,7 @@ export function Hero({ dict }: Props) {
   return (
     <section
       aria-labelledby="hero-heading"
-      className="hero-enter flex min-h-[70vh] flex-col justify-center py-16"
+      className="hero-dots hero-enter relative flex min-h-[70vh] flex-col justify-center py-16"
     >
       <p className="text-accent font-mono text-sm">{dict.hero.greeting}</p>
 

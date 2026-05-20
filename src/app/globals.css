@@ -81,6 +81,16 @@ body {
   color: var(--color-text);
 }
 
+/* Pattern de points en fond du Hero */
+.hero-dots {
+  background-image: radial-gradient(var(--color-border) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+.dark .hero-dots {
+  background-image: radial-gradient(color-mix(in srgb, var(--color-border) 60%, transparent) 1px, transparent 1px);
+}
+
 /* Scroll-reveal — état initial masqué, visible après IntersectionObserver */
 .animate-in-wrapper[data-visible="false"] {
   opacity: 0;
