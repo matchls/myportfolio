@@ -42,7 +42,7 @@ export function About({ dict }: Props) {
 
         <div className="relative mx-auto aspect-square w-full max-w-[240px] md:max-w-none">
           <div aria-hidden="true" className="bg-accent/15 absolute -right-2 -bottom-2 h-full w-full rounded-lg" />
-          <div className="relative overflow-hidden rounded-lg">
+          <div className="relative h-full w-full overflow-hidden rounded-lg">
             <Image
               src="/photo.jpg"
               alt={`${dict.about.photoAlt} ${profile.name}`}
