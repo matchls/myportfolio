@@ -70,12 +70,26 @@
   "projects": {
     "heading": "Projects",
     "statusShipped": "Shipped",
-    "statusComingSoon": "Coming soon",
+    "statusComingSoon": "In progress",
     "links": {
       "demo": "Demo",
       "frontend": "Frontend",
       "backend": "Backend",
       "repo": "Code"
+    },
+    "aiLevel": {
+      "autonomous": {
+        "label": "Autonomous",
+        "tooltip": "Project built entirely without AI assistance."
+      },
+      "assisted": {
+        "label": "AI as a tool",
+        "tooltip": "Project built independently, using Claude Code in learning mode as a guide."
+      },
+      "supervised": {
+        "label": "Supervised by me",
+        "tooltip": "Project generated with Claude Code under my direct supervision."
+      }
     },
     "ariaDemo": "Watch the video demo of",
     "ariaRepoFrontend": "Frontend source code of",
@@ -85,12 +99,12 @@
       "alterago": {
         "title": "AlterAgo",
         "role": "Tech lead · team of 3",
-        "description": "A mobile app that gamifies daily routines to help seniors stay motivated, through challenges and a progression system. MVP project submitted to validate the RNCP Level 6 Fullstack Developer certification, built in 2 weeks as a team.",
-        "roleDetail": "I served as tech lead: authentication setup (JWT), multi-step user profile creation, React Native API integration with Redux, and technical coordination across the team."
+        "description": "A mobile gamification app designed to help seniors stay motivated through daily challenges and a progression system. MVP project built in 2 weeks as a team of 3, validating the RNCP Level 6 fullstack degree.",
+        "roleDetail": "As tech lead, I owned the full authentication and onboarding flow: integrating Clerk for account management (sign up, login, password reset), building the user profile creation with native camera access, and storing avatars on Cloudinary through the backend API. Every step of the user journey — from registration to first use — was designed and implemented end to end."
       },
       "picswipe": {
         "title": "PicSwipe",
-        "description": "Android mobile app for quickly sorting your photo gallery using an intuitive swipe system — swipe right to keep, left to delete. Photos are organised by month and loaded progressively from the device library. A review screen lets you confirm deletions before permanently freeing up storage. Cleaning statistics are persisted between sessions."
+        "description": "An Android mobile app to quickly sort your photo gallery using swipe gestures — right to keep, left to delete.\nSolo project, built from scratch: native gallery access with permission handling, smooth animations with Reanimated 4 and Gesture Handler, global state management with Zustand, session persistence with AsyncStorage, and haptic feedback for a polished tactile experience. Photos are loaded progressively by month, and a review screen lets you confirm deletions before permanently freeing up storage."
       },
       "drg-dashboard": {
         "title": "DRG Dashboard",

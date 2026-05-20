@@ -14,6 +14,7 @@ export const projects: readonly Project[] = [
     slug: "alterago",
     status: "shipped",
     featured: true,
+    aiLevel: "autonomous",
     title: "AlterAgo",
     description:
       "Application mobile de gamification du quotidien pour aider les séniors à rester motivés, en leur proposant des activités sous forme d'objectifs qui rapportent des points.",
@@ -44,6 +45,7 @@ export const projects: readonly Project[] = [
     slug: "picswipe",
     status: "shipped",
     featured: false,
+    aiLevel: "assisted",
     title: "PicSwipe",
     description:
       "Application mobile Android de tri rapide de galerie photos par swipe — glisser à droite pour garder, à gauche pour supprimer. Organisation par mois, écran de revue avant suppression définitive, statistiques de nettoyage persistées.",
@@ -69,6 +71,7 @@ export const projects: readonly Project[] = [
   {
     slug: "drg-dashboard",
     status: "coming-soon",
+    aiLevel: "assisted",
     title: "DRG Dashboard",
     description:
       "Projet d'apprentissage fullstack centré sur le reverse engineering : parser les fichiers de sauvegarde binaires (format GVAS / Unreal Engine 4) du jeu Deep Rock Galactic pour en extraire des statistiques de joueur et les afficher dans un dashboard web. Le cœur est un parseur Python développé from scratch, qui décode structure par structure un format binaire non documenté.",

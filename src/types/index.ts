@@ -66,6 +66,8 @@ export type SkillGroup = {
 // Projets
 // ---------------------------------------------------------------------------
 
+export type AiLevel = "autonomous" | "assisted" | "supervised";
+
 /**
  * Champs communs à tous les projets (shipped ou coming-soon).
  */
@@ -85,6 +87,7 @@ type ProjectBase = {
    */
   featured?: boolean;
   screenshots?: readonly string[];
+  aiLevel: AiLevel;
 };
 
 /**

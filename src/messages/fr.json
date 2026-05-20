@@ -61,7 +61,7 @@
     "etablissement": "La Capsule",
     "stack": "React · Next.js · React Native · Node.js · Express · MongoDB · TypeScript · Git",
     "learnMore": "Voir la formation",
-    "engineeringName": "Diplôme d'ingénieur — Mécanique et Production — ISEL-ITII / SUPii",
+    "engineeringName": "Diplôme d'ingénieur — Mécanique et Production",
     "engineeringEtablissement": "SUPii Mécavenir",
     "engineeringDuration": "3 ans en apprentissage · Obtention en 2017",
     "engineeringDescription": "Formation pluridisciplinaire à dominante mécanique, production et logistique industrielle. Réalisé en alternance chez Renault — optimisation de protocoles d'essai, coordination entre équipes techniques et services transverses.",
@@ -70,12 +70,26 @@
   "projects": {
     "heading": "Projets",
     "statusShipped": "Projet livré",
-    "statusComingSoon": "Bientôt",
+    "statusComingSoon": "En cours",
     "links": {
       "demo": "Démo",
       "frontend": "Frontend",
       "backend": "Backend",
       "repo": "Code"
+    },
+    "aiLevel": {
+      "autonomous": {
+        "label": "Autonome",
+        "tooltip": "Projet réalisé sans assistance IA."
+      },
+      "assisted": {
+        "label": "IA comme outil",
+        "tooltip": "Projet réalisé de façon autonome, en utilisant Claude Code en mode learning comme guide."
+      },
+      "supervised": {
+        "label": "Supervisé par moi",
+        "tooltip": "Projet généré avec Claude Code sous ma supervision directe."
+      }
     },
     "ariaDemo": "Voir la démo vidéo de",
     "ariaRepoFrontend": "Code frontend de",
@@ -85,12 +99,12 @@
       "alterago": {
         "title": "AlterAgo",
         "role": "Lead technique · équipe de 3",
-        "description": "Application mobile de gamification du quotidien pour aider les séniors à rester motivés, via des défis et un système de progression. Projet MVP de validation du titre RNCP 6 Développeur Fullstack, réalisé en 2 semaines en équipe.",
-        "roleDetail": "J'ai occupé le rôle de lead technique : mise en place de l'authentification (JWT), création du profil utilisateur multi-étapes, intégration de l'API backend depuis React Native avec Redux, et coordination technique de l'équipe."
+        "description": "Application mobile de gamification du quotidien pour aider les séniors à rester motivés, via des défis et un système de progression. Projet MVP de validation du titre RNCP 6, réalisé en 2 semaines en équipe de 3.",
+        "roleDetail": "En tant que lead technique, j'ai pris en charge l'ensemble du flux d'authentification et d'onboarding : intégration de Clerk pour la gestion des comptes (inscription, connexion, reset de mot de passe), création de profil utilisateur avec accès à l'appareil photo natif, et stockage des avatars sur Cloudinary via l'API backend. Chaque étape du parcours utilisateur — de l'inscription à la première utilisation — a été pensée et implémentée de bout en bout."
       },
       "picswipe": {
         "title": "PicSwipe",
-        "description": "Application mobile Android permettant de trier rapidement sa galerie photos grâce à un système de swipe intuitif — glisser à droite pour garder, à gauche pour supprimer. Les photos sont organisées par mois et chargées progressivement depuis la bibliothèque de l'appareil. Un écran de revue permet de confirmer les suppressions avant de libérer définitivement de l'espace. Les statistiques de nettoyage sont persistées entre les sessions."
+        "description": "Application mobile Android permettant de trier rapidement sa galerie photos par geste de swipe — glisser à droite pour garder, à gauche pour supprimer.\nProjet solo, développé de A à Z : accès à la galerie native avec gestion des permissions, animations fluides avec Reanimated 4 et Gesture Handler, gestion d'état global avec Zustand, persistance des sessions avec AsyncStorage, et retours haptiques pour une expérience tactile soignée. Les photos sont chargées progressivement par mois, et un écran de revue permet de confirmer les suppressions avant de libérer définitivement de l'espace."
       },
       "drg-dashboard": {
         "title": "DRG Dashboard",

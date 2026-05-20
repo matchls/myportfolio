@@ -11,14 +11,14 @@
  * Union discriminée sur `status` inchangée : le narrowing TS fonctionne pareil.
  */
 
-import { ExternalLink, Play } from "lucide-react";
+import { Bot, ExternalLink, Play, Sparkles, UserCheck } from "lucide-react";
 
 import { Card } from "@/components/ui/Card";
 import { GithubIcon } from "@/components/ui/Icons";
 import { ScreenshotCarousel } from "@/components/sections/ScreenshotCarousel";
 import { projects } from "@/data/projects";
 import type { Dictionary } from "@/i18n/dictionaries";
-import type { Project, ShippedProject } from "@/types";
+import type { AiLevel, Project, ShippedProject } from "@/types";
 
 type Props = {
   dict: Dictionary;
@@ -67,23 +67,34 @@ function ProjectCard({ project, dict }: CardProps) {
 
   return (
     <Card as="article" className="flex h-full flex-col">
-      <header>
-        <p className="text-accent font-mono text-xs tracking-wider uppercase">
-          {project.status === "shipped" ? dict.projects.statusShipped : dict.projects.statusComingSoon}
-        </p>
-        <h3 className="text-text mt-2 text-xl font-semibold">{itemCopy.title}</h3>
-        {"role" in itemCopy && itemCopy.role ? (
-          <p className="text-accent mt-1 font-mono text-xs">{itemCopy.role}</p>
-        ) : (
-          <p className="mt-1 font-mono text-xs invisible" aria-hidden="true">&nbsp;</p>
-        )}
+      <header className="flex items-start justify-between gap-2">
+        <div className="min-w-0">
+          <p className="text-accent font-mono text-xs tracking-wider uppercase">
+            {project.status === "shipped" ? dict.projects.statusShipped : dict.projects.statusComingSoon}
+          </p>
+          <h3 className="text-text mt-2 text-xl font-semibold">{itemCopy.title}</h3>
+          {"role" in itemCopy && itemCopy.role ? (
+            <p className="text-accent mt-1 font-mono text-xs">{itemCopy.role}</p>
+          ) : (
+            <p className="mt-1 font-mono text-xs invisible" aria-hidden="true">&nbsp;</p>
+          )}
+        </div>
+        <AiLevelBadge level={project.aiLevel} dict={dict} />
       </header>
 
       {project.screenshots && project.screenshots.length > 0 && (
         <ScreenshotCarousel screenshots={project.screenshots} title={itemCopy.title} />
       )}
 
-      <p className="text-text-muted mt-3 flex-1 text-sm leading-relaxed">{itemCopy.description}</p>
+      <p className="text-text-muted mt-3 text-sm leading-relaxed whitespace-pre-line">{itemCopy.description}</p>
+
+      {"roleDetail" in itemCopy && itemCopy.roleDetail ? (
+        <p className="text-text-muted mt-3 flex-1 border-l-2 border-accent/40 pl-3 text-sm leading-relaxed italic">
+          {itemCopy.roleDetail}
+        </p>
+      ) : (
+        <div className="flex-1" />
+      )}
 
       <ul className="mt-4 flex flex-wrap gap-1.5">
         {project.stack.map((tech) => (
@@ -100,6 +111,37 @@ function ProjectCard({ project, dict }: CardProps) {
         <ProjectLinks project={project} title={itemCopy.title} dict={dict} />
       )}
     </Card>
+  );
+}
+
+const AI_LEVEL_ICONS = {
+  autonomous: UserCheck,
+  assisted: Sparkles,
+  supervised: Bot,
+} as const;
+
+type BadgeProps = {
+  level: AiLevel;
+  dict: Dictionary;
+};
+
+function AiLevelBadge({ level, dict }: BadgeProps) {
+  const Icon = AI_LEVEL_ICONS[level];
+  const copy = dict.projects.aiLevel[level];
+
+  return (
+    <div className="group relative flex-shrink-0">
+      <div
+        className="text-accent-2/60 hover:text-accent-2 cursor-default rounded p-0.5 transition-colors"
+        aria-label={copy.label}
+      >
+        <Icon className="h-5 w-5" aria-hidden="true" />
+      </div>
+      <div className="pointer-events-none absolute right-0 top-full z-10 mt-1.5 w-52 rounded-md border border-border bg-bg p-2.5 opacity-0 shadow-md transition-opacity duration-150 group-hover:opacity-100">
+        <p className="text-accent mb-1 font-mono text-[0.65rem] uppercase tracking-wider">{copy.label}</p>
+        <p className="text-text-muted text-xs leading-relaxed">{copy.tooltip}</p>
+      </div>
+    </div>
   );
 }
 
