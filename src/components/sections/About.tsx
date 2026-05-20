@@ -41,7 +41,7 @@ export function About({ dict }: Props) {
         </div>
 
         <div className="relative mx-auto aspect-square w-full max-w-[240px] md:max-w-none">
-          <div aria-hidden="true" className="bg-accent/15 absolute -right-2 -bottom-2 h-full w-full rounded-lg" />
+          <div aria-hidden="true" className="bg-accent/30 absolute -right-2 -bottom-2 h-full w-full rounded-lg" />
           <div className="relative h-full w-full overflow-hidden rounded-lg">
             <Image
               src="/photo.jpg"
@@ -51,10 +51,9 @@ export function About({ dict }: Props) {
               className="object-cover"
               priority={false}
             />
-            {/* Liseré accent en hover : petit détail qui relie la photo à la palette */}
             <div
               aria-hidden="true"
-              className="ring-accent/0 hover:ring-accent-2/60 absolute inset-0 rounded-lg ring-2 ring-offset-2 ring-offset-transparent transition-all duration-300"
+              className="ring-accent/40 hover:ring-accent-2/70 absolute inset-0 rounded-lg ring-1 ring-inset transition-all duration-300"
             />
           </div>
         </div>
