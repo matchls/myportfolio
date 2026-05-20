@@ -2,6 +2,7 @@
 
 import { useRef } from "react";
 import Image from "next/image";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 type Props = {
   screenshots: readonly string[];
@@ -44,16 +45,16 @@ export function ScreenshotCarousel({ screenshots, title }: Props) {
       <button
         onClick={() => scrollByOne(-1)}
         aria-label="Screenshot précédent"
-        className="border-border/70 bg-bg/80 text-text-muted hover:text-accent absolute top-1/2 left-0 -translate-y-1/2 rounded-full border p-1.5 backdrop-blur-sm transition-colors"
+        className="border-border/70 bg-bg/80 text-text-muted hover:text-accent absolute top-1/2 left-1.5 -translate-y-1/2 flex h-7 w-7 items-center justify-center rounded-full border backdrop-blur-sm transition-colors"
       >
-        &#8592;
+        <ChevronLeft className="h-4 w-4" aria-hidden="true" />
       </button>
       <button
         onClick={() => scrollByOne(1)}
         aria-label="Screenshot suivant"
-        className="border-border/70 bg-bg/80 text-text-muted hover:text-accent absolute top-1/2 right-0 -translate-y-1/2 rounded-full border p-1.5 backdrop-blur-sm transition-colors"
+        className="border-border/70 bg-bg/80 text-text-muted hover:text-accent absolute top-1/2 right-1.5 -translate-y-1/2 flex h-7 w-7 items-center justify-center rounded-full border backdrop-blur-sm transition-colors"
       >
-        &#8594;
+        <ChevronRight className="h-4 w-4" aria-hidden="true" />
       </button>
     </div>
   );
