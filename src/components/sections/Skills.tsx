@@ -39,7 +39,7 @@ export function Skills({ dict }: Props) {
               {group.skills.map((skill) => (
                 <li
                   key={skill.name}
-                  className="border-border/70 text-text-muted rounded-md border px-2 py-1 text-xs"
+                  className="bg-accent/8 border-accent/20 text-text-muted hover:bg-accent/15 rounded-md border px-2 py-1 text-xs transition-colors"
                 >
                   {skill.name}
                 </li>
