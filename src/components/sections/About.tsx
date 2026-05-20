@@ -40,20 +40,23 @@ export function About({ dict }: Props) {
           ))}
         </div>
 
-        <div className="relative mx-auto aspect-square w-full max-w-[240px] overflow-hidden rounded-lg md:max-w-none">
-          <Image
-            src="/photo.jpg"
-            alt={`${dict.about.photoAlt} ${profile.name}`}
-            fill
-            sizes="(max-width: 768px) 240px, 240px"
-            className="object-cover"
-            priority={false}
-          />
-          {/* Liseré accent en hover : petit détail qui relie la photo à la palette */}
-          <div
-            aria-hidden="true"
-            className="ring-accent/0 hover:ring-accent-2/60 absolute inset-0 rounded-lg ring-2 ring-offset-2 ring-offset-transparent transition-all duration-300"
-          />
+        <div className="relative mx-auto aspect-square w-full max-w-[240px] md:max-w-none">
+          <div aria-hidden="true" className="bg-accent/15 absolute -right-2 -bottom-2 h-full w-full rounded-lg" />
+          <div className="relative overflow-hidden rounded-lg">
+            <Image
+              src="/photo.jpg"
+              alt={`${dict.about.photoAlt} ${profile.name}`}
+              fill
+              sizes="(max-width: 768px) 240px, 240px"
+              className="object-cover"
+              priority={false}
+            />
+            {/* Liseré accent en hover : petit détail qui relie la photo à la palette */}
+            <div
+              aria-hidden="true"
+              className="ring-accent/0 hover:ring-accent-2/60 absolute inset-0 rounded-lg ring-2 ring-offset-2 ring-offset-transparent transition-all duration-300"
+            />
+          </div>
         </div>
       </div>
     </section>
