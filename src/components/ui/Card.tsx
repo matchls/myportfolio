@@ -34,9 +34,8 @@ export function Card({
   return (
     <Component
       className={cn(
-        "border-border bg-bg rounded-lg border p-5",
-        "transition-[colors,box-shadow] duration-200",
-        "hover:shadow-[0_0_0_1px_var(--color-accent),_0_6px_24px_var(--color-glow)]",
+        "card-glow border-border bg-bg rounded-lg border p-5",
+        "transition-colors duration-200",
         interactive && "hover:border-accent-2 cursor-pointer",
         className,
       )}

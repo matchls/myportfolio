@@ -20,7 +20,7 @@
   --color-accent: #6fa56b; /* vert feuille — accent principal */
   --color-accent-2: #e87a3f; /* orange chaleureux — CTA, hover */
   --color-border: #e5e7e0;
-  --color-glow: color-mix(in srgb, var(--color-accent) 18%, transparent);
+  --color-glow: rgba(111, 165, 107, 0.28); /* #6fa56b à 28% */
 }
 
 .dark {
@@ -30,7 +30,7 @@
   --color-accent: #8fc58c; /* vert plus vif sur fond sombre */
   --color-accent-2: #f09668; /* orange plus clair */
   --color-border: #2a352c;
-  --color-glow: color-mix(in srgb, var(--color-accent) 22%, transparent);
+  --color-glow: rgba(143, 197, 140, 0.22); /* #8fc58c à 22% */
 }
 
 /* ---------------------------------------------------------------------------
@@ -89,6 +89,15 @@ body {
 
 .dark .hero-dots {
   background-image: radial-gradient(color-mix(in srgb, var(--color-border) 60%, transparent) 1px, transparent 1px);
+}
+
+/* Glow au hover des cartes */
+.card-glow {
+  transition: box-shadow 200ms ease, border-color 200ms ease;
+}
+
+.card-glow:hover {
+  box-shadow: 0 0 0 1px var(--color-accent), 0 6px 24px var(--color-glow);
 }
 
 /* Scroll-reveal — état initial masqué, visible après IntersectionObserver */
