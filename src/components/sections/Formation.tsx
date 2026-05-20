@@ -18,7 +18,7 @@ export function Formation({ dict }: Props) {
         id="formation-heading"
         className="text-text flex items-baseline gap-3 text-2xl font-semibold"
       >
-        <span className="text-accent font-mono text-base">03.</span>
+        <span className="text-accent font-mono text-base">04.</span>
         {dict.formation.heading}
       </h2>
 

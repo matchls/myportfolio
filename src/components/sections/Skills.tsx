@@ -25,7 +25,7 @@ export function Skills({ dict }: Props) {
         id="skills-heading"
         className="text-text flex items-baseline gap-3 text-2xl font-semibold"
       >
-        <span className="text-accent font-mono text-base">02.</span>
+        <span className="text-accent font-mono text-base">03.</span>
         {dict.skills.heading}
       </h2>
 

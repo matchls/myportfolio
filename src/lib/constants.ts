@@ -54,9 +54,9 @@ export const BCP47_BY_LOCALE = {
  */
 export const NAV_ITEMS: readonly NavItem[] = [
   { number: "01.", anchor: "about" },
-  { number: "02.", anchor: "skills" },
-  { number: "03.", anchor: "formation" },
-  { number: "04.", anchor: "projects" },
+  { number: "02.", anchor: "projects" },
+  { number: "03.", anchor: "skills" },
+  { number: "04.", anchor: "formation" },
   { number: "05.", anchor: "contact" },
 ] as const;
 

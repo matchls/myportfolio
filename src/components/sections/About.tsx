@@ -21,6 +21,23 @@ type Props = {
   dict: Dictionary;
 };
 
+function BoldParagraph({ text }: { text: string }) {
+  const parts = text.split(/\*\*([^*]+)\*\*/g);
+  return (
+    <p>
+      {parts.map((part, i) =>
+        i % 2 === 1 ? (
+          <strong key={i} className="text-text font-semibold">
+            {part}
+          </strong>
+        ) : (
+          part
+        )
+      )}
+    </p>
+  );
+}
+
 export function About({ dict }: Props) {
   return (
     <section
@@ -36,7 +53,7 @@ export function About({ dict }: Props) {
       <div className="mt-8 grid gap-8 md:grid-cols-[2fr_1fr] md:items-start md:gap-12">
         <div className="text-text-muted space-y-4 leading-relaxed">
           {dict.profile.bioParagraphs.map((paragraph, index) => (
-            <p key={index}>{paragraph}</p>
+            <BoldParagraph key={index} text={paragraph} />
           ))}
         </div>
 

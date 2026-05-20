@@ -37,7 +37,7 @@ export function Projects({ dict }: Props) {
         id="projects-heading"
         className="text-text flex items-baseline gap-3 text-2xl font-semibold"
       >
-        <span className="text-accent font-mono text-base">04.</span>
+        <span className="text-accent font-mono text-base">02.</span>
         {dict.projects.heading}
       </h2>
 

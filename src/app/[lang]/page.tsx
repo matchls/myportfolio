@@ -41,13 +41,13 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
         <About dict={dict} />
       </AnimateIn>
       <AnimateIn>
+        <Projects dict={dict} />
+      </AnimateIn>
+      <AnimateIn>
         <Skills dict={dict} />
       </AnimateIn>
       <AnimateIn>
         <Formation dict={dict} />
-      </AnimateIn>
-      <AnimateIn>
-        <Projects dict={dict} />
       </AnimateIn>
       <AnimateIn>
         <Contact locale={lang} dict={dict} />
