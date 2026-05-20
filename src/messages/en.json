@@ -22,8 +22,9 @@
     "bioIntro": "Yesterday I was shaping wood. Today I write code.",
     "bioTagline": "Always to build things that serve a purpose.",
     "bioParagraphs": [
-      "For several years, I worked with wood. Every piece had a use, a constraint, a reason to exist. I've now brought that same approach to code: building things that serve a purpose, that hold up, that can be repaired.",
-      "Graduating from La Capsule's fullstack bootcamp in March 2026, I code mainly in TypeScript — React / Next.js for the web, React Native for mobile, Node.js on the server. I'm looking for a full-time role or an internship in the Paris area (hybrid), in a team that takes the time to do things right."
+      "Mechanical engineer by training, I went on to coordinate international science programmes — team management, project leadership, communicating complex content to diverse audiences. Then I worked wood, because building something concrete with your hands has always felt essential to me.",
+      "Today I write code. And I find in development what has always driven me: analyse a problem, design a solution that holds, ship it.",
+      "I graduated from La Capsule's fullstack bootcamp in 2026 and code in TypeScript — React / Next.js on the web, React Native on mobile, Node.js on the server. I'm looking for a full-time role or internship in the Paris area (hybrid), with a team that takes the time to do things right."
     ]
   },
   "nav": {
@@ -59,7 +60,11 @@
     "description": "Intensive fullstack web and mobile development training. Real projects, teamwork, professional pace.",
     "rncp": "RNCP Level 6 — Fullstack Developer",
     "stack": "React · Next.js · React Native · Node.js · Express · MongoDB · TypeScript · Git",
-    "learnMore": "Learn more"
+    "learnMore": "Learn more",
+    "engineeringName": "Mechanical Engineering Degree — ISEL-ITII / SUPii",
+    "engineeringDuration": "Apprenticeship programme · 2017",
+    "engineeringDescription": "Specialisation in mechanics and experimental data analysis. Completed in work-study at Renault — optimising test protocols, collaborating with multidisciplinary teams in an industrial environment.",
+    "engineeringLearnMore": "View programme"
   },
   "projects": {
     "heading": "Projects",

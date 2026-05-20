@@ -22,8 +22,9 @@
     "bioIntro": "Hier je travaillais le bois. Aujourd'hui je code.",
     "bioTagline": "Toujours pour construire des choses qui servent.",
     "bioParagraphs": [
-      "Pendant plusieurs années, j'ai travaillé le bois. Chaque pièce avait un usage, une contrainte, une raison d'être. Aujourd'hui j'ai transposé cette approche dans le code : construire des choses qui servent, qui tiennent, qu'on peut réparer.",
-      "Diplômé du bootcamp fullstack de La Capsule en mars 2026, je code principalement en TypeScript — côté web avec React / Next.js, côté mobile avec React Native, côté serveur avec Node.js. Je cherche un CDI ou un stage en région parisienne (hybride), dans une équipe qui prend le temps de bien faire."
+      "Ingénieur mécanique de formation, j'ai ensuite coordonné des programmes scientifiques internationaux — management d'équipes, gestion de projet, transmission à des publics variés. Puis j'ai travaillé le bois, parce que construire quelque chose de concret avec ses mains m'a toujours semblé essentiel.",
+      "Aujourd'hui je code. Et je retrouve dans le développement ce qui m'a toujours motivé : analyser un problème, concevoir une solution qui tient, la livrer.",
+      "Diplômé du bootcamp fullstack de La Capsule en 2026, je code en TypeScript — React / Next.js côté web, React Native côté mobile, Node.js côté serveur. Je cherche un CDI ou un stage en région parisienne (hybride), dans une équipe qui prend le temps de bien faire."
     ]
   },
   "nav": {
@@ -59,7 +60,11 @@
     "description": "Formation intensive au développement web et mobile fullstack. Projets réels, travail en équipe, rythme professionnel.",
     "rncp": "Titre RNCP niveau 6 — Développeur Fullstack",
     "stack": "React · Next.js · React Native · Node.js · Express · MongoDB · TypeScript · Git",
-    "learnMore": "Voir la formation"
+    "learnMore": "Voir la formation",
+    "engineeringName": "Diplôme d'ingénieur mécanique — ISEL-ITII / SUPii",
+    "engineeringDuration": "Formation en apprentissage · 2017",
+    "engineeringDescription": "Spécialisation en mécanique et analyse de données expérimentales. Réalisé en alternance chez Renault — optimisation de protocoles d'essai, collaboration avec des équipes pluridisciplinaires en environnement industriel.",
+    "engineeringLearnMore": "Voir la formation"
   },
   "projects": {
     "heading": "Projets",
