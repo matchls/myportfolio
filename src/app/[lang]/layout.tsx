@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Press_Start_2P, VT323 } from "next/font/google";
 import { notFound } from "next/navigation";
 
 import { Footer } from "@/components/layout/Footer";
@@ -14,17 +14,19 @@ import { BCP47_BY_LOCALE, SITE_URL } from "@/lib/constants";
 import "../globals.css";
 
 /**
- * Polices chargées via next/font — subset latin, self-hosted en prod.
- * Avantages : zéro layout shift (polices pré-chargées), pas de requête vers
- * fonts.google.com côté client, tree-shakable.
+ * Polices Rétro Gaming :
+ * - Press Start 2P : police 8-bit pixelisée pour les titres
+ * - VT323 : police terminal rétro pour le texte lisible
  */
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const pressStart2P = Press_Start_2P({
+  weight: "400",
+  variable: "--font-pixel",
   subsets: ["latin"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const vt323 = VT323({
+  weight: "400",
+  variable: "--font-retro",
   subsets: ["latin"],
 });
 
@@ -111,8 +113,8 @@ export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#fafaf5" },
-    { media: "(prefers-color-scheme: dark)", color: "#1a211b" },
+    { media: "(prefers-color-scheme: light)", color: "#f5f0e1" },
+    { media: "(prefers-color-scheme: dark)", color: "#1a1a2e" },
   ],
   colorScheme: "light dark",
 };
@@ -131,9 +133,9 @@ export default async function RootLayout({ children, params }: Props) {
       lang={locale}
       id="top"
       suppressHydrationWarning
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${pressStart2P.variable} ${vt323.variable} h-full antialiased`}
     >
-      <body className="flex min-h-full flex-col">
+      <body className="flex min-h-full flex-col bg-bg">
         <ThemeProvider>
           <SkipLink label={dict.a11y.skipToContent} />
           <Header locale={locale} dict={dict} />

@@ -1,25 +1,7 @@
 "use client";
 
 /**
- * Formulaire de contact — Client Component.
- *
- * Pile :
- *  - React Hook Form pour l'état et la soumission
- *  - zodResolver pour la validation synchrone côté client (même fabrique que l'API)
- *  - `fetch` vers /api/contact pour l'envoi
- *
- * États UX :
- *  - idle    : formulaire vide, prêt à remplir
- *  - loading : soumission en cours, bouton désactivé + aria-busy
- *  - success : message de succès, form reset
- *  - error   : message d'erreur, form reste rempli pour que l'utilisateur corrige/renvoie
- *
- * i18n :
- *  - Les libellés et messages d'erreur viennent de `dict.contact.form.*`
- *  - La locale courante est envoyée dans le body POST pour que l'API puisse
- *    localiser le sujet de l'email + ses propres erreurs de validation
- *  - Le schéma Zod est RE-créé à chaque render avec les messages du dict courant —
- *    OK car useMemo le stabilise et les messages changent rarement (toggle langue)
+ * ContactForm — Rétro Gaming style
  */
 
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -48,8 +30,6 @@ export function ContactForm({ locale, dict }: Props) {
   const [status, setStatus] = useState<Status>("idle");
   const [serverError, setServerError] = useState<string | null>(null);
 
-  // Stabilise le schéma tant que les messages ne changent pas (changement de
-  // locale ou de dict). Évite de reconstruire Zod à chaque render.
   const schema = useMemo(() => createContactFormSchema(t.errors), [t.errors]);
 
   const {
@@ -70,8 +50,6 @@ export function ContactForm({ locale, dict }: Props) {
       const res = await fetch(CONTACT_API_ROUTE, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        // `locale` voyage avec le payload → l'API peut localiser son message d'erreur
-        // et le sujet de l'email reçu par Mathieu.
         body: JSON.stringify({ ...values, locale }),
       });
 
@@ -85,22 +63,28 @@ export function ContactForm({ locale, dict }: Props) {
       reset();
       setStatus("success");
     } catch {
-      // Typiquement : réseau coupé, CORS, DNS
       setServerError(t.errorNetwork);
       setStatus("error");
     }
   });
 
-  // Succès : on remplace le formulaire par un message, avec possibilité d'en envoyer un autre
+  // Success state
   if (status === "success") {
     return (
-      <div className="border-accent/40 bg-accent/5 text-text rounded-md border p-6">
-        <p className="font-semibold">{t.successTitle} ✓</p>
-        <p className="text-text-muted mt-2 text-sm">{t.successBody}</p>
+      <div 
+        className="border-4 border-accent-2 bg-accent-2/10 p-6"
+        style={{ boxShadow: "4px 4px 0 var(--color-pixel-shadow)" }}
+      >
+        <p className="font-[family-name:var(--font-pixel)] text-xs uppercase text-accent-2">
+          {">"} {t.successTitle}
+        </p>
+        <p className="mt-3 font-[family-name:var(--font-retro)] text-base text-text-muted">
+          {t.successBody}
+        </p>
         <button
           type="button"
           onClick={() => setStatus("idle")}
-          className="text-accent-2 hover:text-accent-2/80 mt-4 text-sm underline underline-offset-2"
+          className="mt-4 font-[family-name:var(--font-pixel)] text-[0.5rem] uppercase text-accent underline underline-offset-4 transition-colors hover:text-accent-2"
         >
           {t.successAgain}
         </button>
@@ -109,7 +93,7 @@ export function ContactForm({ locale, dict }: Props) {
   }
 
   return (
-    <form onSubmit={onSubmit} noValidate className="flex flex-col gap-4">
+    <form onSubmit={onSubmit} noValidate className="flex flex-col gap-5">
       <Input
         id="contact-name"
         label={t.name}
@@ -137,9 +121,7 @@ export function ContactForm({ locale, dict }: Props) {
         error={errors.message?.message}
       />
 
-      {/* Honeypot : caché en CSS, invisible pour humain, piégeant pour bot.
-          tabindex=-1 et autocomplete=off pour être certain qu'aucun humain
-          n'y tombe par accident via Tab ou autofill. */}
+      {/* Honeypot */}
       <div aria-hidden="true" className="pointer-events-none absolute -left-[9999px]">
         <label>
           {t.honeypotLabel}
@@ -148,14 +130,19 @@ export function ContactForm({ locale, dict }: Props) {
       </div>
 
       {serverError && (
-        <p role="alert" className="text-sm text-red-500">
-          {serverError}
-        </p>
+        <div 
+          className="border-2 border-red-500 bg-red-500/10 p-3"
+          style={{ boxShadow: "2px 2px 0 var(--color-pixel-shadow)" }}
+        >
+          <p role="alert" className="font-[family-name:var(--font-pixel)] text-[0.5rem] uppercase text-red-500">
+            {">"} Error: {serverError}
+          </p>
+        </div>
       )}
 
       <Button
         type="submit"
-        variant="primary"
+        variant="secondary"
         size="md"
         loading={status === "loading"}
         className="self-start"

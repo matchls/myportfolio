@@ -1,15 +1,5 @@
 /**
- * Contact — section finale.
- *
- * Server Component qui héberge le `<ContactForm>` (Client Component).
- * Structure : pitch + vrai formulaire + liens de secours (mailto, LinkedIn, GitHub).
- *
- * Le pitch contient un bout mis en emphase ("CDI, alternance, CDD") qu'on ne peut
- * pas simplement injecter via {dict.contact.pitch} car la traduction doit pouvoir
- * décider OÙ se trouve l'emphase. Solution : on splitte le pitch sur la
- * `pitchHighlight` (le même morceau qu'on veut souligner) et on injecte le span
- * au bon endroit. Si la traduction ne contient pas `pitchHighlight` tel quel,
- * fallback propre : la phrase s'affiche sans emphase.
+ * Contact — Rétro Gaming style
  */
 
 import { Mail } from "lucide-react";
@@ -34,69 +24,91 @@ export function Contact({ locale, dict }: Props) {
     <section
       id="contact"
       aria-labelledby="contact-heading"
-      className="border-border/70 scroll-mt-20 border-t py-16"
+      className="scroll-mt-20 border-t-4 border-border py-16"
+      style={{ borderTopStyle: "dashed" }}
     >
-      <h2
-        id="contact-heading"
-        className="text-text flex items-baseline gap-3 text-2xl font-semibold"
-      >
-        <span className="text-accent font-mono text-base">05.</span>
-        {dict.contact.heading}
-      </h2>
+      {/* Section header */}
+      <div className="flex items-center gap-4">
+        <span className="pixel-tag">05</span>
+        <h2
+          id="contact-heading"
+          className="font-[family-name:var(--font-pixel)] text-sm uppercase tracking-wider text-text sm:text-base"
+        >
+          {dict.contact.heading}
+        </h2>
+        <div className="h-1 flex-1 bg-border" style={{ boxShadow: "2px 2px 0 var(--color-pixel-shadow)" }} />
+      </div>
 
-      <div className="mt-8 grid gap-10 md:grid-cols-[3fr_2fr] md:gap-12">
+      <div className="mt-10 grid gap-10 md:grid-cols-[3fr_2fr] md:gap-12">
         {/* Colonne gauche : formulaire */}
         <div>
-          <p className="text-text-muted leading-relaxed">
-            {hasHighlight ? (
-              <>
-                {pitch.slice(0, highlightIndex)}
-                <span className="text-text">{pitchHighlight}</span>
-                {pitch.slice(highlightIndex + pitchHighlight.length)}
-              </>
-            ) : (
-              pitch
-            )}
-          </p>
+          <div className="pixel-border bg-bg/80 p-4">
+            <p className="font-[family-name:var(--font-retro)] text-lg leading-relaxed text-text-muted">
+              <span className="text-accent-2">[MESSAGE]</span>{" "}
+              {hasHighlight ? (
+                <>
+                  {pitch.slice(0, highlightIndex)}
+                  <span className="text-accent">{pitchHighlight}</span>
+                  {pitch.slice(highlightIndex + pitchHighlight.length)}
+                </>
+              ) : (
+                pitch
+              )}
+            </p>
+          </div>
 
-          <div className="mt-6">
+          <div className="mt-8">
             <ContactForm locale={locale} dict={dict} />
           </div>
         </div>
 
         {/* Colonne droite : moyens alternatifs */}
         <aside aria-label={dict.contact.altMoyens} className="flex flex-col gap-4">
-          <p className="text-accent-2 font-mono text-xs tracking-wider uppercase">
-            {dict.contact.alternativesLabel}
-          </p>
+          <div className="pixel-border bg-bg p-4">
+            <p className="mb-4 font-[family-name:var(--font-pixel)] text-[0.5rem] uppercase text-accent">
+              {">"} Quick Links
+            </p>
 
-          <a
-            href={`mailto:${profile.email}`}
-            className="border-border text-text hover:border-accent-2 hover:text-accent-2 inline-flex items-center gap-2 rounded-md border px-3 py-2 text-sm transition-colors"
-          >
-            <Mail className="h-4 w-4" aria-hidden="true" />
-            {profile.email}
-          </a>
+            <div className="flex flex-col gap-3">
+              <a
+                href={`mailto:${profile.email}`}
+                className="flex items-center gap-3 border-2 border-border p-3 font-[family-name:var(--font-retro)] text-base text-text transition-all hover:border-accent hover:text-accent"
+                style={{ boxShadow: "2px 2px 0 var(--color-pixel-shadow)" }}
+              >
+                <Mail className="h-4 w-4" aria-hidden="true" />
+                {profile.email}
+              </a>
 
-          <a
-            href={profile.socials.linkedin}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="border-border text-text hover:border-accent-2 hover:text-accent-2 inline-flex items-center gap-2 rounded-md border px-3 py-2 text-sm transition-colors"
-          >
-            <LinkedinIcon className="h-4 w-4" aria-hidden="true" />
-            LinkedIn
-          </a>
+              <a
+                href={profile.socials.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-3 border-2 border-border p-3 font-[family-name:var(--font-retro)] text-base text-text transition-all hover:border-accent-2 hover:text-accent-2"
+                style={{ boxShadow: "2px 2px 0 var(--color-pixel-shadow)" }}
+              >
+                <LinkedinIcon className="h-4 w-4" aria-hidden="true" />
+                LinkedIn
+              </a>
 
-          <a
-            href={profile.socials.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="border-border text-text hover:border-accent-2 hover:text-accent-2 inline-flex items-center gap-2 rounded-md border px-3 py-2 text-sm transition-colors"
-          >
-            <GithubIcon className="h-4 w-4" aria-hidden="true" />
-            GitHub
-          </a>
+              <a
+                href={profile.socials.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-3 border-2 border-border p-3 font-[family-name:var(--font-retro)] text-base text-text transition-all hover:border-accent hover:text-accent"
+                style={{ boxShadow: "2px 2px 0 var(--color-pixel-shadow)" }}
+              >
+                <GithubIcon className="h-4 w-4" aria-hidden="true" />
+                GitHub
+              </a>
+            </div>
+          </div>
+
+          {/* Pixel art decoration */}
+          <div className="mt-4 text-center">
+            <span className="font-[family-name:var(--font-pixel)] text-[0.4rem] uppercase text-text-muted">
+              Insert Coin to Continue...
+            </span>
+          </div>
         </aside>
       </div>
     </section>

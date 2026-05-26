@@ -1,14 +1,5 @@
 /**
- * Projects — liste des projets réalisés.
- *
- * i18n :
- *  - Les libellés UI (status, liens, aria) viennent de `dict.projects.*`
- *  - Titre + description de chaque projet viennent de `dict.projects.items[slug]`
- *    → les traductions sont dans les JSON, la config technique (slug, stack,
- *    URLs, status, featured) reste dans `src/data/projects.ts`
- *  - Les noms de stack (React Native, Express...) ne sont pas traduits : noms propres
- *
- * Union discriminée sur `status` inchangée : le narrowing TS fonctionne pareil.
+ * Projects — Rétro Gaming style avec cartes pixelisées
  */
 
 import { Bot, ExternalLink, Play, Sparkles, UserCheck } from "lucide-react";
@@ -31,18 +22,23 @@ export function Projects({ dict }: Props) {
     <section
       id="projects"
       aria-labelledby="projects-heading"
-      className="border-border/70 scroll-mt-20 border-t py-16"
+      className="scroll-mt-20 border-t-4 border-border py-16"
+      style={{ borderTopStyle: "dashed" }}
     >
-      <h2
-        id="projects-heading"
-        className="text-text flex items-baseline gap-3 text-2xl font-semibold"
-      >
-        <span className="text-accent font-mono text-base">02.</span>
-        {dict.projects.heading}
-      </h2>
+      {/* Section header */}
+      <div className="flex items-center gap-4">
+        <span className="pixel-tag">02</span>
+        <h2
+          id="projects-heading"
+          className="font-[family-name:var(--font-pixel)] text-sm uppercase tracking-wider text-text sm:text-base"
+        >
+          {dict.projects.heading}
+        </h2>
+        <div className="h-1 flex-1 bg-border" style={{ boxShadow: "2px 2px 0 var(--color-pixel-shadow)" }} />
+      </div>
 
       <div
-        className={hasMultiple ? "mt-8 grid gap-6 md:grid-cols-2" : "mt-8 grid gap-6 md:max-w-2xl"}
+        className={hasMultiple ? "mt-10 grid gap-6 md:grid-cols-2" : "mt-10 grid gap-6 md:max-w-2xl"}
       >
         {projects.map((project) => (
           <ProjectCard key={project.slug} project={project} dict={dict} />
@@ -58,10 +54,6 @@ type CardProps = {
 };
 
 function ProjectCard({ project, dict }: CardProps) {
-  // Lookup typé : si un projet dans `data/projects.ts` n'a pas son pendant dans
-  // le dict, TypeScript crie (les clés `items` sont dérivées du JSON).
-  // `as keyof typeof dict.projects.items` évite un `any` ici sans sacrifier
-  // la sécurité en pratique (on contrôle les deux côtés).
   const itemKey = project.slug as keyof typeof dict.projects.items;
   const itemCopy = dict.projects.items[itemKey];
 
@@ -69,14 +61,22 @@ function ProjectCard({ project, dict }: CardProps) {
     <Card as="article" className="flex h-full flex-col">
       <header className="flex items-start justify-between gap-2">
         <div className="min-w-0">
-          <p className="text-accent font-mono text-xs tracking-wider uppercase">
-            {project.status === "shipped" ? dict.projects.statusShipped : dict.projects.statusComingSoon}
-          </p>
-          <h3 className="text-text mt-2 text-xl font-semibold">{itemCopy.title}</h3>
+          {/* Status badge */}
+          <div className="inline-block border-2 border-accent-2 bg-accent-2/10 px-2 py-1">
+            <span className="font-[family-name:var(--font-pixel)] text-[0.45rem] uppercase text-accent-2">
+              {project.status === "shipped" ? dict.projects.statusShipped : dict.projects.statusComingSoon}
+            </span>
+          </div>
+          {/* Title */}
+          <h3 className="mt-3 font-[family-name:var(--font-pixel)] text-xs uppercase text-text sm:text-sm">
+            {itemCopy.title}
+          </h3>
           {"role" in itemCopy && itemCopy.role ? (
-            <p className="text-accent mt-1 font-mono text-xs">{itemCopy.role}</p>
+            <p className="mt-1 font-[family-name:var(--font-retro)] text-sm text-accent">
+              {">"} {itemCopy.role}
+            </p>
           ) : (
-            <p className="mt-1 font-mono text-xs invisible" aria-hidden="true">&nbsp;</p>
+            <p className="mt-1 text-xs invisible" aria-hidden="true">&nbsp;</p>
           )}
         </div>
         <AiLevelBadge level={project.aiLevel} dict={dict} />
@@ -86,21 +86,25 @@ function ProjectCard({ project, dict }: CardProps) {
         <ScreenshotCarousel screenshots={project.screenshots} title={itemCopy.title} />
       )}
 
-      <p className="text-text-muted mt-3 text-sm leading-relaxed whitespace-pre-line">{itemCopy.description}</p>
+      <p className="mt-4 font-[family-name:var(--font-retro)] text-base leading-relaxed text-text-muted whitespace-pre-line">
+        {itemCopy.description}
+      </p>
 
       {"roleDetail" in itemCopy && itemCopy.roleDetail ? (
-        <p className="text-text-muted mt-3 flex-1 border-l-2 border-accent/40 pl-3 text-sm leading-relaxed italic">
+        <p className="mt-4 flex-1 border-l-4 border-accent/40 pl-3 font-[family-name:var(--font-retro)] text-sm leading-relaxed text-text-muted italic">
           {itemCopy.roleDetail}
         </p>
       ) : (
         <div className="flex-1" />
       )}
 
-      <ul className="mt-4 flex flex-wrap gap-1.5">
+      {/* Tech stack */}
+      <ul className="mt-5 flex flex-wrap gap-2">
         {project.stack.map((tech) => (
           <li
             key={tech}
-            className="border-border/70 text-text-muted rounded-md border px-2 py-0.5 font-mono text-[0.7rem]"
+            className="border-2 border-border bg-bg px-2 py-1 font-[family-name:var(--font-pixel)] text-[0.45rem] uppercase text-text-muted"
+            style={{ boxShadow: "2px 2px 0 var(--color-pixel-shadow)" }}
           >
             {tech}
           </li>
@@ -132,14 +136,22 @@ function AiLevelBadge({ level, dict }: BadgeProps) {
   return (
     <div className="group relative flex-shrink-0">
       <div
-        className="text-accent-2/60 hover:text-accent-2 cursor-default rounded p-0.5 transition-colors"
+        className="flex h-8 w-8 cursor-default items-center justify-center border-2 border-accent-2/50 text-accent-2/70 transition-colors hover:border-accent-2 hover:text-accent-2"
+        style={{ boxShadow: "2px 2px 0 var(--color-pixel-shadow)" }}
         aria-label={copy.label}
       >
-        <Icon className="h-5 w-5" aria-hidden="true" />
+        <Icon className="h-4 w-4" aria-hidden="true" />
       </div>
-      <div className="pointer-events-none absolute right-0 top-full z-10 mt-1.5 w-52 rounded-md border border-border bg-bg p-2.5 opacity-0 shadow-md transition-opacity duration-150 group-hover:opacity-100">
-        <p className="text-accent mb-1 font-mono text-[0.65rem] uppercase tracking-wider">{copy.label}</p>
-        <p className="text-text-muted text-xs leading-relaxed">{copy.tooltip}</p>
+      <div 
+        className="pointer-events-none absolute right-0 top-full z-10 mt-2 w-52 border-4 border-border bg-bg p-3 opacity-0 transition-opacity duration-150 group-hover:opacity-100"
+        style={{ boxShadow: "4px 4px 0 var(--color-pixel-shadow)" }}
+      >
+        <p className="font-[family-name:var(--font-pixel)] text-[0.45rem] uppercase text-accent">
+          {copy.label}
+        </p>
+        <p className="mt-2 font-[family-name:var(--font-retro)] text-sm leading-relaxed text-text-muted">
+          {copy.tooltip}
+        </p>
       </div>
     </div>
   );
@@ -153,17 +165,17 @@ type LinksProps = {
 
 function ProjectLinks({ project, title, dict }: LinksProps) {
   return (
-    <ul className="border-border/70 mt-5 flex flex-wrap items-center gap-4 border-t pt-4 text-sm">
+    <ul className="mt-6 flex flex-wrap items-center gap-4 border-t-2 border-dashed border-border pt-4">
       {project.demoUrl && (
         <li>
           <a
             href={project.demoUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-text-muted hover:text-accent-2 inline-flex items-center gap-1.5 transition-colors"
+            className="inline-flex items-center gap-2 font-[family-name:var(--font-pixel)] text-[0.5rem] uppercase text-text-muted transition-colors hover:text-accent"
             aria-label={`${dict.projects.ariaDemo} ${title}`}
           >
-            <Play className="h-3.5 w-3.5" aria-hidden="true" />
+            <Play className="h-3 w-3" aria-hidden="true" />
             {dict.projects.links.demo}
           </a>
         </li>
@@ -174,10 +186,10 @@ function ProjectLinks({ project, title, dict }: LinksProps) {
             href={project.repoFrontendUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-text-muted hover:text-accent-2 inline-flex items-center gap-1.5 transition-colors"
+            className="inline-flex items-center gap-2 font-[family-name:var(--font-pixel)] text-[0.5rem] uppercase text-text-muted transition-colors hover:text-accent"
             aria-label={`${dict.projects.ariaRepoFrontend} ${title}`}
           >
-            <GithubIcon className="h-3.5 w-3.5" aria-hidden="true" />
+            <GithubIcon className="h-3 w-3" aria-hidden="true" />
             {dict.projects.links.frontend}
           </a>
         </li>
@@ -188,10 +200,10 @@ function ProjectLinks({ project, title, dict }: LinksProps) {
             href={project.repoBackendUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-text-muted hover:text-accent-2 inline-flex items-center gap-1.5 transition-colors"
+            className="inline-flex items-center gap-2 font-[family-name:var(--font-pixel)] text-[0.5rem] uppercase text-text-muted transition-colors hover:text-accent"
             aria-label={`${dict.projects.ariaRepoBackend} ${title}`}
           >
-            <GithubIcon className="h-3.5 w-3.5" aria-hidden="true" />
+            <GithubIcon className="h-3 w-3" aria-hidden="true" />
             {dict.projects.links.backend}
           </a>
         </li>
@@ -202,10 +214,10 @@ function ProjectLinks({ project, title, dict }: LinksProps) {
             href={project.repoUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-text-muted hover:text-accent-2 inline-flex items-center gap-1.5 transition-colors"
+            className="inline-flex items-center gap-2 font-[family-name:var(--font-pixel)] text-[0.5rem] uppercase text-text-muted transition-colors hover:text-accent"
             aria-label={`${dict.projects.ariaRepo} ${title}`}
           >
-            <ExternalLink className="h-3.5 w-3.5" aria-hidden="true" />
+            <ExternalLink className="h-3 w-3" aria-hidden="true" />
             {dict.projects.links.repo}
           </a>
         </li>

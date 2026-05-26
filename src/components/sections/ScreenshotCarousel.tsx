@@ -29,15 +29,20 @@ export function ScreenshotCarousel({ screenshots, title }: Props) {
       >
         {screenshots.map((src, index) => (
           <div key={src} className="ml-2 shrink-0 snap-start" style={{ width: "min(180px, 48%)" }}>
-            <Image
-              src={src}
-              alt={`${title} — screenshot ${index + 1}`}
-              width={375}
-              height={812}
-              loading={index === 0 ? "eager" : "lazy"}
-              unoptimized
-              className="h-auto w-full rounded-md"
-            />
+            <div
+              className="overflow-hidden border-2 border-border"
+              style={{ boxShadow: "3px 3px 0 var(--color-pixel-shadow)" }}
+            >
+              <Image
+                src={src}
+                alt={`${title} — screenshot ${index + 1}`}
+                width={375}
+                height={812}
+                loading={index === 0 ? "eager" : "lazy"}
+                unoptimized
+                className="h-auto w-full"
+              />
+            </div>
           </div>
         ))}
       </div>
@@ -45,14 +50,16 @@ export function ScreenshotCarousel({ screenshots, title }: Props) {
       <button
         onClick={() => scrollByOne(-1)}
         aria-label="Screenshot précédent"
-        className="border-border/70 bg-bg/80 text-text-muted hover:text-accent absolute top-1/2 left-1.5 -translate-y-1/2 flex h-7 w-7 items-center justify-center rounded-full border backdrop-blur-sm transition-colors"
+        className="absolute left-1.5 top-1/2 flex h-7 w-7 -translate-y-1/2 items-center justify-center border-2 border-border bg-bg text-text-muted transition-all hover:border-accent hover:text-accent"
+        style={{ boxShadow: "2px 2px 0 var(--color-pixel-shadow)" }}
       >
         <ChevronLeft className="h-4 w-4" aria-hidden="true" />
       </button>
       <button
         onClick={() => scrollByOne(1)}
         aria-label="Screenshot suivant"
-        className="border-border/70 bg-bg/80 text-text-muted hover:text-accent absolute top-1/2 right-1.5 -translate-y-1/2 flex h-7 w-7 items-center justify-center rounded-full border backdrop-blur-sm transition-colors"
+        className="absolute right-1.5 top-1/2 flex h-7 w-7 -translate-y-1/2 items-center justify-center border-2 border-border bg-bg text-text-muted transition-all hover:border-accent hover:text-accent"
+        style={{ boxShadow: "2px 2px 0 var(--color-pixel-shadow)" }}
       >
         <ChevronRight className="h-4 w-4" aria-hidden="true" />
       </button>

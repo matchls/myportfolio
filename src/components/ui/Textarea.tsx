@@ -1,12 +1,5 @@
 /**
- * Textarea accessible — même contrat que Input mais pour les zones de texte.
- *
- * Utilisée dans le formulaire de contact pour le champ "message".
- *
- * Choix :
- *  - `rows={5}` par défaut (hauteur confortable pour un message, surchargeable)
- *  - `resize-y` : l'utilisateur peut agrandir verticalement seulement
- *    (resize horizontal casse souvent la mise en page)
+ * Textarea — Rétro Gaming style avec bordures pixelisées
  */
 
 import { forwardRef, type TextareaHTMLAttributes } from "react";
@@ -26,11 +19,14 @@ export const Textarea = forwardRef<HTMLTextAreaElement, Props>(function Textarea
   const errorId = error ? `${id}-error` : undefined;
 
   return (
-    <div className="flex flex-col gap-1.5">
-      <label htmlFor={id} className="text-text text-sm font-medium">
+    <div className="flex flex-col gap-2">
+      <label 
+        htmlFor={id} 
+        className="font-[family-name:var(--font-pixel)] text-[0.5rem] uppercase tracking-wider text-text"
+      >
         {label}
         {required && (
-          <span aria-hidden="true" className="text-accent-2 ml-0.5">
+          <span aria-hidden="true" className="ml-1 text-accent">
             *
           </span>
         )}
@@ -43,18 +39,23 @@ export const Textarea = forwardRef<HTMLTextAreaElement, Props>(function Textarea
         aria-invalid={error ? "true" : undefined}
         aria-describedby={errorId}
         className={cn(
-          "bg-bg text-text border-border w-full resize-y rounded-md border px-3 py-2 text-sm",
-          "placeholder:text-text-muted/70",
-          "transition-colors duration-200",
+          "w-full resize-y border-2 border-border bg-bg px-3 py-2 font-[family-name:var(--font-retro)] text-base text-text",
+          "placeholder:text-text-muted/60",
+          "transition-all duration-150",
           "focus:border-accent focus:outline-none",
           error && "border-red-500 focus:border-red-500",
           className,
         )}
+        style={{ boxShadow: "3px 3px 0 var(--color-pixel-shadow)" }}
         {...rest}
       />
       {error && (
-        <p id={errorId} role="alert" className="text-xs text-red-500">
-          {error}
+        <p 
+          id={errorId} 
+          role="alert" 
+          className="font-[family-name:var(--font-pixel)] text-[0.45rem] uppercase text-red-500"
+        >
+          {">"} {error}
         </p>
       )}
     </div>

@@ -2,40 +2,38 @@
 
 /**
  * Dark mode class-based (piloté par next-themes).
- * Sans ce custom-variant, `dark:` utiliserait @media (prefers-color-scheme: dark)
- * et on ne pourrait pas faire un toggle manuel.
  */
 @custom-variant dark (&:where(.dark, .dark *));
 
 /* ---------------------------------------------------------------------------
-   Tokens de couleur — source unique de vérité
-   Light mode sous :root, override sous .dark.
-   Inspiration : "dev portfolio organique", vert feuille + orange chaleureux.
+   Tokens de couleur — RETRO GAMING / PIXEL ART
+   Inspiré Game Boy, NES, et esthétique 8-bit
    --------------------------------------------------------------------------- */
 
 :root {
-  --color-bg: #fafaf5; /* off-white crème, doux pour les yeux */
-  --color-text: #1c2b1e; /* slate vert foncé */
-  --color-text-muted: #5a6b5c; /* vert grisé */
-  --color-accent: #6fa56b; /* vert feuille — accent principal */
-  --color-accent-2: #e87a3f; /* orange chaleureux — CTA, hover */
-  --color-border: #c8cdc5;
-  --color-glow: rgba(111, 165, 107, 0.28); /* #6fa56b à 28% */
+  --color-bg: #f5f0e1; /* beige crème façon Game Boy */
+  --color-text: #2d2d2d; /* noir doux */
+  --color-text-muted: #5a5a5a; /* gris */
+  --color-accent: #ff6b9d; /* rose rétro */
+  --color-accent-2: #00d4aa; /* cyan/turquoise rétro */
+  --color-border: #c4b998; /* beige foncé */
+  --color-glow: rgba(255, 107, 157, 0.3);
+  --color-pixel-shadow: #1a1a1a;
 }
 
 .dark {
-  --color-bg: #1a211b; /* gris-vert sombre, pas noir pur */
-  --color-text: #f5f5ee; /* cream */
-  --color-text-muted: #a8b5a8;
-  --color-accent: #8fc58c; /* vert plus vif sur fond sombre */
-  --color-accent-2: #f09668; /* orange plus clair */
-  --color-border: #2a352c;
-  --color-glow: rgba(143, 197, 140, 0.22); /* #8fc58c à 22% */
+  --color-bg: #1a1a2e; /* bleu nuit profond */
+  --color-text: #eaeaea; /* blanc cassé */
+  --color-text-muted: #a0a0a0;
+  --color-accent: #ff6b9d; /* rose néon */
+  --color-accent-2: #00ffcc; /* cyan néon */
+  --color-border: #2a2a4a;
+  --color-glow: rgba(0, 255, 204, 0.25);
+  --color-pixel-shadow: #0a0a15;
 }
 
 /* ---------------------------------------------------------------------------
-   Exposition Tailwind — @theme inline lit les variables CSS ci-dessus.
-   Chaque token devient une utilité Tailwind : bg-bg, text-text, bg-accent, etc.
+   Exposition Tailwind
    --------------------------------------------------------------------------- */
 
 @theme inline {
@@ -46,8 +44,8 @@
   --color-accent-2: var(--color-accent-2);
   --color-border: var(--color-border);
 
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-pixel: var(--font-pixel);
+  --font-retro: var(--font-retro);
 }
 
 /* ---------------------------------------------------------------------------
@@ -61,63 +59,203 @@ html {
 body {
   background: var(--color-bg);
   color: var(--color-text);
-  font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  font-family: var(--font-retro), monospace;
+  font-size: 18px;
   -webkit-font-smoothing: antialiased;
   transition:
     background-color 200ms ease,
     color 200ms ease;
+  image-rendering: pixelated;
 }
 
-/* Focus visible — orange chaleureux, respecte la palette */
+/* Focus visible — cyan rétro */
 :focus-visible {
-  outline: 2px solid var(--color-accent-2);
+  outline: 3px solid var(--color-accent-2);
   outline-offset: 2px;
-  border-radius: 4px;
 }
 
-/* Sélection de texte en vert accent, doux */
+/* Sélection de texte */
 ::selection {
-  background: color-mix(in srgb, var(--color-accent) 35%, transparent);
+  background: var(--color-accent);
+  color: var(--color-bg);
+}
+
+/* ---------------------------------------------------------------------------
+   Pixel Art Utilities
+   --------------------------------------------------------------------------- */
+
+/* Bordure pixelisée style 8-bit */
+.pixel-border {
+  border: 4px solid var(--color-border);
+  box-shadow:
+    4px 4px 0 var(--color-pixel-shadow),
+    inset -4px -4px 0 rgba(255, 255, 255, 0.1),
+    inset 4px 4px 0 rgba(0, 0, 0, 0.1);
+}
+
+.pixel-border:hover {
+  box-shadow:
+    6px 6px 0 var(--color-pixel-shadow),
+    inset -4px -4px 0 rgba(255, 255, 255, 0.15),
+    inset 4px 4px 0 rgba(0, 0, 0, 0.15),
+    0 0 20px var(--color-glow);
+  transform: translate(-2px, -2px);
+}
+
+/* Bouton style 8-bit */
+.pixel-btn {
+  font-family: var(--font-pixel);
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 12px 24px;
+  border: none;
+  background: var(--color-accent);
+  color: white;
+  box-shadow:
+    4px 4px 0 var(--color-pixel-shadow),
+    inset -2px -2px 0 rgba(0, 0, 0, 0.2),
+    inset 2px 2px 0 rgba(255, 255, 255, 0.2);
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+  cursor: pointer;
+}
+
+.pixel-btn:hover {
+  transform: translate(-2px, -2px);
+  box-shadow:
+    6px 6px 0 var(--color-pixel-shadow),
+    inset -2px -2px 0 rgba(0, 0, 0, 0.2),
+    inset 2px 2px 0 rgba(255, 255, 255, 0.2);
+}
+
+.pixel-btn:active {
+  transform: translate(2px, 2px);
+  box-shadow:
+    2px 2px 0 var(--color-pixel-shadow),
+    inset -2px -2px 0 rgba(0, 0, 0, 0.2),
+    inset 2px 2px 0 rgba(255, 255, 255, 0.2);
+}
+
+.pixel-btn-outline {
+  font-family: var(--font-pixel);
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 12px 24px;
+  background: transparent;
   color: var(--color-text);
+  border: 3px solid var(--color-border);
+  box-shadow: 3px 3px 0 var(--color-pixel-shadow);
+  transition: transform 0.1s ease, box-shadow 0.1s ease, border-color 0.2s ease;
+  cursor: pointer;
 }
 
-/* Pattern de points en fond du Hero */
-.hero-dots {
-  background-image: radial-gradient(var(--color-border) 1px, transparent 1px);
-  background-size: 24px 24px;
+.pixel-btn-outline:hover {
+  border-color: var(--color-accent-2);
+  color: var(--color-accent-2);
+  transform: translate(-2px, -2px);
+  box-shadow: 5px 5px 0 var(--color-pixel-shadow);
 }
 
-.dark .hero-dots {
-  background-image: radial-gradient(color-mix(in srgb, var(--color-border) 60%, transparent) 1px, transparent 1px);
+/* Titre style pixel */
+.pixel-title {
+  font-family: var(--font-pixel);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  text-shadow:
+    3px 3px 0 var(--color-pixel-shadow),
+    -1px -1px 0 var(--color-bg);
 }
 
-/* Glow au hover des cartes */
+/* Badge/Tag style 8-bit */
+.pixel-tag {
+  font-family: var(--font-pixel);
+  font-size: 0.5rem;
+  text-transform: uppercase;
+  padding: 6px 10px;
+  background: var(--color-border);
+  color: var(--color-text);
+  border: 2px solid var(--color-pixel-shadow);
+  box-shadow: 2px 2px 0 var(--color-pixel-shadow);
+}
+
+/* Effet scanlines rétro */
+.scanlines::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.03) 2px,
+    rgba(0, 0, 0, 0.03) 4px
+  );
+  pointer-events: none;
+}
+
+.dark .scanlines::after {
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.08) 2px,
+    rgba(0, 0, 0, 0.08) 4px
+  );
+}
+
+/* Pattern de grille pixel en fond */
+.pixel-grid {
+  background-image:
+    linear-gradient(var(--color-border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--color-border) 1px, transparent 1px);
+  background-size: 16px 16px;
+  background-position: -1px -1px;
+}
+
+.dark .pixel-grid {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+}
+
+/* ---------------------------------------------------------------------------
+   Card avec effet hover retro
+   --------------------------------------------------------------------------- */
+
 .card-glow {
-  transition: box-shadow 200ms ease, border-color 200ms ease;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
 .card-glow:hover {
-  box-shadow: 0 0 0 1px var(--color-accent), 0 6px 24px var(--color-glow);
+  transform: translate(-3px, -3px);
+  box-shadow:
+    6px 6px 0 var(--color-pixel-shadow),
+    0 0 30px var(--color-glow);
 }
 
-/* Scroll-reveal — état initial masqué, visible après IntersectionObserver */
+/* ---------------------------------------------------------------------------
+   Animations
+   --------------------------------------------------------------------------- */
+
+/* Scroll-reveal */
 .animate-in-wrapper[data-visible="false"] {
   opacity: 0;
   transform: translateY(16px);
   transition:
-    opacity 500ms ease-out,
-    transform 500ms ease-out;
+    opacity 400ms ease-out,
+    transform 400ms ease-out;
 }
 
 .animate-in-wrapper[data-visible="true"] {
   opacity: 1;
   transform: translateY(0);
   transition:
-    opacity 500ms ease-out,
-    transform 500ms ease-out;
+    opacity 400ms ease-out,
+    transform 400ms ease-out;
 }
 
-/* Animation de chargement pour le Hero (toujours au-dessus de la fold) */
+/* Animation de chargement Hero */
 @keyframes hero-enter {
   from {
     opacity: 0;
@@ -130,10 +268,10 @@ body {
 }
 
 .hero-enter {
-  animation: hero-enter 600ms ease-out both;
+  animation: hero-enter 500ms ease-out both;
 }
 
-/* Caret clignotant dans le Hero */
+/* Caret clignotant rétro */
 @keyframes blink {
   0%, 100% { opacity: 1; }
   50% { opacity: 0; }
@@ -141,13 +279,40 @@ body {
 
 .hero-caret {
   display: inline-block;
-  animation: blink 1.1s step-end infinite;
+  animation: blink 0.8s step-end infinite;
   color: var(--color-accent-2);
-  font-weight: 300;
-  margin-left: 2px;
+  font-weight: 400;
+  margin-left: 4px;
 }
 
-/* Accessibilité : désactive les animations si l'utilisateur le demande */
+/* Effet glitch subtil sur hover */
+@keyframes glitch {
+  0% { transform: translate(0); }
+  20% { transform: translate(-2px, 2px); }
+  40% { transform: translate(-2px, -2px); }
+  60% { transform: translate(2px, 2px); }
+  80% { transform: translate(2px, -2px); }
+  100% { transform: translate(0); }
+}
+
+.glitch:hover {
+  animation: glitch 0.3s ease-in-out;
+}
+
+/* Animation flottante pour les éléments décoratifs */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+.float-animation {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* ---------------------------------------------------------------------------
+   Accessibilité
+   --------------------------------------------------------------------------- */
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;

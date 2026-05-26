@@ -1,18 +1,5 @@
 /**
- * Header sticky avec nav par ancres + toggle de thème + toggle de langue.
- *
- * Server Component : statique, zéro JS côté client direct — les 2 toggles sont
- * des Client Components isolés.
- *
- * Structure :
- *  - Desktop : logo à gauche, nav numérotée au centre/droite, toggles à droite
- *  - Mobile : logo + toggles visibles, nav passe en ligne compacte sous le header
- *
- * i18n :
- *  - Les labels de nav viennent de `dict.nav[anchor]` (lookup typé)
- *  - Les aria-labels des toggles viennent de `dict.a11y.toggle*`
- *  - Les href restent en ancres (#about, etc.) : la locale est déjà dans l'URL
- *    de la page (ex. /fr#about, /en#about) donc pas besoin de la re-préfixer
+ * Header — Rétro Gaming style avec navigation pixelisée
  */
 
 import Link from "next/link";
@@ -31,17 +18,24 @@ type Props = {
 export function Header({ locale, dict }: Props) {
   return (
     <header
-      className="border-border/70 bg-bg/80 sticky top-0 z-40 border-b backdrop-blur-md"
+      className="sticky top-0 z-40 border-b-4 border-border bg-bg/95 backdrop-blur-sm"
+      style={{ boxShadow: "0 4px 0 var(--color-pixel-shadow)" }}
       role="banner"
     >
       <div className="mx-auto flex max-w-5xl items-center justify-between gap-4 px-4 py-3 sm:px-6 lg:px-8">
-        {/* Logo / nom — scroll vers le haut */}
+        {/* Logo pixel style */}
         <Link
           href="#top"
-          className="text-accent hover:text-accent-2 font-mono text-sm transition-colors"
+          className="group flex items-center gap-2 transition-transform hover:translate-x-1"
           aria-label={`${dict.site.name} — ${dict.nav.backToTop}`}
         >
-          MC<span className="text-accent-2">.</span>
+          <span className="flex h-8 w-8 items-center justify-center border-2 border-accent bg-accent text-xs text-white"
+                style={{ boxShadow: "2px 2px 0 var(--color-pixel-shadow)" }}>
+            <span className="font-[family-name:var(--font-pixel)] text-[0.5rem]">MC</span>
+          </span>
+          <span className="hidden font-[family-name:var(--font-pixel)] text-[0.5rem] uppercase text-text-muted group-hover:text-accent sm:inline">
+            .DEV
+          </span>
         </Link>
 
         {/* Nav desktop */}
@@ -49,7 +43,7 @@ export function Header({ locale, dict }: Props) {
           <NavLinks dict={dict} />
         </nav>
 
-        {/* Toggles — langue puis thème, ordre de lecture logique (macro → détail) */}
+        {/* Toggles */}
         <div className="flex items-center gap-2">
           <LanguageToggle
             currentLocale={locale}
@@ -67,10 +61,10 @@ export function Header({ locale, dict }: Props) {
         </div>
       </div>
 
-      {/* Nav mobile — ligne compacte sous le header */}
+      {/* Nav mobile */}
       <nav
         aria-label={dict.a11y.mainNavMobile}
-        className="border-border/70 border-t sm:hidden"
+        className="border-t-2 border-border sm:hidden"
       >
         <NavLinks dict={dict} mobile />
       </nav>
