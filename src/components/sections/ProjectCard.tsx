@@ -78,7 +78,7 @@ export function ProjectCard({ project, dict }: CardProps) {
                 {tech}
               </span>
             ))}
-            <span onClick={(e) => e.stopPropagation()}>
+            <span className="ml-auto" onClick={(e) => e.stopPropagation()}>
               <AiLevelBadge level={project.aiLevel} dict={dict} />
             </span>
           </div>
