@@ -116,6 +116,7 @@ export function ProjectCard({ project, dict }: CardProps) {
         <ProjectModal
           screenshots={project.screenshots}
           title={itemCopy.title}
+          description={itemCopy.modalDescription}
           dict={dict}
           onClose={() => setModalOpen(false)}
         />
@@ -131,11 +132,12 @@ export function ProjectCard({ project, dict }: CardProps) {
 type ModalProps = {
   screenshots: readonly string[];
   title: string;
+  description?: string;
   dict: Dictionary;
   onClose: () => void;
 };
 
-function ProjectModal({ screenshots, title, dict, onClose }: ModalProps) {
+function ProjectModal({ screenshots, title, description, dict, onClose }: ModalProps) {
   const [index, setIndex] = useState(0);
   const count = screenshots.length;
   const closeRef = useRef<HTMLButtonElement>(null);
@@ -222,9 +224,14 @@ function ProjectModal({ screenshots, title, dict, onClose }: ModalProps) {
           </button>
         </div>
 
-        {/* Project title bar */}
-        <div className="px-4 py-3 border-t border-primary/10">
+        {/* Project title + description */}
+        <div className="px-6 py-4 border-t border-primary/10 space-y-2 max-h-40 overflow-y-auto">
           <p className="font-display text-lg text-text">{title}</p>
+          {description && (
+            <p className="text-text-muted text-sm leading-relaxed whitespace-pre-line">
+              {description}
+            </p>
+          )}
         </div>
       </div>
     </div>

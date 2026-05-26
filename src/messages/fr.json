@@ -117,15 +117,18 @@
         "title": "AlterAgo",
         "role": "Lead technique · équipe de 3",
         "description": "Gamification du quotidien pour séniors · défis · système de progression · MVP 2 semaines",
-        "roleDetail": "Auth & onboarding de bout en bout · Clerk · profil utilisateur · caméra native · Cloudinary"
+        "roleDetail": "Auth & onboarding de bout en bout · Clerk · profil utilisateur · caméra native · Cloudinary",
+        "modalDescription": "Application mobile de gamification du quotidien pour aider les séniors à rester motivés, via des défis quotidiens et un système de progression. Projet MVP de validation du titre RNCP 6, réalisé en équipe de 3 en 2 semaines.\n\nEn tant que lead technique, j'ai pris en charge l'ensemble du flux d'authentification et d'onboarding : intégration de Clerk (inscription, connexion, reset), création du profil utilisateur avec accès à l'appareil photo natif, et stockage des avatars sur Cloudinary via l'API backend."
       },
       "picswipe": {
         "title": "PicSwipe",
-        "description": "Tri de galerie Android par swipe · garder ou supprimer d'un geste · animations fluides · retours haptiques · projet solo"
+        "description": "Tri de galerie Android par swipe · garder ou supprimer d'un geste · animations fluides · retours haptiques · projet solo",
+        "modalDescription": "Application Android pour trier rapidement sa galerie photo — un swipe à droite pour garder, à gauche pour supprimer. Projet solo développé de A à Z : accès à la galerie native avec gestion des permissions, animations fluides via Reanimated 4 et Gesture Handler, état global Zustand, persistance AsyncStorage, et retours haptiques pour une expérience tactile soignée. Les photos sont chargées progressivement par mois, avec un écran de revue avant suppression définitive."
       },
       "drg-dashboard": {
         "title": "DRG Dashboard",
-        "description": "Reverse engineering · sauvegardes binaires GVAS / UE4 · parseur Python from scratch · stats joueur · dashboard web"
+        "description": "Reverse engineering · sauvegardes binaires GVAS / UE4 · parseur Python from scratch · stats joueur · dashboard web",
+        "modalDescription": "Projet fullstack centré sur le reverse engineering : parser les fichiers de sauvegarde binaires (format GVAS / Unreal Engine 4) du jeu Deep Rock Galactic pour en extraire des statistiques joueur et les afficher dans un dashboard web. Le cœur est un parseur Python écrit from scratch, qui décode structure par structure un format binaire non documenté — comme construire un traducteur pour une langue sans dictionnaire."
       }
     }
   },
