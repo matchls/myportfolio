@@ -37,15 +37,24 @@
    --------------------------------------------------------------------------- */
 
 @theme inline {
-  --color-bg: var(--color-bg);
-  --color-text: var(--color-text);
-  --color-text-muted: var(--color-text-muted);
-  --color-accent: var(--color-accent);
-  --color-accent-2: var(--color-accent-2);
-  --color-border: var(--color-border);
+  --color-bg: #f5f0e1;
+  --color-text: #2d2d2d;
+  --color-text-muted: #5a5a5a;
+  --color-accent: #7cb342;
+  --color-accent-2: #00d4aa;
+  --color-border: #c4b998;
 
   --font-pixel: var(--font-pixel);
   --font-retro: var(--font-retro);
+}
+
+@theme inline dark {
+  --color-bg: #1a1a2e;
+  --color-text: #eaeaea;
+  --color-text-muted: #a0a0a0;
+  --color-accent: #9ccc65;
+  --color-accent-2: #00ffcc;
+  --color-border: #2a2a4a;
 }
 
 /* ---------------------------------------------------------------------------
