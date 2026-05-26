@@ -71,22 +71,20 @@ export function ProjectCard({ project, dict }: CardProps) {
         {/* Inner body */}
         <div className="m-3 bg-surface border-2 border-primary/20 p-6 flex-grow flex flex-col">
 
-          {/* Stack tags — first 2 */}
-          <ul className="flex flex-wrap gap-2 mb-4" aria-label="Stack">
+          {/* Stack tags + AI badge — same row */}
+          <div className="flex flex-wrap items-center gap-2 mb-4">
             {project.stack.slice(0, 2).map((tech) => (
-              <li key={tech} className="bg-accent text-surface px-2 py-1 text-[10px] font-mono uppercase">
+              <span key={tech} className="bg-accent text-surface px-2 py-1 text-[10px] font-mono uppercase">
                 {tech}
-              </li>
+              </span>
             ))}
-          </ul>
-
-          {/* Title + AI badge — stop propagation on badge */}
-          <div className="flex items-start justify-between gap-2 mb-2">
-            <h3 className="font-display text-xl text-text">{itemCopy.title}</h3>
             <span onClick={(e) => e.stopPropagation()}>
               <AiLevelBadge level={project.aiLevel} dict={dict} />
             </span>
           </div>
+
+          {/* Title */}
+          <h3 className="font-display text-xl text-text mb-2">{itemCopy.title}</h3>
 
           {/* Description */}
           <p className="text-text-muted text-sm italic line-clamp-2 mb-4">
