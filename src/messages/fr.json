@@ -75,6 +75,7 @@
     "engineeringLearnMore": "Voir la formation"
   },
   "projects": {
+    "eyebrow": "Réalisations",
     "heading": "Projets",
     "statusShipped": "Projet livré",
     "statusComingSoon": "En cours",

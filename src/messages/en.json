@@ -75,6 +75,7 @@
     "engineeringLearnMore": "View programme"
   },
   "projects": {
+    "eyebrow": "Work",
     "heading": "Projects",
     "statusShipped": "Shipped",
     "statusComingSoon": "In progress",
