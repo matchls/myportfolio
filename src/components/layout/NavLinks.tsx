@@ -44,10 +44,10 @@ export function NavLinks({ dict, mobile = false }: Props) {
                 href={`#${item.anchor}`}
                 aria-current={isActive ? "true" : undefined}
                 className={`inline-flex flex-col items-center gap-0.5 font-mono text-xs transition-all ${
-                  isActive ? "text-accent-2" : "text-on-primary-container hover:text-surface hover:drop-shadow-[0_0_8px_#ffdbd0]"
+                  isActive ? "text-accent-2" : "text-on-primary-container dark:text-primary-container hover:text-surface hover:drop-shadow-[0_0_8px_#ffdbd0]"
                 }`}
               >
-                <span className={`font-mono text-[0.65rem] ${isActive ? "text-accent-2" : "text-on-primary-container/60"}`}>
+                <span className={`font-mono text-[0.65rem] ${isActive ? "text-accent-2" : "text-on-primary-container/60 dark:text-primary-container/70"}`}>
                   {item.number}
                 </span>
                 <span>{dict.nav[item.anchor]}</span>
@@ -77,10 +77,10 @@ export function NavLinks({ dict, mobile = false }: Props) {
               className={`inline-flex items-center gap-1.5 font-mono text-xs transition-all ${
                 isActive
                   ? "text-accent-2 font-bold border-b-2 border-dotted border-accent-2 pb-1"
-                  : "text-on-primary-container hover:text-surface hover:translate-x-0.5 hover:translate-y-0.5 hover:drop-shadow-[0_0_8px_#ffdbd0]"
+                  : "text-on-primary-container dark:text-primary-container hover:text-surface hover:translate-x-0.5 hover:translate-y-0.5 hover:drop-shadow-[0_0_8px_#ffdbd0]"
               }`}
             >
-              <span className={`font-mono text-[0.65rem] ${isActive ? "text-accent-2" : "text-on-primary-container/60"}`}>
+              <span className={`font-mono text-[0.65rem] ${isActive ? "text-accent-2" : "text-on-primary-container/60 dark:text-primary-container/70"}`}>
                 {item.number}
               </span>
               <span>{dict.nav[item.anchor]}</span>
