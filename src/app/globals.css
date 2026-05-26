@@ -21,8 +21,12 @@
   --color-border: #c3c8c1;
   --color-primary: #061b0e;
   --color-primary-container: #1b3022;
+  --color-on-primary-container: #819986;
+  --color-on-secondary-container: #5a682f;
   --color-surface: #fbf9f5;
   --color-surface-container: #efeeea;
+  --color-surface-container-low: #f5f3ef;
+  --color-surface-container-high: #eae8e4;
   --color-glow: rgba(255, 219, 208, 0.35);
 }
 
@@ -35,8 +39,12 @@
   --color-border: #2a352c;
   --color-primary: #d0e9d4;
   --color-primary-container: #1b3022;
+  --color-on-primary-container: #b4cdb8;
+  --color-on-secondary-container: #8aab87;
   --color-surface: #1a211b;
   --color-surface-container: #1f2820;
+  --color-surface-container-low: #171d18;
+  --color-surface-container-high: #202620;
   --color-glow: rgba(255, 219, 208, 0.2);
 }
 
@@ -55,8 +63,12 @@
   --color-border: var(--color-border);
   --color-primary: var(--color-primary);
   --color-primary-container: var(--color-primary-container);
+  --color-on-primary-container: var(--color-on-primary-container);
+  --color-on-secondary-container: var(--color-on-secondary-container);
   --color-surface: var(--color-surface);
   --color-surface-container: var(--color-surface-container);
+  --color-surface-container-low: var(--color-surface-container-low);
+  --color-surface-container-high: var(--color-surface-container-high);
 
   --font-display: "Newsreader", Georgia, serif;
   --font-sans: "Be Vietnam Pro", ui-sans-serif, sans-serif;
