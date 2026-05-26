@@ -13,8 +13,8 @@ import type { Profile } from "@/types";
 export const profile: Profile = {
   name: "Mathieu Châles",
   role: "Développeur Fullstack Junior",
-  location: "Bordeaux, France",
-  interests: "IA, WebGL, UX",
+  location: "Paris, France",
+  interests: "IA, App Mobile, Web",
   tagline:
     "Hier je travaillais le bois. Aujourd'hui je code. Toujours pour construire des choses qui servent.",
 
