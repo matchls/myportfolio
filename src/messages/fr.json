@@ -38,7 +38,8 @@
     "badge": "L'ORÉE DU BOIS",
     "greeting": "Bonjour, je suis",
     "ctaContact": "Me contacter",
-    "ctaProjects": "Voir mes projets"
+    "ctaProjects": "Voir mes projets",
+    "ctaCV": "Télécharger mon CV"
   },
   "about": {
     "heading": "À propos",

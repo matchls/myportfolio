@@ -12,6 +12,7 @@
  */
 
 import Image from "next/image";
+import { Download } from "lucide-react";
 
 import { ParticleEmitter } from "@/components/ui/ParticleEmitter";
 import { profile } from "@/data/profile";
@@ -63,7 +64,7 @@ export function Hero({ dict }: Props) {
           <span className="hero-caret font-mono" aria-hidden="true">|</span>
         </p>
 
-        {/* CTAs */}
+        {/* CTAs principaux */}
         <div className="flex flex-wrap justify-center gap-6">
           <a
             href="#projects"
@@ -76,6 +77,18 @@ export function Hero({ dict }: Props) {
             className="bg-surface border-2 border-accent text-accent px-8 py-4 font-mono text-xs hover:bg-accent hover:text-surface transition-all inline-flex items-center gap-2"
           >
             {dict.hero.ctaContact}
+          </a>
+        </div>
+
+        {/* CTA secondaire — téléchargement CV */}
+        <div className="mt-5">
+          <a
+            href="/CV Mathieu Chales - Dev Fullstack.pdf"
+            download
+            className="inline-flex items-center gap-2 font-mono text-xs text-surface/60 hover:text-accent-2 transition-colors decoration-dotted underline underline-offset-4"
+          >
+            <Download className="w-3.5 h-3.5" aria-hidden="true" />
+            {dict.hero.ctaCV}
           </a>
         </div>
       </div>
