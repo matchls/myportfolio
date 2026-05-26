@@ -35,7 +35,7 @@ export function NavLinks({ dict, mobile = false }: Props) {
 
   if (mobile) {
     return (
-      <ul className="mx-auto flex max-w-5xl items-center justify-around px-4 py-2 text-xs">
+      <ul className="mx-auto flex max-w-5xl items-center justify-around px-4 py-2">
         {NAV_ITEMS.map((item) => {
           const isActive = activeAnchor === item.anchor
           return (
@@ -43,11 +43,11 @@ export function NavLinks({ dict, mobile = false }: Props) {
               <a
                 href={`#${item.anchor}`}
                 aria-current={isActive ? "true" : undefined}
-                className={`inline-flex flex-col items-center gap-0.5 transition-colors ${
-                  isActive ? "text-accent" : "text-text-muted hover:text-accent"
+                className={`inline-flex flex-col items-center gap-0.5 font-mono text-xs transition-colors ${
+                  isActive ? "text-accent-2" : "text-surface/70 hover:text-surface"
                 }`}
               >
-                <span className={`font-mono text-[0.65rem] transition-colors ${isActive ? "text-accent-2" : "text-accent"}`}>
+                <span className={`font-mono text-[0.65rem] ${isActive ? "text-accent-2" : "text-surface/40"}`}>
                   {item.number}
                 </span>
                 <span>{dict.nav[item.anchor]}</span>
@@ -66,29 +66,25 @@ export function NavLinks({ dict, mobile = false }: Props) {
   }
 
   return (
-    <ul className="flex items-center gap-5 text-sm">
+    <ul className="flex items-center gap-5">
       {NAV_ITEMS.map((item) => {
         const isActive = activeAnchor === item.anchor
         return (
-          <li key={item.anchor} className="relative">
+          <li key={item.anchor}>
             <a
               href={`#${item.anchor}`}
               aria-current={isActive ? "true" : undefined}
-              className={`inline-flex items-center gap-1.5 transition-colors ${
-                isActive ? "text-accent" : "text-text-muted hover:text-accent"
+              className={`inline-flex items-center gap-1.5 font-mono text-xs transition-all ${
+                isActive
+                  ? "text-accent-2 font-bold border-b-2 border-dotted border-accent-2 pb-1"
+                  : "text-surface/70 hover:text-surface hover:translate-x-0.5 hover:translate-y-0.5"
               }`}
             >
-              <span className={`font-mono text-xs transition-colors ${isActive ? "text-accent-2" : "text-accent"}`}>
+              <span className={`font-mono text-[0.65rem] ${isActive ? "text-accent-2" : "text-surface/40"}`}>
                 {item.number}
               </span>
               <span>{dict.nav[item.anchor]}</span>
             </a>
-            <span
-              className={`absolute -bottom-3 left-1/2 h-1 w-1 -translate-x-1/2 rounded-full bg-accent-2 transition-opacity duration-200 ${
-                isActive ? "opacity-100" : "opacity-0"
-              }`}
-              aria-hidden="true"
-            />
           </li>
         )
       })}

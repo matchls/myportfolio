@@ -39,7 +39,7 @@ export function ThemeToggle({ className, labels }: Props) {
   // Placeholder pendant le server render pour réserver la place du bouton
   // (évite le décalage visuel à l'hydratation).
   if (!mounted) {
-    return <div aria-hidden="true" className={cn("h-9 w-9 rounded-md", className)} />;
+    return <div aria-hidden="true" className={cn("h-9 w-9", className)} />;
   }
 
   const isDark = resolvedTheme === "dark";
@@ -52,9 +52,9 @@ export function ThemeToggle({ className, labels }: Props) {
       aria-label={nextLabel}
       title={nextLabel}
       className={cn(
-        "inline-flex h-9 w-9 items-center justify-center rounded-md",
-        "border-border text-text border",
-        "hover:border-accent-2 hover:text-accent-2",
+        "inline-flex h-9 w-9 items-center justify-center",
+        "text-surface",
+        "hover:text-accent-2",
         "transition-colors duration-200",
         className,
       )}

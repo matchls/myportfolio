@@ -93,10 +93,10 @@ export function LanguageToggle({ className, currentLocale, labels }: Props) {
       aria-label={nextLabel}
       title={nextLabel}
       className={cn(
-        "inline-flex h-9 min-w-9 items-center justify-center rounded-md px-2",
-        "border-border text-text border font-mono text-xs font-semibold uppercase",
-        "hover:border-accent-2 hover:text-accent-2",
-        "transition-colors duration-200",
+        "inline-flex items-center justify-center px-3 py-1",
+        "font-mono text-xs uppercase text-surface border border-surface/40",
+        "hover:bg-primary-container",
+        "transition-colors",
         className,
       )}
     >
