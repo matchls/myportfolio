@@ -40,6 +40,7 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
       <AnimateIn>
         <About dict={dict} />
       </AnimateIn>
+      <div className="mossy-divider" aria-hidden="true" />
       <AnimateIn>
         <Projects dict={dict} />
       </AnimateIn>
