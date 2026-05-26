@@ -40,7 +40,7 @@ export function About({ dict }: Props) {
     <section
       id="about"
       aria-labelledby="about-heading"
-      className="scroll-mt-20 py-24 bg-surface-container-low"
+      className="scroll-mt-20 py-24"
     >
       <div className="grid gap-8 md:grid-cols-[7fr_5fr]">
 

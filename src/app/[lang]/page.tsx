@@ -35,21 +35,36 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
   const dict = await getDictionary(lang);
 
   return (
-    <main id="main" className="mx-auto w-full max-w-5xl flex-1 px-4 sm:px-6 lg:px-8">
+    <main id="main" className="flex-1 w-full">
+      {/* Hero — full-width (forest background) */}
       <Hero dict={dict} />
-      <AnimateIn>
-        <About dict={dict} />
-      </AnimateIn>
+
+      {/* About — full-width tinted background, content constrained */}
+      <div className="bg-surface-container-low">
+        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+          <AnimateIn>
+            <About dict={dict} />
+          </AnimateIn>
+        </div>
+      </div>
+
+      {/* Mossy divider — full-width decorative strip */}
       <div className="mossy-divider" aria-hidden="true" />
-      <AnimateIn>
-        <Projects dict={dict} />
-      </AnimateIn>
-      <AnimateIn>
-        <Skills dict={dict} />
-      </AnimateIn>
-      <AnimateIn>
-        <Formation dict={dict} />
-      </AnimateIn>
+
+      {/* Contained sections */}
+      <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+        <AnimateIn>
+          <Projects dict={dict} />
+        </AnimateIn>
+        <AnimateIn>
+          <Skills dict={dict} />
+        </AnimateIn>
+        <AnimateIn>
+          <Formation dict={dict} />
+        </AnimateIn>
+      </div>
+
+      {/* Contact — full-width dark background */}
       <AnimateIn>
         <Contact locale={lang} dict={dict} />
       </AnimateIn>
