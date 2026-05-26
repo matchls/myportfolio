@@ -1,15 +1,15 @@
 /**
- * Contact — section finale.
+ * Contact — dark full-width section.
  *
- * Server Component qui héberge le `<ContactForm>` (Client Component).
- * Structure : pitch + vrai formulaire + liens de secours (mailto, LinkedIn, GitHub).
+ * Layout (Stitch):
+ *  - bg-primary full-width dark background with particle container (Issue #11)
+ *  - Centred heading preceded by fire emoji
+ *  - Pitch text above the form card
+ *  - Form in a dark bg-primary-container card
+ *  - Social links band at the bottom (no aside column)
  *
- * Le pitch contient un bout mis en emphase ("CDI, alternance, CDD") qu'on ne peut
- * pas simplement injecter via {dict.contact.pitch} car la traduction doit pouvoir
- * décider OÙ se trouve l'emphase. Solution : on splitte le pitch sur la
- * `pitchHighlight` (le même morceau qu'on veut souligner) et on injecte le span
- * au bon endroit. Si la traduction ne contient pas `pitchHighlight` tel quel,
- * fallback propre : la phrase s'affiche sans emphase.
+ * Pitch split: the `pitchHighlight` substring gets wrapped in a <span>
+ * for emphasis. Falls back to plain text if not found.
  */
 
 import { Mail } from "lucide-react";
@@ -34,45 +34,50 @@ export function Contact({ locale, dict }: Props) {
     <section
       id="contact"
       aria-labelledby="contact-heading"
-      className="border-border/70 scroll-mt-20 border-t py-16"
+      className="scroll-mt-20 py-24 bg-primary text-surface relative overflow-hidden"
     >
-      <h2
-        id="contact-heading"
-        className="text-text flex items-baseline gap-3 text-2xl font-semibold"
-      >
-        <span className="text-accent font-mono text-base">05.</span>
-        {dict.contact.heading}
-      </h2>
+      {/* Particle container — populated by ContactParticles (Issue #11) */}
+      <div
+        className="absolute inset-0 pointer-events-none z-0"
+        id="contact-particles"
+        aria-hidden="true"
+      />
 
-      <div className="mt-8 grid gap-10 md:grid-cols-[3fr_2fr] md:gap-12">
-        {/* Colonne gauche : formulaire */}
-        <div>
-          <p className="text-text-muted leading-relaxed">
-            {hasHighlight ? (
-              <>
-                {pitch.slice(0, highlightIndex)}
-                <span className="text-text">{pitchHighlight}</span>
-                {pitch.slice(highlightIndex + pitchHighlight.length)}
-              </>
-            ) : (
-              pitch
-            )}
-          </p>
-
-          <div className="mt-6">
-            <ContactForm locale={locale} dict={dict} />
-          </div>
+      <div className="relative z-10 max-w-2xl mx-auto px-4 md:px-0">
+        {/* Heading */}
+        <div className="text-center mb-10">
+          <p className="text-accent-2 text-5xl mb-4" aria-hidden="true">🔥</p>
+          <h2
+            id="contact-heading"
+            className="font-display text-5xl text-surface"
+          >
+            {dict.contact.heading}
+          </h2>
         </div>
 
-        {/* Colonne droite : moyens alternatifs */}
-        <aside aria-label={dict.contact.altMoyens} className="flex flex-col gap-4">
-          <p className="text-accent-2 font-mono text-xs tracking-wider uppercase">
-            {dict.contact.alternativesLabel}
-          </p>
+        {/* Pitch */}
+        <p className="text-surface/70 leading-relaxed text-center mb-8">
+          {hasHighlight ? (
+            <>
+              {pitch.slice(0, highlightIndex)}
+              <span className="text-accent-2 font-semibold">{pitchHighlight}</span>
+              {pitch.slice(highlightIndex + pitchHighlight.length)}
+            </>
+          ) : (
+            pitch
+          )}
+        </p>
 
+        {/* Form card */}
+        <div className="bg-primary-container p-8 md:p-12 border-2 border-accent shadow-[12px_12px_0px_0px_rgba(6,27,14,0.6)]">
+          <ContactForm locale={locale} dict={dict} />
+        </div>
+
+        {/* Social links band */}
+        <div className="mt-12 flex flex-wrap items-center justify-center gap-6">
           <a
             href={`mailto:${profile.email}`}
-            className="border-border text-text hover:border-accent-2 hover:text-accent-2 inline-flex items-center gap-2 rounded-md border px-3 py-2 text-sm transition-colors"
+            className="inline-flex items-center gap-2 font-mono text-xs text-surface/60 hover:text-accent-2 transition-colors"
           >
             <Mail className="h-4 w-4" aria-hidden="true" />
             {profile.email}
@@ -82,7 +87,7 @@ export function Contact({ locale, dict }: Props) {
             href={profile.socials.linkedin}
             target="_blank"
             rel="noopener noreferrer"
-            className="border-border text-text hover:border-accent-2 hover:text-accent-2 inline-flex items-center gap-2 rounded-md border px-3 py-2 text-sm transition-colors"
+            className="inline-flex items-center gap-2 font-mono text-xs text-surface/60 hover:text-accent-2 transition-colors"
           >
             <LinkedinIcon className="h-4 w-4" aria-hidden="true" />
             LinkedIn
@@ -92,12 +97,12 @@ export function Contact({ locale, dict }: Props) {
             href={profile.socials.github}
             target="_blank"
             rel="noopener noreferrer"
-            className="border-border text-text hover:border-accent-2 hover:text-accent-2 inline-flex items-center gap-2 rounded-md border px-3 py-2 text-sm transition-colors"
+            className="inline-flex items-center gap-2 font-mono text-xs text-surface/60 hover:text-accent-2 transition-colors"
           >
             <GithubIcon className="h-4 w-4" aria-hidden="true" />
             GitHub
           </a>
-        </aside>
+        </div>
       </div>
     </section>
   );

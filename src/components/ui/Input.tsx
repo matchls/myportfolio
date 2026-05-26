@@ -22,17 +22,19 @@ type Props = Omit<InputHTMLAttributes<HTMLInputElement>, "id"> & {
   id: string;
   label: string;
   error?: string;
+  /** Override the label element's classes (e.g. for dark-themed sections). */
+  labelClassName?: string;
 };
 
 export const Input = forwardRef<HTMLInputElement, Props>(function Input(
-  { id, label, error, className, required, ...rest },
+  { id, label, error, className, labelClassName, required, ...rest },
   ref,
 ) {
   const errorId = error ? `${id}-error` : undefined;
 
   return (
     <div className="flex flex-col gap-1.5">
-      <label htmlFor={id} className="text-text text-sm font-medium">
+      <label htmlFor={id} className={cn("text-text text-sm font-medium", labelClassName)}>
         {label}
         {required && (
           <span aria-hidden="true" className="text-accent-2 ml-0.5">

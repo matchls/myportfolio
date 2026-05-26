@@ -23,11 +23,10 @@
  */
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Loader2, Send } from "lucide-react";
+import { Loader2 } from "lucide-react";
 import { useMemo, useState } from "react";
 import { useForm } from "react-hook-form";
 
-import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import { Textarea } from "@/components/ui/Textarea";
 import type { Dictionary } from "@/i18n/dictionaries";
@@ -94,13 +93,13 @@ export function ContactForm({ locale, dict }: Props) {
   // Succès : on remplace le formulaire par un message, avec possibilité d'en envoyer un autre
   if (status === "success") {
     return (
-      <div className="border-accent/40 bg-accent/5 text-text rounded-md border p-6">
-        <p className="font-semibold">{t.successTitle} ✓</p>
-        <p className="text-text-muted mt-2 text-sm">{t.successBody}</p>
+      <div className="border-accent/40 bg-accent/10 text-surface border p-6">
+        <p className="font-mono text-sm font-semibold">{t.successTitle} ✓</p>
+        <p className="text-surface/70 mt-2 text-sm">{t.successBody}</p>
         <button
           type="button"
           onClick={() => setStatus("idle")}
-          className="text-accent-2 hover:text-accent-2/80 mt-4 text-sm underline underline-offset-2"
+          className="text-accent-2 hover:text-accent-2/80 mt-4 font-mono text-xs underline underline-offset-2"
         >
           {t.successAgain}
         </button>
@@ -108,8 +107,13 @@ export function ContactForm({ locale, dict }: Props) {
     );
   }
 
+  // Shared class presets for dark-on-primary-container inputs
+  const LABEL_CLS = "font-mono text-xs uppercase tracking-widest text-surface/70";
+  const INPUT_CLS =
+    "w-full bg-primary border-0 border-b-2 border-accent/30 focus:border-accent-2 focus:ring-0 text-surface py-3 px-0 placeholder:opacity-30 rounded-none";
+
   return (
-    <form onSubmit={onSubmit} noValidate className="flex flex-col gap-4">
+    <form onSubmit={onSubmit} noValidate className="flex flex-col gap-6">
       <Input
         id="contact-name"
         label={t.name}
@@ -117,6 +121,8 @@ export function ContactForm({ locale, dict }: Props) {
         autoComplete="name"
         {...register("name")}
         error={errors.name?.message}
+        labelClassName={LABEL_CLS}
+        className={INPUT_CLS}
       />
 
       <Input
@@ -127,6 +133,8 @@ export function ContactForm({ locale, dict }: Props) {
         autoComplete="email"
         {...register("email")}
         error={errors.email?.message}
+        labelClassName={LABEL_CLS}
+        className={INPUT_CLS}
       />
 
       <Textarea
@@ -135,6 +143,8 @@ export function ContactForm({ locale, dict }: Props) {
         required
         {...register("message")}
         error={errors.message?.message}
+        labelClassName={LABEL_CLS}
+        className={INPUT_CLS + " resize-none"}
       />
 
       {/* Honeypot : caché en CSS, invisible pour humain, piégeant pour bot.
@@ -153,12 +163,11 @@ export function ContactForm({ locale, dict }: Props) {
         </p>
       )}
 
-      <Button
+      <button
         type="submit"
-        variant="primary"
-        size="md"
-        loading={status === "loading"}
-        className="self-start"
+        disabled={status === "loading"}
+        aria-busy={status === "loading" || undefined}
+        className="w-full bg-accent-2 text-primary font-bold py-4 animate-pulse-glow font-mono text-xs uppercase inline-flex items-center justify-center gap-2 transition-opacity disabled:opacity-60 disabled:cursor-not-allowed mt-2"
       >
         {status === "loading" ? (
           <>
@@ -166,12 +175,9 @@ export function ContactForm({ locale, dict }: Props) {
             {t.sending}
           </>
         ) : (
-          <>
-            <Send className="h-4 w-4" aria-hidden="true" />
-            {t.send}
-          </>
+          t.send
         )}
-      </Button>
+      </button>
     </form>
   );
 }
