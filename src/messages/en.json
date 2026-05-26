@@ -35,6 +35,7 @@
     "backToTop": "back to top"
   },
   "hero": {
+    "badge": "FOREST'S EDGE",
     "greeting": "Hi, I'm",
     "ctaContact": "Get in touch",
     "ctaProjects": "See my projects"

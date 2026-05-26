@@ -1,18 +1,16 @@
 /**
- * Hero — première impression, premier bloc de la page.
+ * Hero — first impression, first block of the page.
  *
- * Server Component. Contient nom, rôle, tagline, et 2 CTA (mail + projets).
- * Pas d'image ici : on garde la photo pour la section About (parcours).
+ * Server Component. Contains name, role, tagline, 2 CTAs, and a scroll arrow.
+ * Section is min-h-[100vh] to fill the viewport — scroll arrow anchors to bottom.
  *
- * Accessibilité :
- *  - <h1> unique de la page (un seul par document HTML)
- *  - Les CTA sont des <a> stylés en bouton (sémantiquement des liens, pas des actions)
+ * Accessibility:
+ *  - <h1> is unique per page (one per HTML document)
+ *  - CTAs are <a> styled as buttons (semantically links, not actions)
  *
- * i18n : reçoit le dictionnaire complet en prop. Le nom vient de `profile`
- * (identitaire, non traduisible) ; tout le reste vient du dict.
+ * i18n: receives the full dictionary as prop. Name comes from `profile`
+ * (identity, non-translatable); everything else comes from dict.
  */
-
-import Link from "next/link";
 
 import { profile } from "@/data/profile";
 import type { Dictionary } from "@/i18n/dictionaries";
@@ -25,40 +23,53 @@ export function Hero({ dict }: Props) {
   return (
     <section
       aria-labelledby="hero-heading"
-      className="hero-dots hero-enter relative flex min-h-[70vh] flex-col justify-center py-16"
+      className="hero-dots hero-enter relative flex min-h-[100vh] flex-col justify-center py-16"
     >
-      <p className="text-accent font-mono text-sm">{dict.hero.greeting}</p>
+      {/* Badge — editorial label above the name */}
+      <div className="inline-block px-4 py-2 bg-accent text-surface font-mono text-xs mb-6 pixel-border tracking-widest uppercase">
+        {dict.hero.badge}
+      </div>
+
+      <p className="text-accent font-mono text-sm mb-2">{dict.hero.greeting}</p>
 
       <h1
         id="hero-heading"
-        className="mt-3 text-4xl font-semibold tracking-tight sm:text-5xl lg:text-6xl bg-gradient-to-r from-text via-accent to-accent-2 bg-clip-text text-transparent"
+        className="font-display text-6xl md:text-8xl text-text mb-4 tracking-tighter"
       >
         {profile.name}.
       </h1>
 
-      <p className="text-text-muted mt-3 text-xl font-semibold tracking-tight sm:text-2xl lg:text-3xl">
+      <p className="font-display text-2xl md:text-3xl text-accent italic mb-6">
         {dict.profile.role}
         <span className="hero-caret font-mono" aria-hidden="true">|</span>
       </p>
 
-      <p className="text-text-muted mt-6 max-w-xl leading-relaxed">
+      <p className="text-text-muted max-w-xl leading-relaxed mb-8">
         <span className="text-text">{dict.profile.bioIntro}</span>{" "}
         {dict.profile.bioTagline}
       </p>
 
-      <div className="mt-8 flex flex-wrap items-center gap-3">
+      {/* CTAs */}
+      <div className="flex flex-wrap items-center gap-4">
+        <a
+          href="#projects"
+          className="bg-primary-container text-surface px-8 py-4 font-mono text-xs pixel-border-heavy hover:translate-x-1 hover:translate-y-1 transition-all active:scale-95 inline-flex items-center gap-2"
+        >
+          {dict.hero.ctaProjects}
+        </a>
         <a
           href="#contact"
-          className="bg-accent-2 hover:bg-accent-2/90 inline-flex h-10 items-center justify-center rounded-md border border-transparent px-4 text-sm font-medium text-white transition-colors"
+          className="bg-surface border-2 border-accent text-accent px-8 py-4 font-mono text-xs hover:bg-accent hover:text-surface transition-all inline-flex items-center gap-2"
         >
           {dict.hero.ctaContact}
         </a>
-        <Link
-          href="#projects"
-          className="border-border text-text hover:border-accent-2 hover:text-accent-2 inline-flex h-10 items-center justify-center rounded-md border bg-transparent px-4 text-sm font-medium transition-colors"
-        >
-          {dict.hero.ctaProjects}
-        </Link>
+      </div>
+
+      {/* Scroll-down arrow */}
+      <div className="absolute bottom-12 left-1/2 -translate-x-1/2 animate-bounce" aria-hidden="true">
+        <svg className="text-accent w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+        </svg>
       </div>
     </section>
   );
