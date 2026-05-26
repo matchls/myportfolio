@@ -51,14 +51,24 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
       {/* Mossy divider — full-width decorative strip */}
       <div className="mossy-divider" aria-hidden="true" />
 
-      {/* Contained sections */}
+      {/* Projects + Formation — contenu centré */}
       <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
         <AnimateIn>
           <Projects dict={dict} />
         </AnimateIn>
-        <AnimateIn>
-          <Skills dict={dict} />
-        </AnimateIn>
+      </div>
+
+      {/* Skills — fond pleine largeur légèrement teinté */}
+      <div className="bg-surface-container">
+        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+          <AnimateIn>
+            <Skills dict={dict} />
+          </AnimateIn>
+        </div>
+      </div>
+
+      {/* Formation — contenu centré */}
+      <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
         <AnimateIn>
           <Formation dict={dict} />
         </AnimateIn>
