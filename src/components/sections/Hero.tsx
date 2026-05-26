@@ -13,6 +13,7 @@
 
 import Image from "next/image";
 
+import { ParticleEmitter } from "@/components/ui/ParticleEmitter";
 import { profile } from "@/data/profile";
 import type { Dictionary } from "@/i18n/dictionaries";
 
@@ -37,8 +38,9 @@ export function Hero({ dict }: Props) {
         />
         {/* Gradient overlay: transparent top → page bg bottom */}
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-bg/50 to-bg" />
-        {/* Particle container — populated by ParticleEmitter (Issue #11) */}
+        {/* Particle container — populated by ParticleEmitter */}
         <div className="absolute inset-0 pointer-events-none z-10" id="hero-particles" />
+        <ParticleEmitter containerId="hero-particles" count={12} />
       </div>
 
       {/* Content — centered, above background */}

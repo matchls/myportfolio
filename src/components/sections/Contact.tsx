@@ -15,6 +15,7 @@
 import { Mail } from "lucide-react";
 
 import { ContactForm } from "@/components/sections/ContactForm";
+import { ContactParticles } from "@/components/sections/ContactParticles";
 import { GithubIcon, LinkedinIcon } from "@/components/ui/Icons";
 import { profile } from "@/data/profile";
 import type { Dictionary } from "@/i18n/dictionaries";
@@ -36,12 +37,13 @@ export function Contact({ locale, dict }: Props) {
       aria-labelledby="contact-heading"
       className="scroll-mt-20 py-24 bg-primary text-surface relative overflow-hidden"
     >
-      {/* Particle container — populated by ContactParticles (Issue #11) */}
+      {/* Particle container — populated by ContactParticles */}
       <div
         className="absolute inset-0 pointer-events-none z-0"
         id="contact-particles"
         aria-hidden="true"
       />
+      <ContactParticles />
 
       <div className="relative z-10 max-w-2xl mx-auto px-4 md:px-0">
         {/* Heading */}
