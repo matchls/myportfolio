@@ -1,41 +1,49 @@
 @import "tailwindcss";
 
 /**
- * Dark mode class-based (piloté par next-themes).
- * Sans ce custom-variant, `dark:` utiliserait @media (prefers-color-scheme: dark)
- * et on ne pourrait pas faire un toggle manuel.
+ * Dark mode class-based (driven by next-themes).
+ * Without this custom-variant, `dark:` would use @media (prefers-color-scheme: dark)
+ * and manual toggle would be impossible.
  */
 @custom-variant dark (&:where(.dark, .dark *));
 
 /* ---------------------------------------------------------------------------
-   Tokens de couleur — source unique de vérité
-   Light mode sous :root, override sous .dark.
-   Inspiration : "dev portfolio organique", vert feuille + orange chaleureux.
+   Color tokens — Stitch palette (dark forest, retro pixel-border style)
+   Light mode under :root, overridden under .dark.
    --------------------------------------------------------------------------- */
 
 :root {
-  --color-bg: #fafaf5; /* off-white crème, doux pour les yeux */
-  --color-text: #1c2b1e; /* slate vert foncé */
-  --color-text-muted: #5a6b5c; /* vert grisé */
-  --color-accent: #6fa56b; /* vert feuille — accent principal */
-  --color-accent-2: #e87a3f; /* orange chaleureux — CTA, hover */
-  --color-border: #c8cdc5;
-  --color-glow: rgba(111, 165, 107, 0.28); /* #6fa56b à 28% */
+  --color-bg: #fbf9f5;
+  --color-text: #1b1c1a;
+  --color-text-muted: #434843;
+  --color-accent: #56642b;
+  --color-accent-2: #ffdbd0;
+  --color-border: #c3c8c1;
+  --color-primary: #061b0e;
+  --color-primary-container: #1b3022;
+  --color-surface: #fbf9f5;
+  --color-surface-container: #efeeea;
+  --color-glow: rgba(255, 219, 208, 0.35);
 }
 
 .dark {
-  --color-bg: #1a211b; /* gris-vert sombre, pas noir pur */
-  --color-text: #f5f5ee; /* cream */
-  --color-text-muted: #a8b5a8;
-  --color-accent: #8fc58c; /* vert plus vif sur fond sombre */
-  --color-accent-2: #f09668; /* orange plus clair */
+  --color-bg: #0f1a11;
+  --color-text: #e4e2de;
+  --color-text-muted: #a8b0a8;
+  --color-accent: #8aab87;
+  --color-accent-2: #ffdbd0;
   --color-border: #2a352c;
-  --color-glow: rgba(143, 197, 140, 0.22); /* #8fc58c à 22% */
+  --color-primary: #d0e9d4;
+  --color-primary-container: #1b3022;
+  --color-surface: #1a211b;
+  --color-surface-container: #1f2820;
+  --color-glow: rgba(255, 219, 208, 0.2);
 }
 
 /* ---------------------------------------------------------------------------
-   Exposition Tailwind — @theme inline lit les variables CSS ci-dessus.
-   Chaque token devient une utilité Tailwind : bg-bg, text-text, bg-accent, etc.
+   Tailwind exposure — @theme inline reads CSS variables above.
+   Each token becomes a Tailwind utility: bg-bg, text-text, bg-accent, etc.
+   Fonts are mapped here so `font-display`, `font-sans`, `font-mono` work.
    --------------------------------------------------------------------------- */
 
 @theme inline {
@@ -45,9 +53,100 @@
   --color-accent: var(--color-accent);
   --color-accent-2: var(--color-accent-2);
   --color-border: var(--color-border);
+  --color-primary: var(--color-primary);
+  --color-primary-container: var(--color-primary-container);
+  --color-surface: var(--color-surface);
+  --color-surface-container: var(--color-surface-container);
 
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-display: "Newsreader", Georgia, serif;
+  --font-sans: "Be Vietnam Pro", ui-sans-serif, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+}
+
+/* ---------------------------------------------------------------------------
+   Pixel-art / Stitch utilities
+   --------------------------------------------------------------------------- */
+
+.pixel-border {
+  box-shadow: 0 -4px 0 0 #56642b, 0 4px 0 0 #56642b, -4px 0 0 0 #56642b, 4px 0 0 0 #56642b;
+}
+
+.pixel-border-heavy {
+  box-shadow: 0 -6px 0 0 #1b3022, 0 6px 0 0 #1b3022, -6px 0 0 0 #1b3022, 6px 0 0 0 #1b3022,
+    6px 6px 0 0 rgba(6, 27, 14, 0.4);
+}
+
+.mossy-divider {
+  height: 8px;
+  background-image: linear-gradient(
+    90deg,
+    #56642b 25%,
+    transparent 25%,
+    transparent 50%,
+    #56642b 50%,
+    #56642b 75%,
+    transparent 75%,
+    transparent 100%
+  );
+  background-size: 16px 8px;
+  width: 100%;
+}
+
+/* Floating particle (Contact section) */
+@keyframes floatEmber {
+  0% {
+    transform: translateY(0) translateX(0) scale(1);
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.8;
+  }
+  80% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(-100px) translateX(20px) scale(0);
+    opacity: 0;
+  }
+}
+
+.ember {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: #ffdbd0;
+  box-shadow: 0 0 8px #ffdbd0;
+  pointer-events: none;
+  border-radius: 50%;
+}
+
+@keyframes pulseGlow {
+  0%,
+  100% {
+    box-shadow: 0 0 0px 0px rgba(255, 219, 208, 0);
+  }
+  50% {
+    box-shadow: 0 0 15px 4px rgba(255, 219, 208, 0.4);
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 3s infinite;
+}
+
+@keyframes sway {
+  0%,
+  100% {
+    transform: rotate(-1deg);
+  }
+  50% {
+    transform: rotate(1deg);
+  }
+}
+
+.animate-sway {
+  animation: sway 6s ease-in-out infinite;
+  transform-origin: bottom center;
 }
 
 /* ---------------------------------------------------------------------------
@@ -68,30 +167,33 @@ body {
     color 200ms ease;
 }
 
-/* Focus visible — orange chaleureux, respecte la palette */
+/* Focus visible — cream peach, consistent with palette */
 :focus-visible {
   outline: 2px solid var(--color-accent-2);
   outline-offset: 2px;
   border-radius: 4px;
 }
 
-/* Sélection de texte en vert accent, doux */
+/* Text selection in accent green, subtle */
 ::selection {
   background: color-mix(in srgb, var(--color-accent) 35%, transparent);
   color: var(--color-text);
 }
 
-/* Pattern de points en fond du Hero */
+/* Dot pattern for Hero background */
 .hero-dots {
   background-image: radial-gradient(var(--color-border) 1px, transparent 1px);
   background-size: 24px 24px;
 }
 
 .dark .hero-dots {
-  background-image: radial-gradient(color-mix(in srgb, var(--color-border) 60%, transparent) 1px, transparent 1px);
+  background-image: radial-gradient(
+    color-mix(in srgb, var(--color-border) 60%, transparent) 1px,
+    transparent 1px
+  );
 }
 
-/* Glow au hover des cartes */
+/* Glow on card hover */
 .card-glow {
   transition: box-shadow 200ms ease, border-color 200ms ease;
 }
@@ -100,7 +202,7 @@ body {
   box-shadow: 0 0 0 1px var(--color-accent), 0 6px 24px var(--color-glow);
 }
 
-/* Scroll-reveal — état initial masqué, visible après IntersectionObserver */
+/* Scroll-reveal — initial hidden state, visible after IntersectionObserver */
 .animate-in-wrapper[data-visible="false"] {
   opacity: 0;
   transform: translateY(16px);
@@ -117,7 +219,7 @@ body {
     transform 500ms ease-out;
 }
 
-/* Animation de chargement pour le Hero (toujours au-dessus de la fold) */
+/* Hero load animation (always above fold, no need for IntersectionObserver) */
 @keyframes hero-enter {
   from {
     opacity: 0;
@@ -133,10 +235,15 @@ body {
   animation: hero-enter 600ms ease-out both;
 }
 
-/* Caret clignotant dans le Hero */
+/* Blinking caret in Hero */
 @keyframes blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
 }
 
 .hero-caret {
@@ -147,16 +254,22 @@ body {
   margin-left: 2px;
 }
 
-/* Accessibilité : désactive les animations si l'utilisateur le demande */
+/* Accessibility: disable animations when user requests reduced motion */
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
   }
+
   *,
   *::before,
   *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+
+  .animate-sway,
+  .animate-pulse-glow {
+    animation: none !important;
   }
 }

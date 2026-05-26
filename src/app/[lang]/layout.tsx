@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Newsreader, Be_Vietnam_Pro, JetBrains_Mono } from "next/font/google";
 import { notFound } from "next/navigation";
 
 import { Footer } from "@/components/layout/Footer";
@@ -14,18 +14,31 @@ import { BCP47_BY_LOCALE, SITE_URL } from "@/lib/constants";
 import "../globals.css";
 
 /**
- * Polices chargées via next/font — subset latin, self-hosted en prod.
- * Avantages : zéro layout shift (polices pré-chargées), pas de requête vers
- * fonts.google.com côté client, tree-shakable.
+ * Fonts loaded via next/font — latin subset, self-hosted in prod.
+ * Benefits: zero layout shift (preloaded), no request to fonts.google.com
+ * client-side, tree-shakable.
+ * - Newsreader: editorial display font for headings
+ * - Be Vietnam Pro: clean sans-serif for body text
+ * - JetBrains Mono: monospace for labels, tags, code
  */
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const newsreader = Newsreader({
   subsets: ["latin"],
+  variable: "--font-display",
+  display: "swap",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const beVietnamPro = Be_Vietnam_Pro({
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-sans",
+  display: "swap",
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  weight: ["400", "500", "700"],
+  variable: "--font-mono",
+  display: "swap",
 });
 
 /**
@@ -131,9 +144,9 @@ export default async function RootLayout({ children, params }: Props) {
       lang={locale}
       id="top"
       suppressHydrationWarning
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${newsreader.variable} ${beVietnamPro.variable} ${jetbrainsMono.variable} h-full antialiased`}
     >
-      <body className="flex min-h-full flex-col">
+      <body className="font-sans flex min-h-full flex-col">
         <ThemeProvider>
           <SkipLink label={dict.a11y.skipToContent} />
           <Header locale={locale} dict={dict} />
