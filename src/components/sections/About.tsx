@@ -42,6 +42,15 @@ export function About({ dict }: Props) {
       aria-labelledby="about-heading"
       className="scroll-mt-20 py-24"
     >
+      {/* Heading — outside the card, consistent with other sections */}
+      <h2
+        id="about-heading"
+        className="font-display text-5xl text-text mb-8 flex items-baseline gap-3"
+      >
+        <span className="font-mono text-base text-accent" aria-hidden="true">01.</span>
+        {dict.about.heading}
+      </h2>
+
       <div className="grid gap-8 md:grid-cols-[7fr_5fr]">
 
         {/* Left column — bio text */}
@@ -49,12 +58,6 @@ export function About({ dict }: Props) {
           <div className="absolute top-0 right-0 p-4 opacity-10 text-9xl select-none" aria-hidden="true">
             📖
           </div>
-          <h2
-            id="about-heading"
-            className="font-display text-2xl text-text mb-8 border-b-4 border-accent/20 pb-4"
-          >
-            {dict.about.heading}
-          </h2>
           <div className="space-y-6 text-text-muted leading-relaxed">
             {dict.profile.bioParagraphs.map((p, i) => (
               <BoldParagraph key={i} text={p} />

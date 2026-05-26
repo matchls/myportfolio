@@ -48,8 +48,9 @@ export function Skills({ dict }: Props) {
         </p>
         <h2
           id="skills-heading"
-          className="font-display text-5xl text-text mb-3"
+          className="font-display text-5xl text-text mb-3 inline-flex items-baseline gap-3"
         >
+          <span className="font-mono text-base text-accent" aria-hidden="true">03.</span>
           {dict.skills.heading}
         </h2>
         <p className="text-text-muted text-sm max-w-xl mx-auto">

@@ -32,16 +32,19 @@ export function Projects({ dict }: Props) {
       aria-labelledby="projects-heading"
       className="scroll-mt-20 py-16"
     >
-      {/* Eyebrow + heading */}
-      <p className="font-mono text-xs text-accent uppercase tracking-widest mb-2">
-        {dict.projects.eyebrow}
-      </p>
-      <h2
-        id="projects-heading"
-        className="font-display text-5xl text-text mb-8"
-      >
-        {dict.projects.heading}
-      </h2>
+      {/* Eyebrow + heading — centred */}
+      <div className="text-center mb-8">
+        <p className="font-mono text-xs text-accent uppercase tracking-widest mb-2">
+          {dict.projects.eyebrow}
+        </p>
+        <h2
+          id="projects-heading"
+          className="font-display text-5xl text-text inline-flex items-baseline gap-3"
+        >
+          <span className="font-mono text-base text-accent" aria-hidden="true">02.</span>
+          {dict.projects.heading}
+        </h2>
+      </div>
 
       <div className={hasMultiple ? "grid gap-6 md:grid-cols-2" : "grid gap-6 md:max-w-2xl"}>
         {projects.map((project) => (

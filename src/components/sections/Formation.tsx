@@ -25,7 +25,7 @@ export function Formation({ dict }: Props) {
       {/* Heading — number prefix in mono accent, title in display */}
       <h2
         id="formation-heading"
-        className="font-display text-5xl text-text mb-10 flex items-baseline gap-3"
+        className="font-display text-5xl text-text mb-10 flex items-baseline justify-center gap-3"
       >
         <span className="font-mono text-base text-accent" aria-hidden="true">04.</span>
         {dict.formation.heading}
