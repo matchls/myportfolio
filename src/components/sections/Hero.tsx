@@ -85,7 +85,7 @@ export function Hero({ dict }: Props) {
           <a
             href="/CV Mathieu Chales - Dev Fullstack.pdf"
             download
-            className="inline-flex items-center gap-2 font-mono text-xs text-surface/60 hover:text-accent-2 transition-colors decoration-dotted underline underline-offset-4"
+            className="inline-flex items-center gap-2 font-mono text-xs text-on-secondary-container hover:text-accent-2 transition-colors decoration-dotted underline underline-offset-4"
           >
             <Download className="w-3.5 h-3.5" aria-hidden="true" />
             {dict.hero.ctaCV}
