@@ -45,7 +45,7 @@ export function About({ dict }: Props) {
       {/* Heading — outside the card, consistent with other sections */}
       <h2
         id="about-heading"
-        className="font-display text-5xl text-text mb-8 flex items-baseline gap-3"
+        className="font-display text-5xl text-text mb-8 flex items-baseline justify-center gap-3"
       >
         <span className="font-mono text-base text-accent" aria-hidden="true">01.</span>
         {dict.about.heading}
