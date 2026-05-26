@@ -102,6 +102,12 @@
         "tooltip": "Project generated with Claude Code under my direct supervision."
       }
     },
+    "modal": {
+      "close": "Close",
+      "prev": "Previous image",
+      "next": "Next image",
+      "openHint": "View screenshots"
+    },
     "ariaDemo": "Watch the video demo of",
     "ariaRepoFrontend": "Frontend source code of",
     "ariaRepoBackend": "Backend source code of",
