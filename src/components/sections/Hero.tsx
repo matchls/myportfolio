@@ -85,16 +85,26 @@ function StatBadge({ label, value }: { label: string; value: string }) {
 
 function PixelDecoration() {
   return (
-    <div className="float-animation opacity-60">
-      <svg width="64" height="64" viewBox="0 0 64 64" fill="none" className="text-accent">
-        {/* Simple pixel star */}
-        <rect x="28" y="0" width="8" height="8" fill="currentColor" />
-        <rect x="20" y="8" width="24" height="8" fill="currentColor" />
-        <rect x="12" y="16" width="40" height="8" fill="currentColor" />
-        <rect x="0" y="24" width="64" height="16" fill="currentColor" />
-        <rect x="12" y="40" width="40" height="8" fill="currentColor" />
-        <rect x="20" y="48" width="24" height="8" fill="currentColor" />
-        <rect x="28" y="56" width="8" height="8" fill="currentColor" />
+    <div className="float-animation opacity-70">
+      <svg width="64" height="80" viewBox="0 0 64 80" fill="none">
+        {/* Arbre pixelisé */}
+        {/* Feuillage - niveau 1 (haut) */}
+        <rect x="24" y="0" width="16" height="8" fill="currentColor" className="text-accent" />
+        {/* Feuillage - niveau 2 */}
+        <rect x="16" y="8" width="32" height="8" fill="currentColor" className="text-accent" />
+        {/* Feuillage - niveau 3 */}
+        <rect x="8" y="16" width="48" height="8" fill="currentColor" className="text-accent" />
+        {/* Feuillage - niveau 4 */}
+        <rect x="16" y="24" width="32" height="8" fill="currentColor" className="text-accent" />
+        {/* Feuillage - niveau 5 */}
+        <rect x="4" y="32" width="56" height="8" fill="currentColor" className="text-accent" />
+        {/* Feuillage - niveau 6 (bas) */}
+        <rect x="12" y="40" width="40" height="8" fill="currentColor" className="text-accent" />
+        {/* Tronc */}
+        <rect x="24" y="48" width="16" height="24" fill="#8B5A2B" />
+        {/* Détail tronc */}
+        <rect x="28" y="52" width="8" height="4" fill="#6B4423" />
+        <rect x="28" y="60" width="8" height="4" fill="#6B4423" />
       </svg>
     </div>
   );

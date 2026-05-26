@@ -14,10 +14,10 @@
   --color-bg: #f5f0e1; /* beige crème façon Game Boy */
   --color-text: #2d2d2d; /* noir doux */
   --color-text-muted: #5a5a5a; /* gris */
-  --color-accent: #ff6b9d; /* rose rétro */
+  --color-accent: #7cb342; /* vert doux / vert sauge */
   --color-accent-2: #00d4aa; /* cyan/turquoise rétro */
   --color-border: #c4b998; /* beige foncé */
-  --color-glow: rgba(255, 107, 157, 0.3);
+  --color-glow: rgba(124, 179, 66, 0.3);
   --color-pixel-shadow: #1a1a1a;
 }
 
@@ -25,10 +25,10 @@
   --color-bg: #1a1a2e; /* bleu nuit profond */
   --color-text: #eaeaea; /* blanc cassé */
   --color-text-muted: #a0a0a0;
-  --color-accent: #ff6b9d; /* rose néon */
+  --color-accent: #9ccc65; /* vert doux néon */
   --color-accent-2: #00ffcc; /* cyan néon */
   --color-border: #2a2a4a;
-  --color-glow: rgba(0, 255, 204, 0.25);
+  --color-glow: rgba(156, 204, 101, 0.25);
   --color-pixel-shadow: #0a0a15;
 }
 
