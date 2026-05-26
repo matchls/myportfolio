@@ -52,7 +52,9 @@
     "quote": "Chaque ligne de code est une graine plantée vers une expérience utilisateur durable."
   },
   "skills": {
+    "eyebrow": "Boîte à outils",
     "heading": "Compétences",
+    "subheading": "Une collection d'outils forgés projet par projet.",
     "groups": {
       "frontend": "Frontend",
       "backend": "Backend",

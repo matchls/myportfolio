@@ -52,7 +52,9 @@
     "quote": "Every line of code is a seed planted toward a lasting user experience."
   },
   "skills": {
+    "eyebrow": "Toolbox",
     "heading": "Skills",
+    "subheading": "A collection of tools forged project by project.",
     "groups": {
       "frontend": "Frontend",
       "backend": "Backend",
