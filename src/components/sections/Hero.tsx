@@ -33,7 +33,7 @@ export function Hero({ dict }: Props) {
           src="/forest-bg.jpg"
           alt=""
           fill
-          className="object-cover opacity-60 grayscale-[10%] animate-sway"
+          className="object-cover opacity-60 grayscale-[10%] animate-sway scale-110"
           priority
         />
         {/* Gradient overlay: transparent top → page bg bottom */}
