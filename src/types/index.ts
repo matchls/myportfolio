@@ -17,7 +17,8 @@
 export type Profile = {
   name: string;
   role: string; // ex: "Développeur Fullstack Junior"
-  location: string; // ex: "Paris · hybride"
+  location: string; // ex: "Bordeaux, France"
+  interests: string; // ex: "IA, WebGL, UX"
   tagline: string;
   bio: string; // markdown/texte multi-ligne
   email: string;

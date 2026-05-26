@@ -42,7 +42,14 @@
   },
   "about": {
     "heading": "À propos",
-    "photoAlt": "Portrait de"
+    "photoAlt": "Portrait de",
+    "infoTitle": "Fiche",
+    "roleLabel": "Poste",
+    "locationLabel": "Localisation",
+    "availabilityLabel": "Disponibilité",
+    "availabilityStatus": "Ouvert aux offres",
+    "interestsLabel": "Intérêts",
+    "quote": "Hier je travaillais le bois. Aujourd'hui je code. Toujours pour construire des choses qui servent."
   },
   "skills": {
     "heading": "Compétences",

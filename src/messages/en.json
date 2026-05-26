@@ -42,7 +42,14 @@
   },
   "about": {
     "heading": "About",
-    "photoAlt": "Portrait of"
+    "photoAlt": "Portrait of",
+    "infoTitle": "Profile",
+    "roleLabel": "Role",
+    "locationLabel": "Location",
+    "availabilityLabel": "Availability",
+    "availabilityStatus": "Open to offers",
+    "interestsLabel": "Interests",
+    "quote": "Yesterday I worked wood. Today I code. Always to build things that matter."
   },
   "skills": {
     "heading": "Skills",

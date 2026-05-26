@@ -1,18 +1,15 @@
 /**
- * About — bio + photo.
+ * About — bio + info card + quote. No photo (removed in Stitch migration).
  *
- * Layout :
- *  - Mobile : photo au-dessus du texte
- *  - Desktop : 2 colonnes (texte 2/3, photo 1/3) avec la photo à droite
+ * Layout:
+ *  - Mobile: single column
+ *  - Desktop: 2-column grid [7fr_5fr] — bio left, info card + quote right
  *
- * i18n :
- *  - Heading, alt photo, paragraphes de bio : tout vient du dict
- *  - `profile.name` : identitaire, reste en dehors des dicts
- *  - Les paragraphes sont stockés comme un array en JSON (simple et traduisible),
- *    plus propre que splitter sur `\n\s*\n` comme avant.
+ * i18n:
+ *  - Heading, bio paragraphs, info labels, quote: all from dict
+ *  - `profile.name` stays outside dicts (identity, non-translatable)
+ *  - `profile.location` / `profile.interests`: from profile data
  */
-
-import Image from "next/image";
 
 import { profile } from "@/data/profile";
 import type { Dictionary } from "@/i18n/dictionaries";
@@ -43,37 +40,61 @@ export function About({ dict }: Props) {
     <section
       id="about"
       aria-labelledby="about-heading"
-      className="border-border/70 scroll-mt-20 border-t py-16"
+      className="scroll-mt-20 py-16"
     >
-      <h2 id="about-heading" className="text-text flex items-baseline gap-3 text-2xl font-semibold">
-        <span className="text-accent font-mono text-base">01.</span>
-        {dict.about.heading}
-      </h2>
+      <div className="grid gap-8 md:grid-cols-[7fr_5fr]">
 
-      <div className="mt-8 grid gap-8 md:grid-cols-[2fr_1fr] md:items-start md:gap-12">
-        <div className="text-text-muted space-y-4 leading-relaxed">
-          {dict.profile.bioParagraphs.map((paragraph, index) => (
-            <BoldParagraph key={index} text={paragraph} />
-          ))}
-        </div>
-
-        <div className="relative mx-auto aspect-square w-full max-w-[240px] md:max-w-none">
-          <div aria-hidden="true" className="bg-accent/30 absolute -right-2 -bottom-2 h-full w-full rounded-lg" />
-          <div className="relative h-full w-full overflow-hidden rounded-lg">
-            <Image
-              src="/photo.jpg"
-              alt={`${dict.about.photoAlt} ${profile.name}`}
-              fill
-              sizes="(max-width: 768px) 240px, 240px"
-              className="object-cover"
-              priority={false}
-            />
-            <div
-              aria-hidden="true"
-              className="ring-accent/40 hover:ring-accent-2/70 absolute inset-0 rounded-lg ring-1 ring-inset transition-all duration-300"
-            />
+        {/* Left column — bio text */}
+        <div className="bg-surface p-8 md:p-12 border-2 border-accent relative overflow-hidden">
+          <div className="absolute top-0 right-0 p-4 opacity-10 text-9xl select-none" aria-hidden="true">
+            📖
+          </div>
+          <h2
+            id="about-heading"
+            className="font-display text-2xl text-text mb-8 border-b-4 border-accent/20 pb-4"
+          >
+            {dict.about.heading}
+          </h2>
+          <div className="space-y-6 text-text-muted leading-relaxed">
+            {dict.profile.bioParagraphs.map((p, i) => (
+              <BoldParagraph key={i} text={p} />
+            ))}
           </div>
         </div>
+
+        {/* Right column — info card + quote */}
+        <div className="space-y-6">
+          <div className="bg-accent text-surface p-8 pixel-border">
+            <h3 className="font-mono text-xs uppercase tracking-widest mb-6 border-b border-surface/30 pb-2">
+              {dict.about.infoTitle}
+            </h3>
+            <dl className="space-y-4 font-mono text-xs">
+              <div className="flex justify-between">
+                <dt className="opacity-70">{dict.about.roleLabel}</dt>
+                <dd className="font-bold">{dict.profile.role}</dd>
+              </div>
+              <div className="flex justify-between">
+                <dt className="opacity-70">{dict.about.locationLabel}</dt>
+                <dd className="font-bold">{profile.location}</dd>
+              </div>
+              <div className="flex justify-between">
+                <dt className="opacity-70">{dict.about.availabilityLabel}</dt>
+                <dd className="bg-primary-container px-2 py-0.5 text-[10px] uppercase">
+                  {dict.about.availabilityStatus}
+                </dd>
+              </div>
+              <div className="flex justify-between">
+                <dt className="opacity-70">{dict.about.interestsLabel}</dt>
+                <dd className="font-bold">{profile.interests}</dd>
+              </div>
+            </dl>
+          </div>
+
+          <blockquote className="bg-[#5d4037] text-surface p-6 border-2 border-accent shadow-[8px_8px_0px_0px_#1b1c1a]">
+            <p className="text-sm italic">{dict.about.quote}</p>
+          </blockquote>
+        </div>
+
       </div>
     </section>
   );
