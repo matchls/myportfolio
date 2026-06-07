@@ -28,7 +28,7 @@ export const skillGroups: readonly SkillGroup[] = [
   {
     category: "backend",
     label: "Backend",
-    skills: [{ name: "Node.js" }, { name: "Express" }, { name: "MongoDB" }, { name: "PostgreSQL" }],
+    skills: [{ name: "Node.js" }, { name: "Express" }, { name: "MongoDB" }, { name: "PostgreSQL" }, { name: "Supabase" }],
   },
   {
     category: "mobile",

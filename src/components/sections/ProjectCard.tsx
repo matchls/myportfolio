@@ -18,6 +18,7 @@
 import Image from "next/image";
 import { Bot, ChevronLeft, ChevronRight, Sparkles, UserCheck, X } from "lucide-react";
 import { useCallback, useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 
 import type { Dictionary } from "@/i18n/dictionaries";
 import type { AiLevel, Project, ShippedProject } from "@/types";
@@ -159,7 +160,7 @@ function ProjectModal({ screenshots, title, description, dict, onClose }: ModalP
     };
   }, [onClose, prev, next]);
 
-  return (
+  return createPortal(
     <div
       className="fixed inset-0 z-[100] flex items-center justify-center bg-primary/80 backdrop-blur-sm px-4"
       onClick={onClose}
@@ -232,7 +233,8 @@ function ProjectModal({ screenshots, title, description, dict, onClose }: ModalP
           )}
         </div>
       </div>
-    </div>
+    </div>,
+    document.body
   );
 }
 

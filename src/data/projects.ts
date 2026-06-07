@@ -69,10 +69,10 @@ export const projects: readonly Project[] = [
     ],
   },
   {
-    slug: "drg-dashboard",
+    slug: "drglytics",
     status: "coming-soon",
     aiLevel: "assisted",
-    title: "DRG Dashboard",
+    title: "Drglytics",
     description:
       "Projet d'apprentissage fullstack centré sur le reverse engineering : parser les fichiers de sauvegarde binaires (format GVAS / Unreal Engine 4) du jeu Deep Rock Galactic pour en extraire des statistiques de joueur et les afficher dans un dashboard web. Le cœur est un parseur Python développé from scratch, qui décode structure par structure un format binaire non documenté.",
     stack: [
@@ -82,6 +82,14 @@ export const projects: readonly Project[] = [
       "Flask / FastAPI",
       "React",
       "Recharts",
+    ],
+    screenshots: [
+      "/images/drglytics/screen-1.png",
+      "/images/drglytics/screen-2.png",
+      "/images/drglytics/screen-3.png",
+      "/images/drglytics/screen-4.png",
+      "/images/drglytics/screen-5.png",
+      "/images/drglytics/screen-6.png",
     ],
   },
 ] as const;
