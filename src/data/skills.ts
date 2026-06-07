@@ -28,7 +28,13 @@ export const skillGroups: readonly SkillGroup[] = [
   {
     category: "backend",
     label: "Backend",
-    skills: [{ name: "Node.js" }, { name: "Express" }, { name: "MongoDB" }, { name: "PostgreSQL" }, { name: "Supabase" }],
+    skills: [
+      { name: "Node.js" },
+      { name: "Express" },
+      { name: "MongoDB" },
+      { name: "PostgreSQL" },
+      { name: "Supabase" },
+    ],
   },
   {
     category: "mobile",
@@ -44,6 +50,8 @@ export const skillGroups: readonly SkillGroup[] = [
       { name: "VS Code" },
       { name: "Figma" },
       { name: "Vercel" },
+      { name: "Claude Code" },
+      { name: "OpenAI Codex" },
     ],
   },
 ] as const;
