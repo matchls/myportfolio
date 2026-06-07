@@ -127,8 +127,8 @@
       },
       "drglytics": {
         "title": "Drglytics",
-        "description": "Reverse engineering · GVAS / UE4 binary saves · Python parser from scratch · player stats · web dashboard",
-        "modalDescription": "A fullstack project built around reverse engineering: parsing the binary save files (GVAS / Unreal Engine 4 format) of Deep Rock Galactic to extract player statistics and display them in a web dashboard. The core is a Python parser written from scratch, decoding an undocumented binary format structure by structure — like building a translator for a language with no dictionary."
+        "description": "Interactive dashboard · React · Recharts · data visualization · Deep Rock Galactic player stats",
+        "modalDescription": "An interactive web dashboard to visualize player statistics from the game Deep Rock Galactic. The app consumes data extracted from the game's save files and turns it into charts and visual indicators. The project focuses on data visualization and user experience: smooth navigation, interactive charts with Recharts, and a responsive interface. Data is extracted via a Python parser that decodes the proprietary binary format of the save files."
       }
     }
   },
