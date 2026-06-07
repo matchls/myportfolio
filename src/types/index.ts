@@ -88,6 +88,10 @@ type ProjectBase = {
    */
   featured?: boolean;
   screenshots?: readonly string[];
+  /** Index du screenshot utilisé comme miniature dans la carte (défaut : 0). */
+  thumbnailIndex?: number;
+  /** Nombre de screenshots affichés côte-à-côte en miniature (défaut : 1). */
+  thumbnailCount?: 1 | 3;
   aiLevel: AiLevel;
 };
 

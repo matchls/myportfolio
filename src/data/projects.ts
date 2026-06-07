@@ -14,6 +14,7 @@ export const projects: readonly Project[] = [
     slug: "alterago",
     status: "shipped",
     featured: true,
+    thumbnailCount: 3,
     aiLevel: "autonomous",
     title: "AlterAgo",
     description:
@@ -45,6 +46,7 @@ export const projects: readonly Project[] = [
     slug: "picswipe",
     status: "shipped",
     featured: false,
+    thumbnailCount: 3,
     aiLevel: "assisted",
     title: "PicSwipe",
     description:
@@ -71,6 +73,7 @@ export const projects: readonly Project[] = [
   {
     slug: "drglytics",
     status: "coming-soon",
+    thumbnailIndex: 1,
     aiLevel: "assisted",
     title: "Drglytics",
     description:

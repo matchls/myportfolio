@@ -53,13 +53,30 @@ export function ProjectCard({ project, dict }: CardProps) {
         {/* Screenshot — grayscale at rest, colour on hover */}
         {project.screenshots?.[0] && (
           <div className="relative h-48 overflow-hidden border-b-4 border-primary">
-            <Image
-              src={project.screenshots[0]}
-              alt={itemCopy.title}
-              width={400}
-              height={200}
-              className="w-full h-full object-cover grayscale transition-all duration-500 group-hover:grayscale-0"
-            />
+            {project.thumbnailCount === 3 ? (
+              // 3 screens côte-à-côte
+              <div className="flex h-full gap-0.5">
+                {project.screenshots.slice(0, 3).map((src, i) => (
+                  <div key={src} className="relative flex-1 overflow-hidden">
+                    <Image
+                      src={src}
+                      alt={`${itemCopy.title} — ${i + 1}`}
+                      fill
+                      className="object-cover object-top grayscale transition-all duration-500 group-hover:grayscale-0"
+                    />
+                  </div>
+                ))}
+              </div>
+            ) : (
+              // 1 screen (avec thumbnailIndex optionnel)
+              <Image
+                src={project.screenshots[project.thumbnailIndex ?? 0]}
+                alt={itemCopy.title}
+                width={400}
+                height={200}
+                className="w-full h-full object-cover grayscale transition-all duration-500 group-hover:grayscale-0"
+              />
+            )}
             {/* Screenshot count badge */}
             {screenshotCount > 1 && (
               <span className="absolute bottom-2 right-2 bg-primary/80 text-surface font-mono text-[10px] px-2 py-0.5 flex items-center gap-1">
