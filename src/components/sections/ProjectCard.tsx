@@ -194,7 +194,7 @@ function ProjectModal({ screenshots, title, description, dict, onClose }: ModalP
     >
       {/* Modal panel */}
       <div
-        className="relative bg-surface border-4 border-primary w-full max-w-3xl shadow-[12px_12px_0px_0px_rgba(6,27,14,0.6)]"
+        className="relative bg-surface border-4 border-primary w-full max-w-6xl max-h-[90vh] overflow-y-auto shadow-[12px_12px_0px_0px_rgba(6,27,14,0.6)]"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Close button */}

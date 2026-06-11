@@ -84,8 +84,8 @@
     "statusComingSoon": "In progress",
     "links": {
       "demo": "Demo",
-      "frontend": "Frontend",
-      "backend": "Backend",
+      "frontend": "Repo web",
+      "backend": "Repo api",
       "repo": "Code"
     },
     "aiLevel": {
