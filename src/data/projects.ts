@@ -72,10 +72,11 @@ export const projects: readonly Project[] = [
   },
   {
     slug: "drglytics",
-    status: "coming-soon",
+    status: "shipped",
     thumbnailIndex: 1,
     aiLevel: "assisted",
-    title: "Drglytics",
+    title: "DRGlytics",
+    demoUrl: "https://drglytics.vercel.app/",
     description:
       "Projet d'apprentissage fullstack centré sur le reverse engineering : parser les fichiers de sauvegarde binaires (format GVAS / Unreal Engine 4) du jeu Deep Rock Galactic pour en extraire des statistiques de joueur et les afficher dans un dashboard web. Le cœur est un parseur Python développé from scratch, qui décode structure par structure un format binaire non documenté.",
     stack: ["React", "TypeScript", "Recharts", "Tailwind CSS"],

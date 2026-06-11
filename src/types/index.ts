@@ -108,6 +108,18 @@ export type ShippedProject = ProjectBase & {
 };
 
 /**
+ * Projet en beta — déployé mais pas finalisé. Mêmes liens que ShippedProject.
+ */
+export type BetaProject = ProjectBase & {
+  status: "beta";
+  role?: string;
+  repoFrontendUrl?: string;
+  repoBackendUrl?: string;
+  repoUrl?: string;
+  demoUrl?: string;
+};
+
+/**
  * Projet en cours / à venir — pas encore de liens, juste un pitch.
  */
 export type ComingSoonProject = ProjectBase & {
@@ -118,9 +130,10 @@ export type ComingSoonProject = ProjectBase & {
  * Union discriminée : TypeScript narrower automatiquement selon `project.status`.
  * Exemple dans un composant :
  *   if (project.status === "shipped") { project.demoUrl // OK }
+ *   if (project.status === "beta") { project.demoUrl // OK }
  *   else { project.demoUrl // erreur de compilation }
  */
-export type Project = ShippedProject | ComingSoonProject;
+export type Project = ShippedProject | BetaProject | ComingSoonProject;
 
 // ---------------------------------------------------------------------------
 // Formulaire de contact

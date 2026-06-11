@@ -21,7 +21,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 
 import type { Dictionary } from "@/i18n/dictionaries";
-import type { AiLevel, Project, ShippedProject } from "@/types";
+import type { AiLevel, BetaProject, Project, ShippedProject } from "@/types";
 
 // ============================================================================
 // ProjectCard
@@ -111,8 +111,15 @@ export function ProjectCard({ project, dict }: CardProps) {
 
           <div className="flex-1" />
 
+          {/* Beta badge */}
+          {project.status === "beta" && (
+            <span className="self-start font-mono text-[10px] uppercase px-2 py-0.5 border border-accent text-accent mb-2">
+              β beta
+            </span>
+          )}
+
           {/* Links — stop propagation so they still navigate independently */}
-          {project.status === "shipped" && (
+          {(project.status === "shipped" || project.status === "beta") && (
             <span onClick={(e) => e.stopPropagation()}>
               <ProjectLinks project={project} title={itemCopy.title} dict={dict} />
             </span>
@@ -295,7 +302,7 @@ function AiLevelBadge({ level, dict }: BadgeProps) {
 // ============================================================================
 
 type LinksProps = {
-  project: ShippedProject;
+  project: ShippedProject | BetaProject;
   title: string;
   dict: Dictionary;
 };
