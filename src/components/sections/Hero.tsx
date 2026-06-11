@@ -68,7 +68,7 @@ export function Hero({ dict }: Props) {
         <div className="flex flex-wrap justify-center gap-6">
           <a
             href="#projects"
-            className="bg-primary-container text-surface px-8 py-4 font-mono text-xs pixel-border-heavy hover:translate-x-1 hover:translate-y-1 hover:shadow-[0_0_15px_#ffdbd0] transition-all active:scale-95 inline-flex items-center gap-2"
+            className="bg-primary-container text-accent px-8 py-4 font-mono text-xs pixel-border-heavy hover:translate-x-1 hover:translate-y-1 hover:shadow-[0_0_15px_#ffdbd0] transition-all active:scale-95 inline-flex items-center gap-2"
           >
             {dict.hero.ctaProjects}
           </a>
