@@ -248,7 +248,7 @@ function ProjectModal({ screenshots, title, description, dict, onClose }: ModalP
         </div>
 
         {/* Project title + description */}
-        <div className="px-6 py-4 border-t border-primary/10 space-y-2 max-h-40 overflow-y-auto">
+        <div className="px-6 py-4 border-t border-primary/10 space-y-2">
           <p className="font-display text-lg text-text">{title}</p>
           {description && (
             <p className="text-text-muted text-sm leading-relaxed whitespace-pre-line">
