@@ -69,6 +69,7 @@ export const projects: readonly Project[] = [
       "/images/picswipe/screen-3.jpg",
       "/images/picswipe/screen-4.jpg",
     ],
+    repoUrl: "https://github.com/matchls/picswipe",
   },
   {
     slug: "drglytics",
