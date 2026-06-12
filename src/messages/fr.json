@@ -126,7 +126,7 @@
         "modalDescription": "Application Android pour trier rapidement sa galerie photo — un swipe à droite pour garder, à gauche pour supprimer. Projet solo développé de A à Z : accès à la galerie native avec gestion des permissions, animations fluides via Reanimated 4 et Gesture Handler, état global Zustand, persistance AsyncStorage, et retours haptiques pour une expérience tactile soignée. Les photos sont chargées progressivement par mois, avec un écran de revue avant suppression définitive."
       },
       "drglytics": {
-        "title": "Drglytics",
+        "title": "DRGlytics",
         "description": "Dashboard interactif · React · Recharts · dataviz · stats joueur Deep Rock Galactic",
         "modalDescription": "Dashboard web interactif pour visualiser les statistiques de joueur du jeu Deep Rock Galactic. L'application consomme des données issues de fichiers de sauvegarde du jeu et les transforme en graphiques et indicateurs visuels. Le projet est centré sur la dataviz et l'expérience utilisateur : navigation fluide, graphiques interactifs avec Recharts, interface responsive. Les données sont extraites via un parseur Python qui décode le format binaire propriétaire des sauvegardes."
       }
