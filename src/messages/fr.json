@@ -125,6 +125,11 @@
         "description": "Tri de galerie Android par swipe · garder ou supprimer d'un geste · animations fluides · retours haptiques · projet solo",
         "modalDescription": "Application Android pour trier rapidement sa galerie photo — un swipe à droite pour garder, à gauche pour supprimer. Projet solo développé de A à Z : accès à la galerie native avec gestion des permissions, animations fluides via Reanimated 4 et Gesture Handler, état global Zustand, persistance AsyncStorage, et retours haptiques pour une expérience tactile soignée. Les photos sont chargées progressivement par mois, avec un écran de revue avant suppression définitive."
       },
+      "jobjourney": {
+        "title": "Job Journey",
+        "description": "Tracker de candidatures pour devs · journal d'entretien · analyse des retours · auth JWT httpOnly · fullstack solo",
+        "modalDescription": "Application web fullstack pour aider les développeurs à organiser leur recherche d'emploi : suivi des candidatures avec statuts, journal de préparation aux entretiens, et système d'analyse des retours pour progresser à chaque processus de recrutement.\n\nProjet solo développé de A à Z : authentification JWT avec cookies httpOnly, API REST Express/Node.js, base de données PostgreSQL hébergée sur Neon (serverless), ORM Prisma v5, et interface Next.js avec TanStack Query pour la gestion des données en cache."
+      },
       "drglytics": {
         "title": "DRGlytics",
         "description": "Dashboard interactif · React · Recharts · dataviz · stats joueur Deep Rock Galactic",

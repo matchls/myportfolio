@@ -125,6 +125,11 @@
         "description": "Sort Android gallery by swipe · keep or delete with a gesture · smooth animations · haptic feedback · solo project",
         "modalDescription": "An Android app to sort your photo gallery at the speed of thought — swipe right to keep, left to delete. Solo project built from scratch: native gallery access with permission handling, smooth animations via Reanimated 4 and Gesture Handler, global state with Zustand, session persistence with AsyncStorage, and haptic feedback for a polished tactile feel. Photos load progressively by month, with a review screen to confirm deletions before permanently freeing storage."
       },
+      "jobjourney": {
+        "title": "Job Journey",
+        "description": "Job application tracker for devs · interview journal · feedback analysis · JWT httpOnly auth · fullstack solo",
+        "modalDescription": "A fullstack web app to help developers organise their job search: application tracking with status updates, interview preparation journal, and a feedback analysis system to learn from each recruitment process.\n\nSolo project built from scratch: JWT authentication with httpOnly cookies, REST API with Express/Node.js, serverless PostgreSQL database via Neon, Prisma v5 ORM, and a Next.js frontend with TanStack Query for cached data management."
+      },
       "drglytics": {
         "title": "DRGlytics",
         "description": "Interactive dashboard · React · Recharts · data visualization · Deep Rock Galactic player stats",
